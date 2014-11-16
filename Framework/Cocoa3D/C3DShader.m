@@ -8,10 +8,19 @@
 
 #import "C3DShader.h"
 
+#ifdef TARGET_OS_IPHONE
+#import <OpenGLES/ES3/gl.h>
+#else
 #import <OpenGL/gl3.h>
+#endif
 
 static NSArray *typeNames;
+
+#ifdef TARGET_OS_IPHONE
+static GLenum glTypes[] = { GL_VERTEX_SHADER, GL_FRAGMENT_SHADER };
+#else
 static GLenum glTypes[] = { GL_VERTEX_SHADER, GL_FRAGMENT_SHADER, GL_GEOMETRY_SHADER };
+#endif
 
 @interface NSBundle (Cocoa3D)
 + (NSURL *)URLForVertexShaderNamed:(NSString *)name;

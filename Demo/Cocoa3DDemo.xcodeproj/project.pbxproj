@@ -48,7 +48,27 @@
 			remoteGlobalIDString = 849D2B24196FD4C70051F434;
 			remoteInfo = Cocoa3DTests;
 		};
+		84B8F2391A183B69000C1AE5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 849D2B7B196FD58B0051F434 /* Cocoa3D.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 849D2B0C196FD4C70051F434;
+			remoteInfo = Cocoa3D;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		84B8F1FF1A183A87000C1AE5 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		849D2B44196FD54E0051F434 /* Cocoa3DDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cocoa3DDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -210,10 +230,12 @@
 				849D2B40196FD54E0051F434 /* Sources */,
 				849D2B41196FD54E0051F434 /* Frameworks */,
 				849D2B42196FD54E0051F434 /* Resources */,
+				84B8F1FF1A183A87000C1AE5 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				84B8F23A1A183B69000C1AE5 /* PBXTargetDependency */,
 			);
 			name = Cocoa3DDemo;
 			productName = Cocoa3DDemo;
@@ -345,6 +367,11 @@
 			target = 849D2B43196FD54E0051F434 /* Cocoa3DDemo */;
 			targetProxy = 849D2B69196FD54E0051F434 /* PBXContainerItemProxy */;
 		};
+		84B8F23A1A183B69000C1AE5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Cocoa3D;
+			targetProxy = 84B8F2391A183B69000C1AE5 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -465,6 +492,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cocoa3DDemo/Cocoa3DDemo-Prefix.pch";
 				INFOPLIST_FILE = "Cocoa3DDemo/Cocoa3DDemo-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -482,6 +510,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cocoa3DDemo/Cocoa3DDemo-Prefix.pch";
 				INFOPLIST_FILE = "Cocoa3DDemo/Cocoa3DDemo-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

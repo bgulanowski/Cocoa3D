@@ -19,6 +19,7 @@
 
 #define LOG_UNIMPLEMENTED() NSLog(@"Unimplemented method %@", NSStringFromSelector(_cmd))
 
+#if ! TARGET_OS_IPHONE
 const GLenum primitiveTypes[] = {
 	GL_POINTS,
 	GL_LINES,
@@ -47,6 +48,7 @@ static inline GLenum C3DPolygonModeToGL(C3DPolygonMode mode) {
 		default:                 return GL_FILL;  break;
 	}
 }
+#endif
 
 NSString *C3DCameraOptionsToString(C3DCameraOptions _options) {
     NSMutableArray *optionNames = [NSMutableArray array];
@@ -60,8 +62,10 @@ NSString *C3DCameraOptionsToString(C3DCameraOptions _options) {
     if(_options.cullOn) [optionNames addObject:@"CULL"];
     if(_options.depthOn) [optionNames addObject:@"DEPTH"];
 	
+#if ! TARGET_OS_IPHONE
     [optionNames addObject:[NSString stringWithFormat:@"FRONT FACE:%@", C3DStringForPolygonMode(_options.frontMode)]];
     [optionNames addObject:[NSString stringWithFormat:@"BACK FACE:%@", C3DStringForPolygonMode(_options.backMode)]];
+#endif
 	
     return [optionNames componentsJoinedByString:@", "];
 }
@@ -72,6 +76,7 @@ NSString *C3DCameraOptionsToString(C3DCameraOptions _options) {
 @interface C3DCameraGL4 : C3DCamera
 @end
 
+#if ! TARGET_OS_IPHONE
 @interface NSOpenGLContext (C3DCamera)
 - (CGLOpenGLProfile)C3D_profile;
 @end
@@ -93,6 +98,7 @@ NSString *C3DCameraOptionsToString(C3DCameraOptions _options) {
 }
 
 @end
+#endif
 
 
 #pragma mark -
@@ -405,8 +411,10 @@ NSString *C3DCameraOptionsToString(C3DCameraOptions _options) {
 	if(_changes.cullOn)   _options.cullOn   ? glEnable(GL_CULL_FACE)  : glDisable(GL_CULL_FACE);
 	if(_changes.depthOn)  _options.depthOn  ? glEnable(GL_DEPTH_TEST) : glDisable(GL_DEPTH_TEST);
 	
+#if ! TARGET_OS_IPHONE
 	if(_changes.frontMode) glPolygonMode(GL_FRONT, C3DPolygonModeToGL(self.frontMode));
 	if(_changes.backMode)  glPolygonMode(GL_BACK, C3DPolygonModeToGL(self.backMode));
+#endif
 }
 
 - (void)capture {
@@ -423,8 +431,10 @@ NSString *C3DCameraOptionsToString(C3DCameraOptions _options) {
 	[props makeObjectsPerformSelector:@selector(paintForCamera:) withObject:self];
 	[_drawDelegate paintForCamera:self];
 	_transformStack = nil;
-	
+
+#if ! TARGET_OS_IPHONE
 	CGLFlushDrawable(CGLGetCurrentContext());
+#endif
 }
 
 - (void)logCameraState {
@@ -457,6 +467,14 @@ NSString *C3DCameraOptionsToString(C3DCameraOptions _options) {
 }
 
 #if TARGET_OS_IPHONE
++ (Class)classForEAGLContext:(id)context {
+	return nil;
+}
+
++ (C3DCamera *)cameraForEAGLContext:(id)context {
+	return nil;
+}
+
 #else
 + (Class)classForGLContext:(NSOpenGLContext *)context {
 	

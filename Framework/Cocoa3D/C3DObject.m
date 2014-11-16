@@ -12,7 +12,11 @@
 #import "C3DProgram.h"
 #import "C3DTransform.h"
 
-#import <OpenGL/gl.h>
+#ifdef TARGET_OS_IPHONE
+#import <OpenGLES/ES3/gl.h>
+#else
+#import <OpenGL/gl3.h>
+#endif
 
 @implementation C3DObject {
 	C3DObjectType _type;

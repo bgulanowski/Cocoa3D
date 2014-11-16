@@ -7,4 +7,7 @@
    <FileRef
       location = "group:Framework/Cocoa3D.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:Demo-iOS/C3D-iOS Demo.xcodeproj">
+   </FileRef>
 </Workspace>

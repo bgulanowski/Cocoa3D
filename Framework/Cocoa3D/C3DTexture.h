@@ -19,13 +19,14 @@
 - (void)configureParameters;
 
 - (void)updateWithData:(NSData *)data region:(CGRect)region;
+
+#if ! TARGET_OS_IPHONE
 - (void)updateTexelAtX:(GLuint)x y:(GLuint)y color:(NSColor *)color;
 
 + (instancetype)textureWithSize:(CGSize)size data:(NSData *)data;
 + (instancetype)textureWithFile:(NSString *)path;
 + (instancetype)textureNamed:(NSString *)imageName;
 
-#if ! TARGET_OS_IPHONE
 - (void)updateWithSubImage:(NSImage *)image location:(CGRect)location;
 
 + (instancetype)textureWithImage:(NSImage *)image;

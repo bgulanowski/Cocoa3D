@@ -8,7 +8,11 @@
 
 #import "C3DTexture.h"
 
-#import <OpenGL/gl.h>
+#ifdef TARGET_OS_IPHONE
+#import <OpenGLES/ES3/gl.h>
+#else
+#import <OpenGL/gl3.h>
+#endif
 
 #if ! TARGET_OS_IPHONE
 
@@ -66,6 +70,7 @@
 	return self;
 }
 
+#if ! TARGET_OS_IPHONE
 - (id)initWithSize:(CGSize)size color:(NSColor *)color {
     
     NSData *data = nil;
@@ -92,6 +97,7 @@
 	
     return [self initWithSize:size data:data];
 }
+#endif
 
 - (void)configureParameters {
 	glBindTexture(_type, _name);
@@ -107,10 +113,10 @@
                     GL_RGBA, GL_UNSIGNED_BYTE, [data bytes]);
 }
 
+#if ! TARGET_OS_IPHONE
 - (void)updateTexelAtX:(GLuint)x y:(GLuint)y color:(NSColor *)color {
 	
 }
-
 
 + (instancetype)textureWithSize:(CGSize)size data:(NSData *)data {
 	return [[self alloc] initWithSize:size data:data];
@@ -124,7 +130,6 @@
 	return [self textureWithImage:[NSImage imageNamed:imageName]];
 }
 
-#if ! TARGET_OS_IPHONE
 - (void)updateWithSubImage:(NSImage *)image location:(CGRect)location {
     
     NSBitmapImageRep *bitmap = [image textureBitmap];

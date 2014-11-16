@@ -11,7 +11,9 @@
 typedef NS_ENUM(NSUInteger, C3DShaderType) {
 	C3DShaderTypeVertex,
 	C3DShaderTypeFragment,
+#ifdef TARGET_OS_IPHONE
 	C3DShaderTypeGeometry,
+#endif
 	C3DShaderTypeCount
 };
 

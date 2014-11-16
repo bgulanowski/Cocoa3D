@@ -26,8 +26,10 @@ typedef struct {
 	unsigned int reserved2:9;
 } C3DCameraOptions;
 
+#if ! TARGET_OS_IPHONE
 extern NSString *C3DStringForPolygonMode(C3DPolygonMode mode);
 extern NSString *C3DCameraOptionsToString(C3DCameraOptions options);
+#endif
 
 typedef struct {
 	unsigned int background:1;

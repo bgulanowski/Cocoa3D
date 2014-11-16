@@ -1,0 +1,11 @@
+//
+//  Cocoa3D-iOS.pch
+//  Cocoa3D-iOS
+//
+//  Created by Brent Gulanowski on 2014-11-15.
+//  Copyright (c) 2014 Lichen Labs. All rights reserved.
+//
+
+#ifdef __OBJC__
+	#import <UIKit/UIKit.h>
+#endif

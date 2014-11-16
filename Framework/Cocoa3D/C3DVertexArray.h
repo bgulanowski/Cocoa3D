@@ -8,7 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-#import <OpenGL/gl.h>
+#ifdef TARGET_OS_IPHONE
+#import <OpenGLES/ES3/gl.h>
+#else
+#import <OpenGL/gl3.h>
+#endif
 
 typedef NS_ENUM(NSUInteger, C3DVertexArrayType) {
 	// quadruples
