@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#ifdef TARGET_OS_IPHONE
+#if TARGET_OS_IPHONE
 #import <OpenGLES/ES3/gl.h>
 #else
 #import <OpenGL/gl3.h>

@@ -8,7 +8,7 @@
 
 #import "C3DTexture.h"
 
-#ifdef TARGET_OS_IPHONE
+#if TARGET_OS_IPHONE
 #import <OpenGLES/ES3/gl.h>
 #else
 #import <OpenGL/gl3.h>
@@ -53,7 +53,7 @@
 			_magFilter = _minFilter = GL_LINEAR_MIPMAP_LINEAR;
 		}
 		else {
-			_type = GL_TEXTURE_RECTANGLE_EXT;
+			_type = GL_TEXTURE_RECTANGLE;
 			_magFilter = _minFilter = GL_LINEAR;
 		}
 #endif
@@ -64,7 +64,6 @@
 		glGenerateMipmap(_type);
 		
 		_size = size;
-		_mode = GL_REPLACE;
 	}
 	
 	return self;
@@ -103,9 +102,6 @@
 	glBindTexture(_type, _name);
     glTexParameteri(_type, GL_TEXTURE_MIN_FILTER, _minFilter);
     glTexParameteri(_type, GL_TEXTURE_MAG_FILTER, _magFilter);
-#if ! TARGET_OS_IPHONE
-	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, _mode );
-#endif
 }
 
 - (void)updateWithData:(NSData *)data region:(CGRect)region {

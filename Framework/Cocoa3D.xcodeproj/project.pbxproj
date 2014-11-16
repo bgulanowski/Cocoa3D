@@ -37,6 +37,7 @@
 		849D2B9E196FDA940051F434 /* C3DVertexArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 849D2B9C196FDA940051F434 /* C3DVertexArray.m */; };
 		84AFA92E19A97C8500296196 /* C3DCameraGL3.h in Headers */ = {isa = PBXBuildFile; fileRef = 84AFA92C19A97C8500296196 /* C3DCameraGL3.h */; };
 		84AFA92F19A97C8500296196 /* C3DCameraGL3.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AFA92D19A97C8500296196 /* C3DCameraGL3.m */; };
+		84B8F2C21A190FA5000C1AE5 /* LichenMath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B8F1431A178B48000C1AE5 /* LichenMath.framework */; };
 		84C1EAB31985919A002760E4 /* C3DView.h in Headers */ = {isa = PBXBuildFile; fileRef = 84C1EAB11985919A002760E4 /* C3DView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		84C1EAB41985919A002760E4 /* C3DView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C1EAB21985919A002760E4 /* C3DView.m */; };
 		84C1EAC819860B8C002760E4 /* C3DCameraGL1.h in Headers */ = {isa = PBXBuildFile; fileRef = 84C1EAC619860B8C002760E4 /* C3DCameraGL1.h */; };
@@ -159,6 +160,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84B8F2C21A190FA5000C1AE5 /* LichenMath.framework in Frameworks */,
 				849D2B11196FD4C70051F434 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -436,7 +438,7 @@
 		84B8F2381A183B56000C1AE5 /* LichenMath-iOS.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = "LichenMath-iOS.framework";
+			path = LichenMath.framework;
 			remoteRef = 84B8F2371A183B56000C1AE5 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};

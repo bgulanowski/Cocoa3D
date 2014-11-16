@@ -13,7 +13,6 @@
 @property (readonly) CGSize size;
 @property (assign) GLenum minFilter;
 @property (assign) GLenum magFilter;
-@property (assign) GLenum mode;
 @property (assign) GLenum type;
 
 - (void)configureParameters;
