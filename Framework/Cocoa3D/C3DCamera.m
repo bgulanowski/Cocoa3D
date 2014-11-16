@@ -19,7 +19,6 @@
 
 #define LOG_UNIMPLEMENTED() NSLog(@"Unimplemented method %@", NSStringFromSelector(_cmd))
 
-#if ! TARGET_OS_IPHONE
 const GLenum primitiveTypes[] = {
 	GL_POINTS,
 	GL_LINES,
@@ -30,6 +29,7 @@ const GLenum primitiveTypes[] = {
 	GL_TRIANGLE_FAN,
 };
 
+#if ! TARGET_OS_IPHONE
 NSString *C3DStringForPolygonMode(C3DPolygonMode mode) {
     switch (mode) {
         case C3DPolygonModePoint: return @"Point"; break;

@@ -39,6 +39,8 @@ typedef struct {
 	unsigned int reserved:12;
 } C3DCameraColorChanges;
 
+extern const GLenum primitiveTypes[];
+
 @interface C3DCamera ()
 
 @property (nonatomic) C3DCameraColorChanges colorChanges;

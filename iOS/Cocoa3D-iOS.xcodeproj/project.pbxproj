@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		84B8F1951A178E3C000C1AE5 /* Cocoa3D-iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 84B8F1941A178E3C000C1AE5 /* Cocoa3D-iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		84B8F27A1A183BC8000C1AE5 /* C3DCamera_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 84B8F2511A183BC8000C1AE5 /* C3DCamera_Private.h */; };
 		84B8F27B1A183BC8000C1AE5 /* C3DCamera.h in Headers */ = {isa = PBXBuildFile; fileRef = 84B8F2521A183BC8000C1AE5 /* C3DCamera.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		84B8F27C1A183BC8000C1AE5 /* C3DCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B8F2531A183BC8000C1AE5 /* C3DCamera.m */; };
@@ -34,6 +33,9 @@
 		84B8F2981A183BC8000C1AE5 /* Cocoa3D.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B8F26F1A183BC8000C1AE5 /* Cocoa3D.m */; };
 		84B8F2B31A18400E000C1AE5 /* LichenMath_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B8F24E1A183B97000C1AE5 /* LichenMath_iOS.framework */; };
 		84B8F2B51A18425F000C1AE5 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B8F2B41A18425F000C1AE5 /* OpenGLES.framework */; };
+		84B8F2BB1A190D49000C1AE5 /* C3DCameraEAGL3.h in Headers */ = {isa = PBXBuildFile; fileRef = 84B8F2B91A190D49000C1AE5 /* C3DCameraEAGL3.h */; };
+		84B8F2BC1A190D49000C1AE5 /* C3DCameraEAGL3.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B8F2BA1A190D49000C1AE5 /* C3DCameraEAGL3.m */; };
+		84B8F2BD1A190D86000C1AE5 /* Cocoa3D.h in Headers */ = {isa = PBXBuildFile; fileRef = 84B8F26E1A183BC8000C1AE5 /* Cocoa3D.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +115,8 @@
 		84B8F26F1A183BC8000C1AE5 /* Cocoa3D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cocoa3D.m; sourceTree = "<group>"; };
 		84B8F2B41A18425F000C1AE5 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		84B8F2B71A184379000C1AE5 /* Cocoa3D-iOS.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Cocoa3D-iOS.pch"; sourceTree = "<group>"; };
+		84B8F2B91A190D49000C1AE5 /* C3DCameraEAGL3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C3DCameraEAGL3.h; sourceTree = "<group>"; };
+		84B8F2BA1A190D49000C1AE5 /* C3DCameraEAGL3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C3DCameraEAGL3.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +156,8 @@
 			children = (
 				84B8F1941A178E3C000C1AE5 /* Cocoa3D-iOS.h */,
 				84B8F1921A178E3C000C1AE5 /* Supporting Files */,
+				84B8F2B91A190D49000C1AE5 /* C3DCameraEAGL3.h */,
+				84B8F2BA1A190D49000C1AE5 /* C3DCameraEAGL3.m */,
 			);
 			path = "Cocoa3D-iOS";
 			sourceTree = "<group>";
@@ -229,15 +235,16 @@
 				84B8F27B1A183BC8000C1AE5 /* C3DCamera.h in Headers */,
 				84B8F2871A183BC8000C1AE5 /* C3DObject.h in Headers */,
 				84B8F2811A183BC8000C1AE5 /* C3DLight.h in Headers */,
+				84B8F2BD1A190D86000C1AE5 /* Cocoa3D.h in Headers */,
 				84B8F2851A183BC8000C1AE5 /* C3DNode.h in Headers */,
 				84B8F28B1A183BC8000C1AE5 /* C3DShader.h in Headers */,
 				84B8F2891A183BC8000C1AE5 /* C3DProgram.h in Headers */,
 				84B8F2831A183BC8000C1AE5 /* C3DMotion.h in Headers */,
 				84B8F28F1A183BC8000C1AE5 /* C3DTransform.h in Headers */,
+				84B8F2BB1A190D49000C1AE5 /* C3DCameraEAGL3.h in Headers */,
 				84B8F28D1A183BC8000C1AE5 /* C3DTexture.h in Headers */,
 				84B8F2911A183BC8000C1AE5 /* C3DVertex.h in Headers */,
 				84B8F2931A183BC8000C1AE5 /* C3DVertexArray.h in Headers */,
-				84B8F1951A178E3C000C1AE5 /* Cocoa3D-iOS.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,6 +371,7 @@
 				84B8F2841A183BC8000C1AE5 /* C3DMotion.m in Sources */,
 				84B8F27C1A183BC8000C1AE5 /* C3DCamera.m in Sources */,
 				84B8F2941A183BC8000C1AE5 /* C3DVertexArray.m in Sources */,
+				84B8F2BC1A190D49000C1AE5 /* C3DCameraEAGL3.m in Sources */,
 				84B8F2821A183BC8000C1AE5 /* C3DLight.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

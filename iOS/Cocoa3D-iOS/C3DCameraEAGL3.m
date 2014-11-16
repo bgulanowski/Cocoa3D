@@ -1,19 +1,17 @@
 //
-//  C3DCameraGL3.m
-//  Cocoa3D
+//  C3DCameraEAGL3.m
+//  Cocoa3D-iOS
 //
-//  Created by Brent Gulanowski on 2014-08-23.
+//  Created by Brent Gulanowski on 2014-11-16.
 //  Copyright (c) 2014 Lichen Labs. All rights reserved.
 //
 
-#import "C3DCameraGL3.h"
+#import "C3DCameraEAGL3.h"
 #import "C3DCamera_Private.h"
 
-#import "C3DObject.h"
+#import <OpenGLES/ES3/gl.h>
 
-#import <OpenGL/gl3.h>
-
-@implementation C3DCameraGL3
+@implementation C3DCameraEAGL3
 
 - (void)drawElementsWithType:(C3DObjectType)type count:(NSInteger)count {
 	glDrawElements(primitiveTypes[type], (GLsizei)count, GL_UNSIGNED_INT, NULL);
