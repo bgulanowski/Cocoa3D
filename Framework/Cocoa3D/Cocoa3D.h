@@ -9,10 +9,12 @@
 #import <Foundation/Foundation.h>
 
 #import <Cocoa3D/C3DCamera.h>
-//#if TARGET_OS_IPHONE
-//#import <Cocoa3D/C3DCameraEAGL3.h>
-//#else
-//#endif
+#if TARGET_OS_IPHONE
+#import <Cocoa3D/C3DCameraEAGL3.h>
+#else
+#import <Cocoa3D/C3DCameraGL1.h>
+#import <Cocoa3D/C3DCameraGL3.h>
+#endif
 
 #import <Cocoa3D/C3DLight.h>
 #import <Cocoa3D/C3DMotion.h>

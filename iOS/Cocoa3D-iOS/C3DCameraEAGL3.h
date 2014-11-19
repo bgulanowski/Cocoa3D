@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Lichen Labs. All rights reserved.
 //
 
-#import <Cocoa3D/Cocoa3D.h>
+#import <Cocoa3D/C3DCamera.h>
 
 @interface C3DCameraEAGL3 : C3DCamera
 
