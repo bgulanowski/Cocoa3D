@@ -29,12 +29,28 @@
 	C3DProgram *_program;
 }
 
+#pragma mark - NSObject
+
 - (instancetype)init {
 	self = [super init];
 	if (self) {
 		_rootNode = [C3DNode demoScene];
 	}
 	return self;
+}
+
+#pragma mark - NSResponder
+
+- (void)keyDown:(NSEvent *)theEvent {
+	[_openGLView keyDown:theEvent];
+	[_window makeFirstResponder:_openGLView];
+}
+
+#pragma mark - NSNibAwaking
+
+- (void)awakeFromNib {
+	[self.window makeFirstResponder:_openGLView];
+	[self.window setNextResponder:self];
 }
 
 #pragma mark - NSApplicationDelegate
@@ -53,7 +69,6 @@
 	[self prepareCamera];
 
 	_openGLView.camera = _camera;
-	
 	[_camera capture];
 }
 

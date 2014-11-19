@@ -155,7 +155,7 @@ static CVReturn C3DViewDisplayLink(CVDisplayLinkRef displayLink,
 - (void)mouseMoved:(NSEvent *)theEvent {
 	
 	if (_trackMouse) {
-NSPoint loc = [self convertPointFromBacking:[theEvent locationInWindow]];
+		NSPoint loc = [self convertPointFromBacking:[theEvent locationInWindow]];
 //        if (fabs(mouseLocation.x - loc.x)>2 && fabs(mouseLocation.y-loc.y)>2) {
 //            NSLog(@"Mouse at %@", NSStringFromPoint(loc));
 //        }
