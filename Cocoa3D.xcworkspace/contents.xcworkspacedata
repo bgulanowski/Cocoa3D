@@ -10,4 +10,10 @@
    <FileRef
       location = "group:Demo-iOS/C3D-iOS Demo.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:Demo-iOS/../iOS/Cocoa3D-iOS.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "absolute:/Users/brent/Dev/github/Cocoa3D/Framework/../LichenMath/LichenMath.xcodeproj">
+   </FileRef>
 </Workspace>
