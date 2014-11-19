@@ -20,6 +20,7 @@
 		84B8F2D51A1926A1000C1AE5 /* Cocoa3D.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B8F1BA1A178ECF000C1AE5 /* Cocoa3D.framework */; };
 		84B8F2E01A1997A9000C1AE5 /* FlatShader.fp in Resources */ = {isa = PBXBuildFile; fileRef = 84B8F2DE1A1997A9000C1AE5 /* FlatShader.fp */; };
 		84B8F2E11A1997A9000C1AE5 /* FlatShader.vp in Resources */ = {isa = PBXBuildFile; fileRef = 84B8F2DF1A1997A9000C1AE5 /* FlatShader.vp */; };
+		84F7E2431A1C4AC6008AD005 /* C3DObject+Demo.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F7E2421A1C4AC6008AD005 /* C3DObject+Demo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,8 @@
 		84B8F2CE1A1920CF000C1AE5 /* Cocoa3D-iOS Demo.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cocoa3D-iOS Demo.pch"; sourceTree = "<group>"; };
 		84B8F2DE1A1997A9000C1AE5 /* FlatShader.fp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FlatShader.fp; sourceTree = "<group>"; };
 		84B8F2DF1A1997A9000C1AE5 /* FlatShader.vp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FlatShader.vp; sourceTree = "<group>"; };
+		84F7E2411A1C4AC6008AD005 /* C3DObject+Demo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "C3DObject+Demo.h"; path = "../../Demo/Cocoa3DDemo/C3DObject+Demo.h"; sourceTree = "<group>"; };
+		84F7E2421A1C4AC6008AD005 /* C3DObject+Demo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "C3DObject+Demo.m"; path = "../../Demo/Cocoa3DDemo/C3DObject+Demo.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +116,7 @@
 		84B8F1551A178BEB000C1AE5 /* C3D-iOS Demo */ = {
 			isa = PBXGroup;
 			children = (
+				84F7E2401A1C4AAD008AD005 /* Cocoa3D Demo */,
 				84B8F15A1A178BEB000C1AE5 /* AppDelegate.h */,
 				84B8F15B1A178BEB000C1AE5 /* AppDelegate.m */,
 				84B8F15D1A178BEB000C1AE5 /* ViewController.h */,
@@ -172,6 +176,15 @@
 			);
 			name = Frameworks;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		84F7E2401A1C4AAD008AD005 /* Cocoa3D Demo */ = {
+			isa = PBXGroup;
+			children = (
+				84F7E2411A1C4AC6008AD005 /* C3DObject+Demo.h */,
+				84F7E2421A1C4AC6008AD005 /* C3DObject+Demo.m */,
+			);
+			name = "Cocoa3D Demo";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -293,6 +306,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84F7E2431A1C4AC6008AD005 /* C3DObject+Demo.m in Sources */,
 				84B8F15F1A178BEB000C1AE5 /* ViewController.m in Sources */,
 				84B8F15C1A178BEB000C1AE5 /* AppDelegate.m in Sources */,
 				84B8F1591A178BEB000C1AE5 /* main.m in Sources */,

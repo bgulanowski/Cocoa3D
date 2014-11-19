@@ -15,7 +15,7 @@
 @interface C3DObject : NSObject<C3DVisible>
 
 @property (nonatomic, strong, readonly) NSArray *vertexArrays;
-@property (nonatomic, weak) C3DProgram *program;
+@property (nonatomic, strong) C3DProgram *program;
 
 - (instancetype)initWithType:(C3DObjectType)type vertexArrays:(NSArray *)vertexArrays program:(C3DProgram *)program;
 
