@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 
 #import <OpenGLES/ES3/gl.h>
+#import <OpenGLES/EAGLDrawable.h>
 
 @import UIKit;
 @import OpenGLES;
@@ -16,34 +17,54 @@
 
 #import <Cocoa3D/Cocoa3D.h>
 
-@interface AppDelegate () <C3DCameraDrawDelegate, C3DPropContainer>
+@interface AppDelegate () <C3DCameraDrawDelegate, C3DPropContainer, GLKViewDelegate>
 @end
 
 @implementation AppDelegate {
+	C3DCamera *_camera;
 	C3DNode *_rootNode;
+	C3DProgram *_program;
 }
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	
 	GLKView *glkView = (GLKView *)_window.rootViewController.view;
-	[EAGLContext setCurrentContext:glkView.context];
+	EAGLContext *context = glkView.context;
+	[EAGLContext setCurrentContext:context];
 	
-	C3DCamera *camera = [C3DCamera cameraForEAGLContext:glkView.context];
-	camera.drawDelegate = self;
+	glkView.delegate = self;
+	
+	[self setUpGL];
+	
+	_camera = [C3DCamera cameraForEAGLContext:context];
+	_camera.drawDelegate = self;
 	
 	C3DTransform *modelView = [[C3DTransform alloc] initWithMatrix:LIMatrixIdentity];
 	
 	[modelView rotate:LIRotationMake(0, 1, 0, M_PI_4)];
 	[modelView translate:LIVectorMake(0.0, 0.0, -10.0f)];
-	camera.transform = modelView;
+	_camera.transform = modelView;
 	
 	_rootNode = [C3DNode new];
 	_rootNode.object = [self demoTriangle];
 	
-	[camera capture];
+	[_camera updateProjectionForViewportSize:glkView.bounds.size];
+	
+	[glkView display];
 	
 	return YES;
+}
+
+- (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {
+	[_camera capture];
+	glFlush();
+}
+
+- (void)setUpGL {
+	glClearColor(0, 1, 0, 1);
+	glClear(GL_COLOR_BUFFER_BIT);
+	glEnable(GL_CULL_FACE);
 }
 
 - (C3DObject *)demoTriangle {
@@ -63,9 +84,9 @@
 	C3DVertexArray *positionArray = [[C3DVertexArray alloc] initWithType:C3DVertexArrayPosition elements:points count:3];
 	C3DVertexArray *colourArray = [[C3DVertexArray alloc] initWithType:C3DVertexArrayColour elements:colours count:3];
 	NSArray *vertexArrays = @[positionArray, colourArray];
-	C3DProgram *program = [[C3DProgram alloc] initWithName:@"FlatShader" attributes:[vertexArrays valueForKey:@"attributeName"] uniforms:@[@"MVP"]];
+	_program = [[C3DProgram alloc] initWithName:@"FlatShader" attributes:[vertexArrays valueForKey:@"attributeName"] uniforms:@[@"MVP"]];
 	
-	return [[C3DObject alloc] initWithType:C3DObjectTypeTriangles vertexArrays:vertexArrays program:program];
+	return [[C3DObject alloc] initWithType:C3DObjectTypeTriangles vertexArrays:vertexArrays program:_program];
 }
 
 #pragma mark - C3DCameraDrawDelegate
