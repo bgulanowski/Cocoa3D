@@ -8,38 +8,78 @@
 
 #import "AppDelegate.h"
 
-@interface AppDelegate ()
+#import <OpenGLES/ES3/gl.h>
 
+@import UIKit;
+@import OpenGLES;
+@import GLKit;
+
+#import <Cocoa3D/Cocoa3D.h>
+
+@interface AppDelegate () <C3DCameraDrawDelegate, C3DPropContainer>
 @end
 
-@implementation AppDelegate
+@implementation AppDelegate {
+	C3DNode *_rootNode;
+}
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-	// Override point for customization after application launch.
+	
+	GLKView *glkView = (GLKView *)_window.rootViewController.view;
+	[EAGLContext setCurrentContext:glkView.context];
+	
+	C3DCamera *camera = [C3DCamera cameraForEAGLContext:glkView.context];
+	camera.drawDelegate = self;
+	
+	C3DTransform *modelView = [[C3DTransform alloc] initWithMatrix:LIMatrixIdentity];
+	
+	[modelView rotate:LIRotationMake(0, 1, 0, M_PI_4)];
+	[modelView translate:LIVectorMake(0.0, 0.0, -10.0f)];
+	camera.transform = modelView;
+	
+	_rootNode = [C3DNode new];
+	_rootNode.object = [self demoTriangle];
+	
+	[camera capture];
+	
 	return YES;
 }
 
-- (void)applicationWillResignActive:(UIApplication *)application {
-	// Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-	// Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+- (C3DObject *)demoTriangle {
+	
+	GLfloat points[3][3] = {
+		{ -1, -1, 0 },
+		{  1, -1, 0 },
+		{  0,  1, 0 }
+	};
+	
+	GLfloat colours[3][4] = {
+		{ 1, 0, 1, 1},
+		{ 0, 1, 1, 1},
+		{ 1, 1, 0, 1}
+	};
+	
+	C3DVertexArray *positionArray = [[C3DVertexArray alloc] initWithType:C3DVertexArrayPosition elements:points count:3];
+	C3DVertexArray *colourArray = [[C3DVertexArray alloc] initWithType:C3DVertexArrayColour elements:colours count:3];
+	NSArray *vertexArrays = @[positionArray, colourArray];
+	C3DProgram *program = [[C3DProgram alloc] initWithName:@"FlatShader" attributes:[vertexArrays valueForKey:@"attributeName"] uniforms:@[@"MVP"]];
+	
+	return [[C3DObject alloc] initWithType:C3DObjectTypeTriangles vertexArrays:vertexArrays program:program];
 }
 
-- (void)applicationDidEnterBackground:(UIApplication *)application {
-	// Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-	// If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+#pragma mark - C3DCameraDrawDelegate
+
+- (void)paintForCamera:(C3DCamera *)camera {}
+
+- (id<C3DPropContainer>)propContainer {
+	return self;
 }
 
-- (void)applicationWillEnterForeground:(UIApplication *)application {
-	// Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-}
+#pragma mark - C3DPropContainer
 
-- (void)applicationDidBecomeActive:(UIApplication *)application {
-	// Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-}
-
-- (void)applicationWillTerminate:(UIApplication *)application {
-	// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+- (NSArray *)sortedPropsForCamera:(C3DCamera *)camera {
+	return @[_rootNode];
 }
 
 @end

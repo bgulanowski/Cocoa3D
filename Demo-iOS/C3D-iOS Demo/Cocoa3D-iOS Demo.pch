@@ -1,13 +1,12 @@
 //
-//  C3DCameraEAGL3.h
-//  Cocoa3D-iOS
+//  Cocoa3D-iOS Demo.pch
+//  C3D-iOS Demo
 //
 //  Created by Brent Gulanowski on 2014-11-16.
 //  Copyright (c) 2014 Lichen Labs. All rights reserved.
 //
 
-#import <Cocoa3D/Cocoa3D.h>
+#import <CoreGraphics/CoreGraphics.h>
 
-@interface C3DCameraEAGL3 : C3DCamera
-
-@end
+@import UIKit;
+@import OpenGLES;

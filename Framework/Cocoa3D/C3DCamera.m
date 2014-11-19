@@ -9,8 +9,14 @@
 #import "C3DCamera.h"
 
 #import "C3DCamera_Private.h"
+
+#if TARGET_OS_IPHONE
+#import "C3DCameraEAGL3.h"
+#else
 #import "C3DCameraGL1.h"
 #import "C3DCameraGL3.h"
+#endif
+
 #import "C3DTransform.h"
 
 #import <LichenMath/LichenMath.h>
@@ -467,12 +473,21 @@ NSString *C3DCameraOptionsToString(C3DCameraOptions _options) {
 }
 
 #if TARGET_OS_IPHONE
-+ (Class)classForEAGLContext:(id)context {
-	return nil;
++ (Class)classForEAGLContext:(EAGLContext *)context {
+	Class C3DCameraClass = self;
+	switch ([context API]) {
+		case kEAGLRenderingAPIOpenGLES1:
+		case kEAGLRenderingAPIOpenGLES2:
+			// TODO: backwards compatibility
+		case kEAGLRenderingAPIOpenGLES3:
+		default:
+			C3DCameraClass = [C3DCameraEAGL3 class]; break;
+	}
+	return C3DCameraClass;
 }
 
 + (C3DCamera *)cameraForEAGLContext:(id)context {
-	return nil;
+	return [[[self classForEAGLContext:context] alloc] init];
 }
 
 #else

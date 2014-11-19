@@ -8,6 +8,23 @@
 
 #import <Foundation/Foundation.h>
 
+#import <Cocoa3D/C3DCamera.h>
+//#if TARGET_OS_IPHONE
+//#import <Cocoa3D/C3DCameraEAGL3.h>
+//#else
+//#endif
+
+#import <Cocoa3D/C3DLight.h>
+#import <Cocoa3D/C3DMotion.h>
+#import <Cocoa3D/C3DNode.h>
+#import <Cocoa3D/C3DObject.h>
+#import <Cocoa3D/C3DProgram.h>
+#import <Cocoa3D/C3DShader.h>
+#import <Cocoa3D/C3DTexture.h>
+#import <Cocoa3D/C3DTransform.h>
+#import <Cocoa3D/C3DVertex.h>
+#import <Cocoa3D/C3DVertexArray.h>
+
 @interface Cocoa3D : NSObject
 
 @end

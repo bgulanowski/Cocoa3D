@@ -31,11 +31,15 @@
 		84B8F2931A183BC8000C1AE5 /* C3DVertexArray.h in Headers */ = {isa = PBXBuildFile; fileRef = 84B8F26A1A183BC8000C1AE5 /* C3DVertexArray.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		84B8F2941A183BC8000C1AE5 /* C3DVertexArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B8F26B1A183BC8000C1AE5 /* C3DVertexArray.m */; };
 		84B8F2981A183BC8000C1AE5 /* Cocoa3D.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B8F26F1A183BC8000C1AE5 /* Cocoa3D.m */; };
-		84B8F2B31A18400E000C1AE5 /* LichenMath_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B8F24E1A183B97000C1AE5 /* LichenMath_iOS.framework */; };
+		84B8F2B31A18400E000C1AE5 /* LichenMath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B8F24E1A183B97000C1AE5 /* LichenMath.framework */; };
 		84B8F2B51A18425F000C1AE5 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B8F2B41A18425F000C1AE5 /* OpenGLES.framework */; };
-		84B8F2BB1A190D49000C1AE5 /* C3DCameraEAGL3.h in Headers */ = {isa = PBXBuildFile; fileRef = 84B8F2B91A190D49000C1AE5 /* C3DCameraEAGL3.h */; };
+		84B8F2BB1A190D49000C1AE5 /* C3DCameraEAGL3.h in Headers */ = {isa = PBXBuildFile; fileRef = 84B8F2B91A190D49000C1AE5 /* C3DCameraEAGL3.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		84B8F2BC1A190D49000C1AE5 /* C3DCameraEAGL3.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B8F2BA1A190D49000C1AE5 /* C3DCameraEAGL3.m */; };
 		84B8F2BD1A190D86000C1AE5 /* Cocoa3D.h in Headers */ = {isa = PBXBuildFile; fileRef = 84B8F26E1A183BC8000C1AE5 /* Cocoa3D.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		84B8F2C51A1919FB000C1AE5 /* C3DView.h in Headers */ = {isa = PBXBuildFile; fileRef = 84B8F2C31A1919FB000C1AE5 /* C3DView.h */; };
+		84B8F2C61A1919FB000C1AE5 /* C3DView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B8F2C41A1919FB000C1AE5 /* C3DView.m */; };
+		84B8F2D71A192793000C1AE5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B8F2D61A192793000C1AE5 /* CoreGraphics.framework */; };
+		84B8F2D91A192890000C1AE5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B8F2D81A192890000C1AE5 /* UIKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +121,11 @@
 		84B8F2B71A184379000C1AE5 /* Cocoa3D-iOS.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Cocoa3D-iOS.pch"; sourceTree = "<group>"; };
 		84B8F2B91A190D49000C1AE5 /* C3DCameraEAGL3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C3DCameraEAGL3.h; sourceTree = "<group>"; };
 		84B8F2BA1A190D49000C1AE5 /* C3DCameraEAGL3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C3DCameraEAGL3.m; sourceTree = "<group>"; };
+		84B8F2C31A1919FB000C1AE5 /* C3DView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C3DView.h; sourceTree = "<group>"; };
+		84B8F2C41A1919FB000C1AE5 /* C3DView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C3DView.m; sourceTree = "<group>"; };
+		84B8F2CF1A192676000C1AE5 /* Cocoa3D.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa3D.framework; path = ../../../../../Shared/Xcode/Products/Debug/Cocoa3D.framework; sourceTree = "<group>"; };
+		84B8F2D61A192793000C1AE5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		84B8F2D81A192890000C1AE5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,8 +133,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84B8F2D91A192890000C1AE5 /* UIKit.framework in Frameworks */,
+				84B8F2D71A192793000C1AE5 /* CoreGraphics.framework in Frameworks */,
 				84B8F2B51A18425F000C1AE5 /* OpenGLES.framework in Frameworks */,
-				84B8F2B31A18400E000C1AE5 /* LichenMath_iOS.framework in Frameworks */,
+				84B8F2B31A18400E000C1AE5 /* LichenMath.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,6 +169,8 @@
 				84B8F1921A178E3C000C1AE5 /* Supporting Files */,
 				84B8F2B91A190D49000C1AE5 /* C3DCameraEAGL3.h */,
 				84B8F2BA1A190D49000C1AE5 /* C3DCameraEAGL3.m */,
+				84B8F2C31A1919FB000C1AE5 /* C3DView.h */,
+				84B8F2C41A1919FB000C1AE5 /* C3DView.m */,
 			);
 			path = "Cocoa3D-iOS";
 			sourceTree = "<group>";
@@ -178,7 +191,7 @@
 				84B8F2481A183B97000C1AE5 /* LichenMathTests.xctest */,
 				84B8F24A1A183B97000C1AE5 /* liblimath.a */,
 				84B8F24C1A183B97000C1AE5 /* liblimath-ios.a */,
-				84B8F24E1A183B97000C1AE5 /* LichenMath_iOS.framework */,
+				84B8F24E1A183B97000C1AE5 /* LichenMath.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -219,6 +232,9 @@
 		84B8F2B61A184274000C1AE5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				84B8F2D81A192890000C1AE5 /* UIKit.framework */,
+				84B8F2D61A192793000C1AE5 /* CoreGraphics.framework */,
+				84B8F2CF1A192676000C1AE5 /* Cocoa3D.framework */,
 				84B8F2B41A18425F000C1AE5 /* OpenGLES.framework */,
 			);
 			name = Frameworks;
@@ -231,20 +247,21 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84B8F27A1A183BC8000C1AE5 /* C3DCamera_Private.h in Headers */,
 				84B8F27B1A183BC8000C1AE5 /* C3DCamera.h in Headers */,
-				84B8F2871A183BC8000C1AE5 /* C3DObject.h in Headers */,
-				84B8F2811A183BC8000C1AE5 /* C3DLight.h in Headers */,
-				84B8F2BD1A190D86000C1AE5 /* Cocoa3D.h in Headers */,
-				84B8F2851A183BC8000C1AE5 /* C3DNode.h in Headers */,
-				84B8F28B1A183BC8000C1AE5 /* C3DShader.h in Headers */,
-				84B8F2891A183BC8000C1AE5 /* C3DProgram.h in Headers */,
-				84B8F2831A183BC8000C1AE5 /* C3DMotion.h in Headers */,
-				84B8F28F1A183BC8000C1AE5 /* C3DTransform.h in Headers */,
+				84B8F27A1A183BC8000C1AE5 /* C3DCamera_Private.h in Headers */,
 				84B8F2BB1A190D49000C1AE5 /* C3DCameraEAGL3.h in Headers */,
-				84B8F28D1A183BC8000C1AE5 /* C3DTexture.h in Headers */,
+				84B8F2811A183BC8000C1AE5 /* C3DLight.h in Headers */,
+				84B8F2831A183BC8000C1AE5 /* C3DMotion.h in Headers */,
+				84B8F2851A183BC8000C1AE5 /* C3DNode.h in Headers */,
+				84B8F2871A183BC8000C1AE5 /* C3DObject.h in Headers */,
+				84B8F2891A183BC8000C1AE5 /* C3DProgram.h in Headers */,
+				84B8F28B1A183BC8000C1AE5 /* C3DShader.h in Headers */,
+				84B8F28F1A183BC8000C1AE5 /* C3DTransform.h in Headers */,
 				84B8F2911A183BC8000C1AE5 /* C3DVertex.h in Headers */,
 				84B8F2931A183BC8000C1AE5 /* C3DVertexArray.h in Headers */,
+				84B8F28D1A183BC8000C1AE5 /* C3DTexture.h in Headers */,
+				84B8F2C51A1919FB000C1AE5 /* C3DView.h in Headers */,
+				84B8F2BD1A190D86000C1AE5 /* Cocoa3D.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,10 +353,10 @@
 			remoteRef = 84B8F24B1A183B97000C1AE5 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		84B8F24E1A183B97000C1AE5 /* LichenMath_iOS.framework */ = {
+		84B8F24E1A183B97000C1AE5 /* LichenMath.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = LichenMath_iOS.framework;
+			path = LichenMath.framework;
 			remoteRef = 84B8F24D1A183B97000C1AE5 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -360,19 +377,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84B8F2861A183BC8000C1AE5 /* C3DNode.m in Sources */,
-				84B8F28A1A183BC8000C1AE5 /* C3DProgram.m in Sources */,
-				84B8F2921A183BC8000C1AE5 /* C3DVertex.m in Sources */,
-				84B8F28E1A183BC8000C1AE5 /* C3DTexture.m in Sources */,
-				84B8F2981A183BC8000C1AE5 /* Cocoa3D.m in Sources */,
-				84B8F2901A183BC8000C1AE5 /* C3DTransform.m in Sources */,
-				84B8F28C1A183BC8000C1AE5 /* C3DShader.m in Sources */,
-				84B8F2881A183BC8000C1AE5 /* C3DObject.m in Sources */,
-				84B8F2841A183BC8000C1AE5 /* C3DMotion.m in Sources */,
 				84B8F27C1A183BC8000C1AE5 /* C3DCamera.m in Sources */,
-				84B8F2941A183BC8000C1AE5 /* C3DVertexArray.m in Sources */,
 				84B8F2BC1A190D49000C1AE5 /* C3DCameraEAGL3.m in Sources */,
 				84B8F2821A183BC8000C1AE5 /* C3DLight.m in Sources */,
+				84B8F2841A183BC8000C1AE5 /* C3DMotion.m in Sources */,
+				84B8F2861A183BC8000C1AE5 /* C3DNode.m in Sources */,
+				84B8F2881A183BC8000C1AE5 /* C3DObject.m in Sources */,
+				84B8F28A1A183BC8000C1AE5 /* C3DProgram.m in Sources */,
+				84B8F28C1A183BC8000C1AE5 /* C3DShader.m in Sources */,
+				84B8F28E1A183BC8000C1AE5 /* C3DTexture.m in Sources */,
+				84B8F2901A183BC8000C1AE5 /* C3DTransform.m in Sources */,
+				84B8F2921A183BC8000C1AE5 /* C3DVertex.m in Sources */,
+				84B8F2C61A1919FB000C1AE5 /* C3DView.m in Sources */,
+				84B8F2941A183BC8000C1AE5 /* C3DVertexArray.m in Sources */,
+				84B8F2981A183BC8000C1AE5 /* Cocoa3D.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,6 +440,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					../../Framework,
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -461,6 +484,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					../../Framework,
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
@@ -478,8 +506,16 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/Shared/Xcode/Products/Debug,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cocoa3D-iOS/Cocoa3D-iOS.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					..,
+				);
 				INFOPLIST_FILE = "Cocoa3D-iOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -495,8 +531,16 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/Shared/Xcode/Products/Debug,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cocoa3D-iOS/Cocoa3D-iOS.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					..,
+				);
 				INFOPLIST_FILE = "Cocoa3D-iOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

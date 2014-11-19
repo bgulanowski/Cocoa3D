@@ -11,6 +11,12 @@
 #import <LichenMath/LIPoint_t.h>
 #import <LichenMath/LIMatrix_t.h>
 
+#if  TARGET_OS_IPHONE
+#import <OpenGLES/ES3/gl.h>
+#endif
+
+#import <CoreGraphics/CoreGraphics.h>
+
 @class C3DTransform, C3DCamera, LIPoint, LIVector, LIMatrix;
 
 typedef struct {

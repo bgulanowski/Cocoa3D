@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 
+#import <GLKit/GLKit.h>
+
 @interface ViewController ()
 
 @end
@@ -17,6 +19,8 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+	GLKView *glkView = (GLKView *) self.view;
+	glkView.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES3];
 }
 
 - (void)didReceiveMemoryWarning {

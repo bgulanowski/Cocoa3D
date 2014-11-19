@@ -14,6 +14,12 @@
 		84B8F1641A178BEB000C1AE5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84B8F1631A178BEB000C1AE5 /* Images.xcassets */; };
 		84B8F1671A178BEB000C1AE5 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84B8F1651A178BEB000C1AE5 /* LaunchScreen.xib */; };
 		84B8F1731A178BEB000C1AE5 /* C3D_iOS_DemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B8F1721A178BEB000C1AE5 /* C3D_iOS_DemoTests.m */; };
+		84B8F2C81A191B83000C1AE5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B8F2C71A191B83000C1AE5 /* UIKit.framework */; };
+		84B8F2CB1A191B8C000C1AE5 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B8F2C91A191B8C000C1AE5 /* GLKit.framework */; };
+		84B8F2CC1A191B8C000C1AE5 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B8F2CA1A191B8C000C1AE5 /* OpenGLES.framework */; };
+		84B8F2D51A1926A1000C1AE5 /* Cocoa3D.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B8F1BA1A178ECF000C1AE5 /* Cocoa3D.framework */; };
+		84B8F2E01A1997A9000C1AE5 /* FlatShader.fp in Resources */ = {isa = PBXBuildFile; fileRef = 84B8F2DE1A1997A9000C1AE5 /* FlatShader.fp */; };
+		84B8F2E11A1997A9000C1AE5 /* FlatShader.vp in Resources */ = {isa = PBXBuildFile; fileRef = 84B8F2DF1A1997A9000C1AE5 /* FlatShader.vp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,19 +37,12 @@
 			remoteGlobalIDString = 84B8F18F1A178E3C000C1AE5;
 			remoteInfo = "Cocoa3D-iOS";
 		};
-		84B8F1BB1A178ECF000C1AE5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 84B8F1B41A178ECE000C1AE5 /* Cocoa3D-iOS.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 84B8F19A1A178E3C000C1AE5;
-			remoteInfo = "Cocoa3D-iOSTests";
-		};
-		84B8F2A01A183C82000C1AE5 /* PBXContainerItemProxy */ = {
+		84B8F2D31A192695000C1AE5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 84B8F1B41A178ECE000C1AE5 /* Cocoa3D-iOS.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 84B8F18E1A178E3C000C1AE5;
-			remoteInfo = "Cocoa3D-iOS";
+			remoteInfo = Cocoa3D_iOS;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -62,6 +61,12 @@
 		84B8F1711A178BEB000C1AE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84B8F1721A178BEB000C1AE5 /* C3D_iOS_DemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = C3D_iOS_DemoTests.m; sourceTree = "<group>"; };
 		84B8F1B41A178ECE000C1AE5 /* Cocoa3D-iOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "Cocoa3D-iOS.xcodeproj"; path = "../iOS/Cocoa3D-iOS.xcodeproj"; sourceTree = "<group>"; };
+		84B8F2C71A191B83000C1AE5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		84B8F2C91A191B8C000C1AE5 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		84B8F2CA1A191B8C000C1AE5 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		84B8F2CE1A1920CF000C1AE5 /* Cocoa3D-iOS Demo.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cocoa3D-iOS Demo.pch"; sourceTree = "<group>"; };
+		84B8F2DE1A1997A9000C1AE5 /* FlatShader.fp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FlatShader.fp; sourceTree = "<group>"; };
+		84B8F2DF1A1997A9000C1AE5 /* FlatShader.vp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FlatShader.vp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +74,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84B8F2D51A1926A1000C1AE5 /* Cocoa3D.framework in Frameworks */,
+				84B8F2CB1A191B8C000C1AE5 /* GLKit.framework in Frameworks */,
+				84B8F2CC1A191B8C000C1AE5 /* OpenGLES.framework in Frameworks */,
+				84B8F2C81A191B83000C1AE5 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,7 +120,10 @@
 				84B8F1601A178BEB000C1AE5 /* Main.storyboard */,
 				84B8F1631A178BEB000C1AE5 /* Images.xcassets */,
 				84B8F1651A178BEB000C1AE5 /* LaunchScreen.xib */,
+				84B8F2DE1A1997A9000C1AE5 /* FlatShader.fp */,
+				84B8F2DF1A1997A9000C1AE5 /* FlatShader.vp */,
 				84B8F1561A178BEB000C1AE5 /* Supporting Files */,
+				84B8F2CD1A191BD2000C1AE5 /* Frameworks */,
 			);
 			path = "C3D-iOS Demo";
 			sourceTree = "<group>";
@@ -121,6 +133,7 @@
 			children = (
 				84B8F1571A178BEB000C1AE5 /* Info.plist */,
 				84B8F1581A178BEB000C1AE5 /* main.m */,
+				84B8F2CE1A1920CF000C1AE5 /* Cocoa3D-iOS Demo.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -145,10 +158,20 @@
 		84B8F1B51A178ECE000C1AE5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				84B8F1BA1A178ECF000C1AE5 /* Cocoa3D-iOS.framework */,
-				84B8F1BC1A178ECF000C1AE5 /* Cocoa3D-iOSTests.xctest */,
+				84B8F1BA1A178ECF000C1AE5 /* Cocoa3D.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		84B8F2CD1A191BD2000C1AE5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				84B8F2C91A191B8C000C1AE5 /* GLKit.framework */,
+				84B8F2CA1A191B8C000C1AE5 /* OpenGLES.framework */,
+				84B8F2C71A191B83000C1AE5 /* UIKit.framework */,
+			);
+			name = Frameworks;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,7 +188,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				84B8F2A11A183C82000C1AE5 /* PBXTargetDependency */,
+				84B8F2D41A192695000C1AE5 /* PBXTargetDependency */,
 			);
 			name = "C3D-iOS Demo";
 			productName = "C3D-iOS Demo";
@@ -234,18 +257,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		84B8F1BA1A178ECF000C1AE5 /* Cocoa3D-iOS.framework */ = {
+		84B8F1BA1A178ECF000C1AE5 /* Cocoa3D.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = "Cocoa3D-iOS.framework";
+			path = Cocoa3D.framework;
 			remoteRef = 84B8F1B91A178ECF000C1AE5 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		84B8F1BC1A178ECF000C1AE5 /* Cocoa3D-iOSTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "Cocoa3D-iOSTests.xctest";
-			remoteRef = 84B8F1BB1A178ECF000C1AE5 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -255,9 +271,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84B8F2E11A1997A9000C1AE5 /* FlatShader.vp in Resources */,
 				84B8F1621A178BEB000C1AE5 /* Main.storyboard in Resources */,
 				84B8F1671A178BEB000C1AE5 /* LaunchScreen.xib in Resources */,
 				84B8F1641A178BEB000C1AE5 /* Images.xcassets in Resources */,
+				84B8F2E01A1997A9000C1AE5 /* FlatShader.fp in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,10 +315,10 @@
 			target = 84B8F1521A178BEB000C1AE5 /* C3D-iOS Demo */;
 			targetProxy = 84B8F16D1A178BEB000C1AE5 /* PBXContainerItemProxy */;
 		};
-		84B8F2A11A183C82000C1AE5 /* PBXTargetDependency */ = {
+		84B8F2D41A192695000C1AE5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = "Cocoa3D-iOS";
-			targetProxy = 84B8F2A01A183C82000C1AE5 /* PBXContainerItemProxy */;
+			name = Cocoa3D_iOS;
+			targetProxy = 84B8F2D31A192695000C1AE5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -406,6 +424,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "C3D-iOS Demo/Cocoa3D-iOS Demo.pch";
 				INFOPLIST_FILE = "C3D-iOS Demo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -416,6 +436,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "C3D-iOS Demo/Cocoa3D-iOS Demo.pch";
 				INFOPLIST_FILE = "C3D-iOS Demo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
