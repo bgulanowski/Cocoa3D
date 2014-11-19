@@ -21,6 +21,7 @@
 		84B8F2E01A1997A9000C1AE5 /* FlatShader.fp in Resources */ = {isa = PBXBuildFile; fileRef = 84B8F2DE1A1997A9000C1AE5 /* FlatShader.fp */; };
 		84B8F2E11A1997A9000C1AE5 /* FlatShader.vp in Resources */ = {isa = PBXBuildFile; fileRef = 84B8F2DF1A1997A9000C1AE5 /* FlatShader.vp */; };
 		84F7E2431A1C4AC6008AD005 /* C3DObject+Demo.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F7E2421A1C4AC6008AD005 /* C3DObject+Demo.m */; };
+		84F7E24A1A1C4FBF008AD005 /* C3DNode+Demo.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F7E2491A1C4FBF008AD005 /* C3DNode+Demo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,8 @@
 		84B8F2DF1A1997A9000C1AE5 /* FlatShader.vp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FlatShader.vp; sourceTree = "<group>"; };
 		84F7E2411A1C4AC6008AD005 /* C3DObject+Demo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "C3DObject+Demo.h"; path = "../../Demo/Cocoa3DDemo/C3DObject+Demo.h"; sourceTree = "<group>"; };
 		84F7E2421A1C4AC6008AD005 /* C3DObject+Demo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "C3DObject+Demo.m"; path = "../../Demo/Cocoa3DDemo/C3DObject+Demo.m"; sourceTree = "<group>"; };
+		84F7E2481A1C4FBF008AD005 /* C3DNode+Demo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "C3DNode+Demo.h"; path = "../../Demo/Cocoa3DDemo/C3DNode+Demo.h"; sourceTree = "<group>"; };
+		84F7E2491A1C4FBF008AD005 /* C3DNode+Demo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "C3DNode+Demo.m"; path = "../../Demo/Cocoa3DDemo/C3DNode+Demo.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +186,8 @@
 			children = (
 				84F7E2411A1C4AC6008AD005 /* C3DObject+Demo.h */,
 				84F7E2421A1C4AC6008AD005 /* C3DObject+Demo.m */,
+				84F7E2481A1C4FBF008AD005 /* C3DNode+Demo.h */,
+				84F7E2491A1C4FBF008AD005 /* C3DNode+Demo.m */,
 			);
 			name = "Cocoa3D Demo";
 			sourceTree = "<group>";
@@ -309,6 +314,7 @@
 				84F7E2431A1C4AC6008AD005 /* C3DObject+Demo.m in Sources */,
 				84B8F15F1A178BEB000C1AE5 /* ViewController.m in Sources */,
 				84B8F15C1A178BEB000C1AE5 /* AppDelegate.m in Sources */,
+				84F7E24A1A1C4FBF008AD005 /* C3DNode+Demo.m in Sources */,
 				84B8F1591A178BEB000C1AE5 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 
 #import "C3DObject+Demo.h"
+#import "C3DNode+Demo.h"
+
 #import <Cocoa3D/C3DCamera.h>
 #import <Cocoa3D/C3DNode.h>
 #import <Cocoa3D/C3DProgram.h>
@@ -27,61 +29,12 @@
 	C3DProgram *_program;
 }
 
-- (void)testMatrix {
-	
-//	LIMatrix_t i = LIMatrixIdentity;
-	LIMatrix_t i = LIMatrixMakeWithXAxisRotation(M_PI);
-	LIPoint_t p = LIPointMake(1, 1, 1, 1);
-	LIPoint_t pt = LIMatrixTransformPoint(&p, &i);
-	
-	NSLog(@"PT: %@", LIPointToString(pt));
-}
-
-- (void)setUpGL {
-	glClearColor(0, 1, 0, 1);
-	glClear(GL_COLOR_BUFFER_BIT);
-	glEnable(GL_CULL_FACE);
-}
-
-- (void)createObjects {
-	
-	_rootNode = [C3DNode new];
-
-	C3DObject *object = [C3DObject demoCube];
-	_rootNode.object = object;
-	
-	C3DNode *node = [C3DNode new];
-	node.object = object;
-	
-	C3DTransform *transform = [C3DTransform identity];
-	[transform translate:LIVectorMake(2, 2, 2)];
-	node.transform = transform;
-	
-	C3DNode *node1 = [C3DNode new];
-	node1.object = object;
-	
-	transform = [C3DTransform identity];
-	[transform translate:LIVectorMake(-2, -2, -2)];
-	node1.transform = transform;
-				   
-	_rootNode.children = @[node, node1];
-	
-	// FIXME: the attributes should come from somewhere else (metadata about shader?)
-	_program = [[C3DProgram alloc] initWithName:@"FlatShader" attributes:[_rootNode.object.vertexArrays valueForKey:@"attributeName"] uniforms:@[@"MVP"]];
-	node.object.program = _program;
-}
-
-- (void)prepareCamera {
-	
-	_camera = _openGLView.camera;
-	_camera.drawDelegate = self;
-	_camera.depthOn = YES;
-	
-	C3DTransform *modelView = [[C3DTransform alloc] initWithMatrix:LIMatrixIdentity];
-	
-	[modelView rotate:LIRotationMake(0, 1, 0, M_PI_4)];
-	[modelView translate:LIVectorMake(0.0, 0.0, -10.0f)];
-	_camera.transform = modelView;
+- (instancetype)init {
+	self = [super init];
+	if (self) {
+		_rootNode = [C3DNode demoScene];
+	}
+	return self;
 }
 
 #pragma mark - NSApplicationDelegate
@@ -91,9 +44,12 @@
 	NSOpenGLContext *glContext = [_openGLView openGLContext];
 
 	[glContext makeCurrentContext];
+	
+	// FIXME: the attributes should come from somewhere else (metadata about shader?)
+	_program = [[C3DProgram alloc] initWithName:@"FlatShader" attributes:[_rootNode.object.vertexArrays valueForKey:@"attributeName"] uniforms:@[@"MVP"]];
+	_rootNode.object.program = _program;
 
 	[self setUpGL];
-	[self createObjects];
 	[self prepareCamera];
 
 	_openGLView.camera = _camera;
@@ -113,6 +69,27 @@
 
 - (NSArray *)sortedPropsForCamera:(C3DCamera *)camera {
 	return @[_rootNode];
+}
+
+#pragma mark - Private
+
+- (void)setUpGL {
+	glClearColor(0, 1, 0, 1);
+	glClear(GL_COLOR_BUFFER_BIT);
+	glEnable(GL_CULL_FACE);
+}
+
+- (void)prepareCamera {
+	
+	_camera = _openGLView.camera;
+	_camera.drawDelegate = self;
+	_camera.depthOn = YES;
+	
+	C3DTransform *modelView = [[C3DTransform alloc] initWithMatrix:LIMatrixIdentity];
+	
+	[modelView rotate:LIRotationMake(0, 1, 0, M_PI_4)];
+	[modelView translate:LIVectorMake(0.0, 0.0, -10.0f)];
+	_camera.transform = modelView;
 }
 
 @end

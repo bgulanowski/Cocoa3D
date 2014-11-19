@@ -49,6 +49,7 @@
 		84D7F81A19C6132500CC2B70 /* NSOpenGLContext+Cocoa3D.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D7F81819C6132500CC2B70 /* NSOpenGLContext+Cocoa3D.m */; };
 		84D7F81F19C6136700CC2B70 /* NSOpenGLPixelFormat+Cocoa3D.h in Headers */ = {isa = PBXBuildFile; fileRef = 84D7F81D19C6136700CC2B70 /* NSOpenGLPixelFormat+Cocoa3D.h */; };
 		84D7F82019C6136700CC2B70 /* NSOpenGLPixelFormat+Cocoa3D.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D7F81E19C6136700CC2B70 /* NSOpenGLPixelFormat+Cocoa3D.m */; };
+		84F7E24B1A1C508D008AD005 /* Cocoa3D.h in Headers */ = {isa = PBXBuildFile; fileRef = 849D2B1D196FD4C70051F434 /* Cocoa3D.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -315,6 +316,7 @@
 				84D7F81919C6132500CC2B70 /* NSOpenGLContext+Cocoa3D.h in Headers */,
 				845ADD9419FC2CBD0034CE4C /* C3DMotion.h in Headers */,
 				849D2B8D196FD5F00051F434 /* C3DObject.h in Headers */,
+				84F7E24B1A1C508D008AD005 /* Cocoa3D.h in Headers */,
 				849D2B91196FD6160051F434 /* C3DProgram.h in Headers */,
 				84C1EACB19860C49002760E4 /* C3DCamera_Private.h in Headers */,
 				84D7F81F19C6136700CC2B70 /* NSOpenGLPixelFormat+Cocoa3D.h in Headers */,

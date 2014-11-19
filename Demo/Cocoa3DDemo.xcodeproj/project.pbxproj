@@ -24,6 +24,7 @@
 		84CED76A1974270100FFF722 /* FlatShader.fp in Resources */ = {isa = PBXBuildFile; fileRef = 84CED7681974270100FFF722 /* FlatShader.fp */; };
 		84CED76B1974270100FFF722 /* FlatShader.vp in Resources */ = {isa = PBXBuildFile; fileRef = 84CED7691974270100FFF722 /* FlatShader.vp */; };
 		84D7F82319C6178F00CC2B70 /* C3DObject+Demo.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D7F82219C6178F00CC2B70 /* C3DObject+Demo.m */; };
+		84F7E2461A1C4F4E008AD005 /* C3DNode+Demo.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F7E2451A1C4F4E008AD005 /* C3DNode+Demo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +98,8 @@
 		84CED7691974270100FFF722 /* FlatShader.vp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FlatShader.vp; sourceTree = "<group>"; };
 		84D7F82119C6178F00CC2B70 /* C3DObject+Demo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "C3DObject+Demo.h"; sourceTree = "<group>"; };
 		84D7F82219C6178F00CC2B70 /* C3DObject+Demo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "C3DObject+Demo.m"; sourceTree = "<group>"; };
+		84F7E2441A1C4F4E008AD005 /* C3DNode+Demo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "C3DNode+Demo.h"; sourceTree = "<group>"; };
+		84F7E2451A1C4F4E008AD005 /* C3DNode+Demo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "C3DNode+Demo.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +180,8 @@
 				849D2B4E196FD54E0051F434 /* Supporting Files */,
 				84D7F82119C6178F00CC2B70 /* C3DObject+Demo.h */,
 				84D7F82219C6178F00CC2B70 /* C3DObject+Demo.m */,
+				84F7E2441A1C4F4E008AD005 /* C3DNode+Demo.h */,
+				84F7E2451A1C4F4E008AD005 /* C3DNode+Demo.m */,
 			);
 			path = Cocoa3DDemo;
 			sourceTree = "<group>";
@@ -346,6 +351,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				849D2B5B196FD54E0051F434 /* AppDelegate.m in Sources */,
+				84F7E2461A1C4F4E008AD005 /* C3DNode+Demo.m in Sources */,
 				849D2B54196FD54E0051F434 /* main.m in Sources */,
 				84D7F82319C6178F00CC2B70 /* C3DObject+Demo.m in Sources */,
 			);
