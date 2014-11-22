@@ -150,8 +150,7 @@ void C3DMatrixMakeOrthographic(LIMatrix_t *m, float xMin, float xMax, float yMin
 - (void)rotate:(LIRotation_t)rotation {
 	LIMatrix_t r = LIMatrixMakeWithVectorRotation(rotation.v, rotation.a);
 	LIMatrix_t m = self.matrix;
-	LIMatrixConcatenate(&r, &m);
-	self.matrix = r;
+	self.matrix = LIMatrixConcatenate(&r, &m);
 }
 
 - (void)moveForward:(float)forward {
