@@ -284,12 +284,9 @@ static CVReturn C3DViewDisplayLink(CVDisplayLinkRef displayLink,
 				break;
 			default:
 			{
-				// 1,2 -> -2,1 or x,y -> -y,x
-				LIVector_t v = LIVectorMake([event deltaX], -[event deltaY], 0);
-				
+				LIVector_t v = LIVectorMake([event deltaX], [event deltaY], 0);
 				if (LIVectorLength(v) > 0) {
-					LIVector_t o = LIVectorNormalize(LIVectorMake(-v.y, v.x, 0));
-					[_camera rotateBy:LIVectorLength(v) about:[LIVector vectorWithVector:o]];
+					[_camera rotateX:v.x y:v.y];
 				}
 			}
 				if (!_displayLink) {

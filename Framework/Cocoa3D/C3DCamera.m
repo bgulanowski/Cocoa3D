@@ -113,6 +113,8 @@ NSString *C3DCameraOptionsToString(C3DCameraOptions _options) {
 	NSMutableArray *_transformStack;
 	NSTimeInterval *_renderTimes;
 	NSUInteger _timeIndex;
+	GLfloat _xRot;
+	GLfloat _yRot;
 	BOOL _logTime;
 }
 
@@ -348,22 +350,18 @@ NSString *C3DCameraOptionsToString(C3DCameraOptions _options) {
 }
 
 -(void)rotateX:(GLfloat)xDeg y:(GLfloat)yDeg {
-	// TODO: implement orientation
-#if 0
-    if(xDeg + xRot > 90.f)
-        xDeg = 90.0 - xRot;
-    else if(xDeg + xRot < -90.f)
-        xDeg = -(xRot + 90.f);
+
+	// X rotation goes about Y axis, and vice versa
+	LIMatrix_t m = LIMatrixMakeWithYAxisRotation((_xRot+xDeg) * M_PI/180.0f);
+	LIMatrix_t t = LIMatrixMakeWithXAxisRotation(yDeg * M_PI/180.0f);
+	m = LIMatrixConcatenate(&m, &t);
+	t = LIMatrixMakeWithYAxisRotation(-_xRot * M_PI/180.0f);
+	m = LIMatrixConcatenate(&m, &t);
+	m = LIMatrixConcatenate(&m, _transform.r_matrix);
+	_transform = [C3DTransform matrixWithMatrix:m];
 	
-    C3DMatrix4x4f m = C3DXAxisRotationD4f(xRot+xDeg);
-	
-    m = C3DMultiplyMatrix4x4f(m, C3DYAxisRotationD4f(yDeg));
-    m = C3DMultiplyMatrix4x4f(m, C3DXAxisRotationD4f(-xRot));
-    matrix = C3DMultiplyMatrix4x4f(m, matrix);
-	
-    self.xRot += xDeg;
-    self.yRot += yDeg;
-#endif
+	_xRot += xDeg;
+	_yRot += yDeg;
 }
 
 - (C3DTransform *)applyViewTransform:(C3DTransform *)transform {
