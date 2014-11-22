@@ -283,7 +283,15 @@ static CVReturn C3DViewDisplayLink(CVDisplayLinkRef displayLink,
 				dragging = NO;
 				break;
 			default:
-				[self.camera rotateX:[event deltaY]*0.4 y:[event deltaX]*0.3];
+			{
+				// 1,2 -> -2,1 or x,y -> -y,x
+				LIVector_t v = LIVectorMake([event deltaX], -[event deltaY], 0);
+				
+				if (LIVectorLength(v) > 0) {
+					LIVector_t o = LIVectorNormalize(LIVectorMake(-v.y, v.x, 0));
+					[_camera rotateBy:LIVectorLength(v) about:[LIVector vectorWithVector:o]];
+				}
+			}
 				if (!_displayLink) {
 					[self setNeedsDisplay:YES];
 				}

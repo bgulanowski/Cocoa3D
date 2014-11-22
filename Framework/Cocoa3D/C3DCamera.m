@@ -123,8 +123,11 @@ NSString *C3DCameraOptionsToString(C3DCameraOptions _options) {
 #pragma mark - Accessors
 
 - (void)setPosition:(LIPoint *)position {
-	_position = position;
 	_transform.location = position;
+}
+
+- (LIPoint *)position {
+	return _transform.location;
 }
 
 - (BOOL)areLightsOn {
@@ -337,6 +340,11 @@ NSString *C3DCameraOptionsToString(C3DCameraOptions _options) {
 
 - (void)translateX:(GLfloat)dx y:(GLfloat)dy z:(GLfloat)dz {
 	[self translateWithVector:LIVectorMake(dx, dy, dz)];
+}
+
+- (void)rotateBy:(GLfloat)degrees about:(LIVector *)axis {
+	LIVector_t v = axis.vector;
+	[_transform rotate:LIRotationMake(v.x, v.y, v.z, degrees * M_PI/180.0f)];
 }
 
 -(void)rotateX:(GLfloat)xDeg y:(GLfloat)yDeg {

@@ -115,6 +115,8 @@ typedef NS_ENUM(NSUInteger, C3DCameraProjectionStyle) {
 // move relative to the current position in absolute coordinates
 - (void)translateX:(GLfloat)dx y:(GLfloat)dy z:(GLfloat)dz;
 
+- (void)rotateBy:(GLfloat)degrees about:(LIVector *)axis;
+
 // rotate relative to the current rotation in absolute values
 -(void)rotateX:(GLfloat)x y:(GLfloat)y;
 
