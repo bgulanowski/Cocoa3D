@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class C3DCamera;
+
 @interface C3DView : UIView
+
+@property (nonatomic, strong) C3DCamera *camera;
+
+@property (nonatomic, strong) CADisplayLink *displayLink;
+@property (nonatomic) GLfloat movementRate;
 
 @end

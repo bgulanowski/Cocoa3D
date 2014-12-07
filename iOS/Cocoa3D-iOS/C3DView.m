@@ -8,18 +8,55 @@
 
 #import "C3DView.h"
 
-@implementation C3DView
+#import "C3DCamera.h"
+
+@implementation C3DView {
+	GLfloat _diagRate;
+}
+
+- (void)setMovementRate:(GLfloat)rate {
+	_movementRate = rate;
+	_diagRate = _movementRate*M_SQRT1_2;
+}
+
+#pragma mark - NSResponder
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+	
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+	
+}
+
+#pragma mark - UIView
+
+- (instancetype)initWithFrame:(CGRect)frame {
+	self = [super initWithFrame:frame];
+	if (self) {
+		[self C3DView_commonInit];
+	}
+	return self;
+}
 
 + (Class)layerClass {
 	return [CAEAGLLayer class];
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+#pragma mark - NSCoding
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+	self = [super initWithCoder:aDecoder];
+	if (self) {
+		[self C3DView_commonInit];
+	}
+	return self;
 }
-*/
+
+#pragma mark - Private
+
+- (void)C3DView_commonInit {
+	_displayLink = [CADisplayLink displayLinkWithTarget:_camera selector:@selector(capture)];
+}
 
 @end
