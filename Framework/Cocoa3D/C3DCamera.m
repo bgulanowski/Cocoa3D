@@ -400,7 +400,7 @@ NSString *C3DCameraOptionsToString(C3DCameraOptions _options) {
 			self.projection = [C3DTransform perspectiveTransformWithFOV:_fieldOfView width:size.width height:size.height near:_nearPlane far:_farPlane];
 			break;
 		case C3DCameraProjectionOrthographic:
-			self.projection = [C3DTransform orthographicTransformWithRegion:[LIRegion regionWithRegion:LIRegionMake(-size.width/2.0f, -size.height/2.0f, _nearPlane, size.width, size.height, _farPlane)]];
+			self.projection = [C3DTransform orthographicTransformWithRegion:[LIRegion regionWithRegion:LIRegionMake(-size.width/2.0f*_scale, -size.height/2.0f*_scale, _nearPlane, size.width*_scale, size.height*_scale, _farPlane)]];
 			break;
 	}
 	glViewport( 0, 0, size.width, size.height );

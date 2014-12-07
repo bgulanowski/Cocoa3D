@@ -103,6 +103,7 @@ typedef NS_ENUM(NSUInteger, C3DCameraProjectionStyle) {
 @property (nonatomic) GLfloat nearPlane;
 @property (nonatomic) GLfloat farPlane;
 @property (nonatomic) GLfloat fieldOfView;
+@property (nonatomic) GLfloat scale;
 
 @property (nonatomic) GLfloat frameRate;
 
@@ -126,6 +127,7 @@ typedef NS_ENUM(NSUInteger, C3DCameraProjectionStyle) {
 - (C3DTransform *)currentTransform;
 
 - (void)updatePosition:(NSTimeInterval)interval;
+- (void)updateProjectionForViewportSize:(CGSize)size scale:(CGFloat)scale;
 - (void)updateProjectionForViewportSize:(CGSize)size;
 
 #if TARGET_OS_IPHONE

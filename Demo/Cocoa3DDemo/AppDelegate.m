@@ -66,9 +66,8 @@
 	_rootNode.object.program = _program;
 
 	[self setUpGL];
-	[self prepareCamera];
+	[self prepareCameraUseOrthographic:YES];
 
-	_openGLView.camera = _camera;
 	[_camera capture];
 }
 
@@ -94,16 +93,26 @@
 	glEnable(GL_CULL_FACE);
 }
 
-- (void)prepareCamera {
+- (void)prepareCameraUseOrthographic:(BOOL)useOrtho {
 	
 	_camera = _openGLView.camera;
 	_camera.drawDelegate = self;
 	_camera.depthOn = YES;
-	
+
 	C3DTransform *modelView = [[C3DTransform alloc] initWithMatrix:LIMatrixIdentity];
-	
-	[modelView rotate:LIRotationMake(0, 1, 0, M_PI_4)];
-	[modelView translate:LIVectorMake(0.0, 0.0, -10.0f)];
+
+	if (useOrtho) {
+		_camera.projectionStyle = C3DCameraProjectionOrthographic;
+		// 1 unit in GL equals 32 points on-screen
+		_camera.scale = 1.0/32.0;
+		
+		[_camera updateProjectionForViewportSize:_openGLView.bounds.size];
+		[modelView translate:LIVectorMake(0, 0, -5.0f)];
+	}
+	else {
+		[modelView rotate:LIRotationMake(0, 1, 0, M_PI_4)];
+		[modelView translate:LIVectorMake(0.0, 0.0, -10.0f)];
+	}
 	_camera.transform = modelView;
 }
 

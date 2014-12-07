@@ -307,7 +307,7 @@ static CVReturn C3DViewDisplayLink(CVDisplayLinkRef displayLink,
 	CGLSetCurrentContext(cglContext);
 	
 	NSRect bounds = [self bounds];
-		
+	
 	[_camera updateProjectionForViewportSize:bounds.size];
 	[_camera capture];
 	

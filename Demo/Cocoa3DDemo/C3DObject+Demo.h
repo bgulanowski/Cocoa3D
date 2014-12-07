@@ -12,6 +12,7 @@
 
 + (instancetype)demoTriangle;
 + (instancetype)demoTriangleIndexed;
+// a 2x2x2 cube centered about the origin
 + (instancetype)demoCube;
 
 @end
