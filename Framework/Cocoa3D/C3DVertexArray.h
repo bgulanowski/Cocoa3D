@@ -10,6 +10,8 @@
 
 #if TARGET_OS_IPHONE
 #import <OpenGLES/ES3/gl.h>
+#elif C3D_GL_COMPATIBILITY
+#import <OpenGL/gl.h>
 #else
 #import <OpenGL/gl3.h>
 #endif

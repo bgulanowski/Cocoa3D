@@ -264,17 +264,17 @@ NSString *C3DCameraOptionsToString(C3DCameraOptions _options) {
 	_colorChanges.lightLoc = YES;
 }
 
-- (void)setBackgroundColor:(C3DColor_t)aColor {
+- (void)setBackgroundColor:(C3DColour_t)aColor {
     _backgroundColor = aColor;
     _colorChanges.background = YES;
 }
 
-- (void)setLightColor:(C3DColor_t)aColor {
+- (void)setLightColor:(C3DColour_t)aColor {
     _lightColor = aColor;
     _colorChanges.light = YES;
 }
 
-- (void)setLightShine:(C3DColor_t)aColor {
+- (void)setLightShine:(C3DColour_t)aColor {
     _lightShine = aColor;
     _colorChanges.shine = YES;
 }
@@ -313,9 +313,9 @@ NSString *C3DCameraOptionsToString(C3DCameraOptions _options) {
 	if(self) {
         _transform = [C3DTransform identity];
 		_focusPosition = [LIPoint pointWithX:0 y:0 z:0 w:0];
-		_backgroundColor = (C3DColor_t){.r = 0.0f, .g = 0.0f, .b = 0.0f, .a = 1.0f};
-		_lightColor = (C3DColor_t){.r = 0.5f, .g = 0.5f, .b = 0.5f, .a = 1.0f};
-		_lightShine = (C3DColor_t){.r = 0.8f, .g = 0.8f, .b = 0.8f, .a = 1.0f};
+		_backgroundColor = (C3DColour_t){.r = 0.0f, .g = 0.0f, .b = 0.0f, .a = 1.0f};
+		_lightColor = (C3DColour_t){.r = 0.5f, .g = 0.5f, .b = 0.5f, .a = 1.0f};
+		_lightShine = (C3DColour_t){.r = 0.8f, .g = 0.8f, .b = 0.8f, .a = 1.0f};
 		
 		_fieldOfView = M_PI_4;
 		_nearPlane = 0.1f;

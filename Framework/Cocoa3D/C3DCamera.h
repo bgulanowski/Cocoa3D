@@ -8,23 +8,20 @@
 
 #import <Foundation/Foundation.h>
 
+#import <Cocoa3D/C3DColour.h>
+
 #import <LichenMath/LIPoint_t.h>
 #import <LichenMath/LIMatrix_t.h>
 
 #if  TARGET_OS_IPHONE
 #import <OpenGLES/ES3/gl.h>
+#else
+#import <Cocoa/Cocoa.h>
 #endif
 
 #import <CoreGraphics/CoreGraphics.h>
 
 @class C3DTransform, C3DCamera, LIPoint, LIVector, LIMatrix;
-
-typedef struct {
-	float r;
-	float g;
-	float b;
-	float a;
-} C3DColor_t;
 
 typedef NS_ENUM(NSUInteger, C3DObjectType) {
 	C3DObjectTypePoints,
@@ -83,9 +80,9 @@ typedef NS_ENUM(NSUInteger, C3DCameraProjectionStyle) {
 @property (nonatomic, copy) LIPoint *focusPosition;
 @property (nonatomic, copy) LIVector *velocity;
 
-@property (nonatomic) C3DColor_t backgroundColor;
-@property (nonatomic) C3DColor_t lightColor;
-@property (nonatomic) C3DColor_t lightShine;
+@property (nonatomic) C3DColour_t backgroundColor;
+@property (nonatomic) C3DColour_t lightColor;
+@property (nonatomic) C3DColour_t lightShine;
 
 @property (nonatomic, getter = isTestOn) BOOL testOn;
 @property (nonatomic, getter = isRateOn) BOOL rateOn;
@@ -127,7 +124,6 @@ typedef NS_ENUM(NSUInteger, C3DCameraProjectionStyle) {
 - (C3DTransform *)currentTransform;
 
 - (void)updatePosition:(NSTimeInterval)interval;
-- (void)updateProjectionForViewportSize:(CGSize)size scale:(CGFloat)scale;
 - (void)updateProjectionForViewportSize:(CGSize)size;
 
 #if TARGET_OS_IPHONE

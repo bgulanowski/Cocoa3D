@@ -88,15 +88,15 @@ static void C3DDrawOrigin( void ) {
 		glLightfv(GL_LIGHT0, GL_POSITION, (float *)&p);
 	}
 	if(colorChanges.background) {
-		C3DColor_t backgroundColor = self.backgroundColor;
+		C3DColour_t backgroundColor = self.backgroundColor;
 		glClearColor(backgroundColor.r, backgroundColor.g, backgroundColor.b, backgroundColor.a);
 	}
     if(colorChanges.light) {
-		C3DColor_t lightColor = self.lightColor;
+		C3DColour_t lightColor = self.lightColor;
 		glLightfv(GL_LIGHT0, GL_AMBIENT, &lightColor.r);
 	}
     if(colorChanges.shine) {
-		C3DColor_t lightShine = self.lightShine;
+		C3DColour_t lightShine = self.lightShine;
 		glLightfv(GL_LIGHT0, GL_SPECULAR, &lightShine.r);
 	}
     

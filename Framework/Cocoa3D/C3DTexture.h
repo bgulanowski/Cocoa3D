@@ -13,7 +13,9 @@
 @property (readonly) CGSize size;
 @property (assign) GLenum minFilter;
 @property (assign) GLenum magFilter;
-@property (assign) GLenum type;
+@property (assign) GLenum target;
+
+- (instancetype)initWithSize:(CGSize)size format:(GLenum)format type:(GLenum)type data:(NSData *)data;
 
 - (void)configureParameters;
 
@@ -22,6 +24,7 @@
 #if ! TARGET_OS_IPHONE
 - (void)updateTexelAtX:(GLuint)x y:(GLuint)y color:(NSColor *)color;
 
++ (instancetype)textureWithSize:(CGSize)size format:(GLenum)format type:(GLenum)type data:(NSData *)data;
 + (instancetype)textureWithSize:(CGSize)size data:(NSData *)data;
 + (instancetype)textureWithFile:(NSString *)path;
 + (instancetype)textureNamed:(NSString *)imageName;

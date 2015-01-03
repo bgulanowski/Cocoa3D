@@ -8,12 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
+#if ! C3D_GL_COMPATIBILITY
 #import <GLKit/GLKit.h>
+#endif
 
 @class C3DCamera;
 @class C3DTransform;
 
-@interface C3DProgram : NSObject<GLKNamedEffect>
+@interface C3DProgram : NSObject
+#if ! C3D_GL_COMPATIBILITY
+<GLKNamedEffect>
+#endif
 
 @property (nonatomic, weak) C3DCamera *camera;
 

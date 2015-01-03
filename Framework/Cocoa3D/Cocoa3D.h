@@ -16,6 +16,7 @@
 #import <Cocoa3D/C3DCameraGL3.h>
 #endif
 
+#import <Cocoa3D/C3DColour.h>
 #import <Cocoa3D/C3DLight.h>
 #import <Cocoa3D/C3DMotion.h>
 #import <Cocoa3D/C3DNode.h>

@@ -14,6 +14,19 @@
 #import <OpenGL/gl3.h>
 #endif
 
+BOOL CGSizeIsPowerOf2(CGSize size) {
+	
+	BOOL isPowerOfTwo = YES;
+	CGFloat i;
+	
+	for(i=1; isPowerOfTwo && i<size.width; i*=2);
+	isPowerOfTwo = i == size.width;
+	for(i=1; isPowerOfTwo && i<size.height; i*=2);
+	isPowerOfTwo = i == size.height;
+	
+	return isPowerOfTwo;
+}
+
 #if ! TARGET_OS_IPHONE
 
 @interface NSImage (C3DTextureCreation)
@@ -24,49 +37,49 @@
 
 @implementation C3DTexture {
 	GLuint _name;
+	GLenum _format;
+	GLenum _type;
 }
 
 - (void)dealloc {
 	glDeleteTextures(1, &_name);
 }
 
-- (instancetype)initWithSize:(CGSize)size data:(NSData *)data {
+- (instancetype)initWithSize:(CGSize)size format:(GLenum)format type:(GLenum)type data:(NSData *)data {
 	
 	self = [super init];
 	if(self) {
-				
+		
+		_format = format;
+		_type = type;
+		_size = size;
+
 #if TARGET_OS_IPHONE
-        _type = GL_TEXTURE_2D;
+        _target = GL_TEXTURE_2D;
         _magFilter = _minFilter = GL_LINEAR_MIPMAP_LINEAR;
 		
 #else
-		BOOL isPowerOfTwo = YES;
-		CGFloat i;
-		
-		for(i=1; isPowerOfTwo && i<size.width; i*=2);
-		isPowerOfTwo = i == size.width;
-		for(i=1; isPowerOfTwo && i<size.height; i*=2);
-		isPowerOfTwo = i == size.height;
-		
-		if(isPowerOfTwo) {
-			_type = GL_TEXTURE_2D;
+		if(CGSizeIsPowerOf2(_size)) {
+			_target = GL_TEXTURE_2D;
 			_magFilter = _minFilter = GL_LINEAR_MIPMAP_LINEAR;
 		}
 		else {
-			_type = GL_TEXTURE_RECTANGLE;
+			_target = GL_TEXTURE_RECTANGLE;
 			_magFilter = _minFilter = GL_LINEAR;
 		}
 #endif
 		
 		glGenTextures(1, &_name);
-		glBindTexture(_type, _name);
-		glTexImage2D(_type, 0, GL_RGBA, size.width, size.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, [data bytes]);
-		glGenerateMipmap(_type);
-		
-		_size = size;
+		glBindTexture(_target, _name);
+		glTexImage2D(_target, 0, GL_RGBA, _size.width, _size.height, 0, _format, _type, [data bytes]);
+		glGenerateMipmap(_target);
 	}
 	
 	return self;
+}
+
+- (instancetype)initWithSize:(CGSize)size data:(NSData *)data {
+	return [self initWithSize:size format:GL_RGBA type:GL_UNSIGNED_BYTE data:data];
 }
 
 #if ! TARGET_OS_IPHONE
@@ -99,19 +112,23 @@
 #endif
 
 - (void)configureParameters {
-	glBindTexture(_type, _name);
-    glTexParameteri(_type, GL_TEXTURE_MIN_FILTER, _minFilter);
-    glTexParameteri(_type, GL_TEXTURE_MAG_FILTER, _magFilter);
+	glBindTexture(_target, _name);
+    glTexParameteri(_target, GL_TEXTURE_MIN_FILTER, _minFilter);
+    glTexParameteri(_target, GL_TEXTURE_MAG_FILTER, _magFilter);
 }
 
 - (void)updateWithData:(NSData *)data region:(CGRect)region {
-    glTexSubImage2D(_type, 0, region.origin.x, (GLint)region.origin.y, (GLsizei)region.size.width, (GLsizei)region.size.height,
-                    GL_RGBA, GL_UNSIGNED_BYTE, [data bytes]);
+    glTexSubImage2D(_target, 0, region.origin.x, (GLint)region.origin.y, (GLsizei)region.size.width, (GLsizei)region.size.height,
+                    _format, _type, [data bytes]);
 }
 
 #if ! TARGET_OS_IPHONE
 - (void)updateTexelAtX:(GLuint)x y:(GLuint)y color:(NSColor *)color {
 	
+}
+
++ (instancetype)textureWithSize:(CGSize)size format:(GLenum)format type:(GLenum)type data:(NSData *)data {
+	return [[self alloc] initWithSize:size format:format type:type data:data];
 }
 
 + (instancetype)textureWithSize:(CGSize)size data:(NSData *)data {
