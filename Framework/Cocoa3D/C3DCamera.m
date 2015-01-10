@@ -427,6 +427,14 @@ NSString *C3DCameraOptionsToString(C3DCameraOptions _options) {
 	if(_changes.frontMode) glPolygonMode(GL_FRONT, C3DPolygonModeToGL(self.frontMode));
 	if(_changes.backMode)  glPolygonMode(GL_BACK, C3DPolygonModeToGL(self.backMode));
 #endif
+	
+	if(_colorChanges.background) {
+		C3DColour_t backgroundColor = self.backgroundColor;
+		glClearColor(backgroundColor.r, backgroundColor.g, backgroundColor.b, backgroundColor.a);
+	}
+
+	_changes = (C3DCameraOptions){};
+	_colorChanges = (C3DCameraColorChanges) {};
 }
 
 - (void)capture {
@@ -502,7 +510,7 @@ NSString *C3DCameraOptionsToString(C3DCameraOptions _options) {
 	Class C3DCameraClass = self;
 	switch ([context C3D_profile]) {
 		case kCGLOGLPVersion_Legacy:
-			C3DCameraClass = [C3DCameraGL2 class]; break;
+			C3DCameraClass = [C3DCameraGL1 class]; break;
 		case kCGLOGLPVersion_GL3_Core:
 		case kCGLOGLPVersion_GL4_Core:
 			C3DCameraClass = [C3DCameraGL3 class]; break;

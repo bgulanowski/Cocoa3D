@@ -80,16 +80,11 @@ static void C3DDrawOrigin( void ) {
 	C3DCameraOptions options = self.options;
 	C3DCameraColorChanges colorChanges = self.colorChanges;
 	
-    if(changes.lightsOn) options.lightsOn ? glEnable(GL_LIGHTING)   : glDisable(GL_LIGHTING);
-	[super updateGLState];
+    if(changes.lightsOn) options.lightsOn ? glEnable(GL_LIGHTING) : glDisable(GL_LIGHTING);
 	
     if(colorChanges.lightLoc) {
 		LIPoint_t p = self.lightPosition.point;
 		glLightfv(GL_LIGHT0, GL_POSITION, (float *)&p);
-	}
-	if(colorChanges.background) {
-		C3DColour_t backgroundColor = self.backgroundColor;
-		glClearColor(backgroundColor.r, backgroundColor.g, backgroundColor.b, backgroundColor.a);
 	}
     if(colorChanges.light) {
 		C3DColour_t lightColor = self.lightColor;
@@ -99,9 +94,14 @@ static void C3DDrawOrigin( void ) {
 		C3DColour_t lightShine = self.lightShine;
 		glLightfv(GL_LIGHT0, GL_SPECULAR, &lightShine.r);
 	}
-    
-    changes = (C3DCameraOptions) {};
-    colorChanges = (C3DCameraColorChanges) {};
+	
+	[super updateGLState];
+}
+
+- (void)updateProjectionForViewportSize:(CGSize)size {
+	[super updateProjectionForViewportSize:CGSizeMake(1, 1)];
+	glMatrixMode(GL_PROJECTION);
+	glLoadMatrixf(self.projection.matrix.i);
 }
 
 - (void)capture {
@@ -109,8 +109,6 @@ static void C3DDrawOrigin( void ) {
 	C3DCameraOptions options = self.options;
 	NSTimeInterval start = options.rateOn ? [NSDate timeIntervalSinceReferenceDate] : 0;
 	
-    [self updateGLState];
-    
     glMatrixMode(GL_MODELVIEW);
 	glRenderMode(GL_RENDER);
     
@@ -124,8 +122,6 @@ static void C3DDrawOrigin( void ) {
         m = self.transform.matrix;
     
     glLoadMatrixf(m.i);
-	
-	[super capture];
 	
 #if ! TARGET_OS_IPHONE
 	// TODO: make these into C3DVisible objects; add to props
@@ -144,6 +140,8 @@ static void C3DDrawOrigin( void ) {
 		glEnd();
 	}
 #endif
+	
+	[super capture];
 	
 	glPopMatrix();
 	
