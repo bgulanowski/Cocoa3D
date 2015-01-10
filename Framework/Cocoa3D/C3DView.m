@@ -175,6 +175,11 @@ static CVReturn C3DViewDisplayLink(CVDisplayLinkRef displayLink,
 
 - (void)drawRect:(NSRect)rect {
 	if(!_displayLink) {
+		CGLContextObj cglContext = [[self openGLContext] CGLContextObj];
+		
+		CGLLockContext(cglContext);
+		CGLSetCurrentContext(cglContext);
+		
 		[_camera capture];
 	}
 }
