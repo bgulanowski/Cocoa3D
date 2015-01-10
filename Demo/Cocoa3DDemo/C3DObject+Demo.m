@@ -13,6 +13,8 @@
 
 #import <LichenMath/LichenMath.h>
 
+#import <OpenGL/gl.h>
+
 #define p000 {-1.0f,-1.0f,-1.0f}
 #define p00h {-1.0f,-1.0f,0.0f}
 #define p001 {-1.0f,-1.0f,1.0f}
@@ -43,17 +45,22 @@
 #define p11h {1.0f,1.0f,0.0f}
 #define p111 {1.0f,1.0f,1.0f}
 
+static GLfloat trianglePoints[3][3] = {
+	{ -1, -1, 0 },
+	{  1, -1, 0 },
+	{  0,  1, 0 }
+};
+static GLuint triangleIndices[] = { 0, 1, 2 };
+
 #pragma mark -
+
+@interface C3DObjectGL1 : C3DObject
+
+@end
 
 @implementation C3DObject (Demo)
 
 + (instancetype)demoTriangle {
-	
-	GLfloat points[3][3] = {
-		{ -1, -1, 0 },
-		{  1, -1, 0 },
-		{  0,  1, 0 }
-	};
 	
 	GLfloat colours[3][4] = {
 		{ 1, 0, 1, 1},
@@ -61,29 +68,22 @@
 		{ 1, 1, 0, 1}
 	};
 	
-	C3DVertexArray *positionArray = [[C3DVertexArray alloc] initWithType:C3DVertexArrayPosition elements:points count:3];
+	C3DVertexArray *positionArray = [[C3DVertexArray alloc] initWithType:C3DVertexArrayPosition elements:trianglePoints count:3];
 	C3DVertexArray *colourArray = [[C3DVertexArray alloc] initWithType:C3DVertexArrayColour elements:colours count:3];
 	NSArray *vertexArrays = @[positionArray, colourArray];
 	C3DProgram *program = [[C3DProgram alloc] initWithName:@"FlatShader" attributes:[vertexArrays valueForKey:@"attributeName"] uniforms:@[@"MVP"]];
 	
-	return [[C3DObject alloc] initWithType:C3DObjectTypeTriangles vertexArrays:vertexArrays program:program];
+	return [[[self class] alloc] initWithType:C3DObjectTypeTriangles vertexArrays:vertexArrays program:program];
 }
 
 + (instancetype)demoTriangleIndexed {
 	
-	GLfloat points[3][3] = {
-		{ -1, -1, 0 },
-		{  1, -1, 0 },
-		{  0,  1, 0 }
-	};
-	GLuint indices[] = { 0, 1, 2 };
-	
-	C3DVertexArray *positionArray = [C3DVertexArray positionsWithElements:points[0] count:3];
-	C3DVertexArray *indexArray = [C3DVertexArray indicesWithElements:&indices[0] count:3];
+	C3DVertexArray *positionArray = [C3DVertexArray positionsWithElements:trianglePoints[0] count:3];
+	C3DVertexArray *indexArray = [C3DVertexArray indicesWithElements:&triangleIndices[0] count:3];
 	NSArray *vertexArrays = @[positionArray, indexArray];
 	C3DProgram *program = [[C3DProgram alloc] initWithName:@"FlatShader" attributes:[vertexArrays valueForKey:@"attributeName"] uniforms:@[@"MVP"]];
 	
-	return [[C3DObject alloc] initWithType:C3DObjectTypeTriangles vertexArrays:vertexArrays program:program];
+	return [[[self class] alloc] initWithType:C3DObjectTypeTriangles vertexArrays:vertexArrays program:program];
 }
 
 + (instancetype)demoCube {
@@ -91,8 +91,6 @@
 	LIVector_t points[] = { p000, p001, p010, p011, p100, p101, p110, p111 };
 	// quads
 	LIPoint_t colours[] = { { 0,0,0,1 }, { 0,0,1,1 }, { 0,1,0,1 }, { 0,1,1,1 }, { 1,0,0,1 }, { 1,0,1,1 }, { 1,1,0,1 }, { 1,1,1,1 } };
-//	GLuint indices[] = { 0,1,3,2, 0,2,6,4, 0,4,5,1, 1,5,7,3, 2,3,7,6, 4,6,7,5 };
-	// left (0), back (1), bottom (2), front (3), top (4), right (5)
 	GLuint indices[] = { 0,1,3, 3,2,0,  0,2,6, 6,4,0,  0,4,5, 5,1,0,  1,5,7, 7,3,1,  2,3,7, 7,6,2,  4,6,7, 7,5,4 };
 
 	C3DVertexArray *positionArray = [C3DVertexArray positionsWithElements:&points[0].x count:8];
@@ -100,7 +98,32 @@
 	C3DVertexArray *indexArray = [C3DVertexArray indicesWithElements:&indices[0] count:36];
 	NSArray *vertexArrays = @[positionArray, indexArray, coloursArray];
 	
-	return [[C3DObject alloc] initWithType:C3DObjectTypeTriangles vertexArrays:vertexArrays program:nil];
+	return [[[self class] alloc] initWithType:C3DObjectTypeTriangles vertexArrays:vertexArrays program:nil];
+}
+
++ (instancetype)demoTriangleGL1 {
+	return [C3DObjectGL1 demoTriangle];
+}
+
+@end
+
+@implementation C3DObjectGL1
+
+- (void)paintForCamera:(C3DCamera *)camera {
+	
+	glColor3i(1, 1, 1);
+	
+	glBegin(GL_TRIANGLES);
+	
+	for (int i=0; i<3; ++i) {
+		glVertex3f(trianglePoints[i][0], trianglePoints[i][1], trianglePoints[i][2]);
+	}
+	
+	glEnd();
+}
+
+- (instancetype)initWithType:(C3DObjectType)type vertexArrays:(NSArray *)vertexArrays program:(C3DProgram *)program {
+	return [super initWithType:type vertexArrays:vertexArrays program:nil];
 }
 
 @end

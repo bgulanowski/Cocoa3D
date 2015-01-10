@@ -15,4 +15,6 @@
 // a 2x2x2 cube centered about the origin
 + (instancetype)demoCube;
 
++ (instancetype)demoTriangleGL1;
+
 @end

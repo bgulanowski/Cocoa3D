@@ -24,7 +24,6 @@
 #pragma mark -
 
 @implementation AppDelegate {
-	C3DCamera *_camera;
 	C3DNode *_rootNode;
 	C3DProgram *_program;
 }
@@ -42,14 +41,14 @@
 #pragma mark - NSResponder
 
 - (void)keyDown:(NSEvent *)theEvent {
-	[_openGLView keyDown:theEvent];
-	[_window makeFirstResponder:_openGLView];
+	[_gl3View keyDown:theEvent];
+	[_window makeFirstResponder:_gl3View];
 }
 
 #pragma mark - NSNibAwaking
 
 - (void)awakeFromNib {
-	[self.window makeFirstResponder:_openGLView];
+	[self.window makeFirstResponder:_gl3View];
 	[self.window setNextResponder:self];
 }
 
@@ -57,7 +56,7 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
 	
-	NSOpenGLContext *glContext = [_openGLView openGLContext];
+	NSOpenGLContext *glContext = [_gl3View openGLContext];
 
 	[glContext makeCurrentContext];
 	
@@ -65,10 +64,7 @@
 	_program = [[C3DProgram alloc] initWithName:@"FlatShader" attributes:[_rootNode.object.vertexArrays valueForKey:@"attributeName"] uniforms:@[@"MVP"]];
 	_rootNode.object.program = _program;
 
-	[self setUpGL];
 	[self prepareCameraUseOrthographic:YES];
-
-	[_camera capture];
 }
 
 #pragma mark - C3DCameraDrawDelegate
@@ -87,33 +83,29 @@
 
 #pragma mark - Private
 
-- (void)setUpGL {
-	glClearColor(0, 1, 0, 1);
-	glClear(GL_COLOR_BUFFER_BIT);
-	glEnable(GL_CULL_FACE);
-}
-
 - (void)prepareCameraUseOrthographic:(BOOL)useOrtho {
 	
-	_camera = _openGLView.camera;
-	_camera.drawDelegate = self;
-	_camera.depthOn = YES;
+	C3DCamera *camera = _gl3View.camera;
+	camera.backgroundColor = (C3DColour_t){0, 1, 0, 1};
+	camera.cullingOn = YES;
+	camera.drawDelegate = self;
+	camera.depthOn = YES;
 
 	C3DTransform *modelView = [[C3DTransform alloc] initWithMatrix:LIMatrixIdentity];
 
 	if (useOrtho) {
-		_camera.projectionStyle = C3DCameraProjectionOrthographic;
+		camera.projectionStyle = C3DCameraProjectionOrthographic;
 		// 1 unit in GL equals 32 points on-screen
-		_camera.scale = 1.0/32.0;
+		camera.scale = 1.0/32.0;
 		
-		[_camera updateProjectionForViewportSize:_openGLView.bounds.size];
+		[camera updateProjectionForViewportSize:_gl3View.bounds.size];
 		[modelView translate:LIVectorMake(0, 0, -5.0f)];
 	}
 	else {
 		[modelView rotate:LIRotationMake(0, 1, 0, M_PI_4)];
 		[modelView translate:LIVectorMake(0.0, 0.0, -10.0f)];
 	}
-	_camera.transform = modelView;
+	camera.transform = modelView;
 }
 
 @end

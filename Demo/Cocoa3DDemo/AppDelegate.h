@@ -13,6 +13,7 @@
 @interface AppDelegate : NSResponder <NSApplicationDelegate>
 
 @property (assign) IBOutlet NSWindow *window;
-@property (weak) IBOutlet C3DView *openGLView;
+@property (weak) IBOutlet C3DView *gl2View;
+@property (weak) IBOutlet C3DView *gl3View;
 
 @end

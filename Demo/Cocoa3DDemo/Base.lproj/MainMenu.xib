@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -14,7 +14,8 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
             <connections>
-                <outlet property="openGLView" destination="DEk-3f-g1N" id="zkf-bK-1OO"/>
+                <outlet property="gl2View" destination="q2C-LX-brO" id="9ga-UY-l0w"/>
+                <outlet property="gl3View" destination="DEk-3f-g1N" id="Tmf-u4-BID"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -669,87 +670,63 @@
             </items>
         </menu>
         <window title="Cocoa3DDemo" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
-            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <windowStyleMask key="styleMask" titled="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="677" height="360"/>
+            <rect key="contentRect" x="335" y="390" width="538" height="435"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
             <view key="contentView" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="677" height="360"/>
+                <rect key="frame" x="0.0" y="0.0" width="538" height="435"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <splitView dividerStyle="thin" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QBx-k7-IOl">
-                        <rect key="frame" x="0.0" y="0.0" width="677" height="360"/>
-                        <subviews>
-                            <scrollView fixedFrame="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="xkM-tT-EN1">
-                                <rect key="frame" x="0.0" y="0.0" width="218" height="360"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <clipView key="contentView" id="g2c-Ld-Uxh">
-                                    <rect key="frame" x="0.0" y="0.0" width="218" height="360"/>
+                    <tabView translatesAutoresizingMaskIntoConstraints="NO" id="GFe-wd-dAv">
+                        <rect key="frame" x="13" y="3" width="512" height="426"/>
+                        <font key="font" metaFont="system"/>
+                        <tabViewItems>
+                            <tabViewItem label="GL2" identifier="2" id="cZg-Kj-fSH">
+                                <view key="view" id="RTP-Xc-MmN">
+                                    <rect key="frame" x="10" y="33" width="492" height="380"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" id="Ia8-z5-hQI">
-                                            <rect key="frame" x="0.0" y="0.0" width="218" height="19"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <size key="intercellSpacing" width="3" height="2"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
-                                            <tableColumns>
-                                                <tableColumn width="215" minWidth="40" maxWidth="1000" id="0zD-oz-OOt">
-                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
-                                                        <font key="font" metaFont="smallSystem"/>
-                                                        <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </tableHeaderCell>
-                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="cKZ-d2-yfP">
-                                                        <font key="font" metaFont="system"/>
-                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
-                                                    <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
-                                                </tableColumn>
-                                            </tableColumns>
-                                        </tableView>
+                                        <openGLView useAuxiliaryDepthBufferStencil="NO" useDoubleBufferingEnabled="YES" allowOffline="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q2C-LX-brO" customClass="C3DView">
+                                            <rect key="frame" x="0.0" y="0.0" width="492" height="377"/>
+                                        </openGLView>
                                     </subviews>
-                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </clipView>
-                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="bU2-md-x1u">
-                                    <rect key="frame" x="-100" y="-100" width="223" height="15"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </scroller>
-                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="br6-04-Uhi">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </scroller>
-                            </scrollView>
-                            <customView id="lop-s3-GkS">
-                                <rect key="frame" x="219" y="0.0" width="458" height="360"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <subviews>
-                                    <openGLView useAuxiliaryDepthBufferStencil="NO" useDoubleBufferingEnabled="YES" allowOffline="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DEk-3f-g1N" customClass="C3DView">
-                                        <rect key="frame" x="0.0" y="0.0" width="458" height="360"/>
-                                    </openGLView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="DEk-3f-g1N" secondAttribute="bottom" id="6I7-nU-pvl"/>
-                                    <constraint firstItem="DEk-3f-g1N" firstAttribute="top" secondItem="lop-s3-GkS" secondAttribute="top" id="NF2-7t-0ju"/>
-                                    <constraint firstItem="DEk-3f-g1N" firstAttribute="leading" secondItem="lop-s3-GkS" secondAttribute="leading" id="djZ-uq-fwW"/>
-                                    <constraint firstAttribute="trailing" secondItem="DEk-3f-g1N" secondAttribute="trailing" id="yLk-0Y-k0R"/>
-                                </constraints>
-                            </customView>
-                        </subviews>
-                        <holdingPriorities>
-                            <real value="250"/>
-                            <real value="250"/>
-                        </holdingPriorities>
-                    </splitView>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="q2C-LX-brO" secondAttribute="bottom" id="SVf-j3-EKj"/>
+                                        <constraint firstItem="q2C-LX-brO" firstAttribute="top" secondItem="RTP-Xc-MmN" secondAttribute="top" constant="3" id="YS9-c7-CAl"/>
+                                        <constraint firstItem="q2C-LX-brO" firstAttribute="leading" secondItem="RTP-Xc-MmN" secondAttribute="leading" id="ZdW-fQ-xrx"/>
+                                        <constraint firstItem="q2C-LX-brO" firstAttribute="centerX" secondItem="RTP-Xc-MmN" secondAttribute="centerX" id="eAE-OE-O5b"/>
+                                    </constraints>
+                                </view>
+                            </tabViewItem>
+                            <tabViewItem label="GL3" identifier="1" id="KAY-OV-D3c">
+                                <view key="view" id="BpU-vn-Oup">
+                                    <rect key="frame" x="10" y="33" width="492" height="380"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <openGLView useAuxiliaryDepthBufferStencil="NO" useDoubleBufferingEnabled="YES" allowOffline="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DEk-3f-g1N" customClass="C3DView">
+                                            <rect key="frame" x="0.0" y="0.0" width="492" height="377"/>
+                                        </openGLView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="DEk-3f-g1N" firstAttribute="top" secondItem="BpU-vn-Oup" secondAttribute="top" constant="3" id="Bat-cr-0Rc"/>
+                                        <constraint firstItem="DEk-3f-g1N" firstAttribute="centerX" secondItem="BpU-vn-Oup" secondAttribute="centerX" id="Prr-Xq-Ysv"/>
+                                        <constraint firstItem="DEk-3f-g1N" firstAttribute="leading" secondItem="BpU-vn-Oup" secondAttribute="leading" id="RpK-Ve-0b4"/>
+                                        <constraint firstAttribute="bottom" secondItem="DEk-3f-g1N" secondAttribute="bottom" id="ssj-DR-1Tp"/>
+                                    </constraints>
+                                </view>
+                            </tabViewItem>
+                        </tabViewItems>
+                    </tabView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="QBx-k7-IOl" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" id="Eyh-6U-NXe"/>
-                    <constraint firstAttribute="trailing" secondItem="QBx-k7-IOl" secondAttribute="trailing" id="Rh0-BA-pc3"/>
-                    <constraint firstAttribute="bottom" secondItem="QBx-k7-IOl" secondAttribute="bottom" id="Z5c-30-cBb"/>
-                    <constraint firstItem="QBx-k7-IOl" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" id="ZfP-Rq-Cyl"/>
+                    <constraint firstItem="GFe-wd-dAv" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="12" symbolic="YES" id="VeV-7x-V27"/>
+                    <constraint firstAttribute="trailing" secondItem="GFe-wd-dAv" secondAttribute="trailing" constant="20" symbolic="YES" id="ZGP-AU-zmJ"/>
+                    <constraint firstAttribute="bottom" secondItem="GFe-wd-dAv" secondAttribute="bottom" constant="13" id="sUc-6Y-bv2"/>
+                    <constraint firstItem="GFe-wd-dAv" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" symbolic="YES" id="tnK-lF-eP3"/>
                 </constraints>
             </view>
-            <point key="canvasLocation" x="761.5" y="92"/>
+            <point key="canvasLocation" x="692" y="129.5"/>
         </window>
     </objects>
 </document>
