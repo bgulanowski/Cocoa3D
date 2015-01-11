@@ -111,7 +111,7 @@ static GLuint triangleIndices[] = { 0, 1, 2 };
 
 - (void)paintForCamera:(C3DCamera *)camera {
 	
-	glColor3i(1, 1, 1);
+	glColor3f(1, 1, 1);
 	
 	glBegin(GL_TRIANGLES);
 	

@@ -26,6 +26,7 @@
 @implementation AppDelegate {
 	C3DNode *_rootNode;
 	C3DProgram *_program;
+	C3DObject *_gl1Object;
 }
 
 #pragma mark - NSObject
@@ -34,6 +35,7 @@
 	self = [super init];
 	if (self) {
 		_rootNode = [C3DNode demoScene];
+		_gl1Object = [C3DObject demoTriangleGL1];
 	}
 	return self;
 }
@@ -56,15 +58,18 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
 	
+	[_gl3View useModernContext];
+	
 	NSOpenGLContext *glContext = [_gl3View openGLContext];
-
+	
 	[glContext makeCurrentContext];
 	
 	// FIXME: the attributes should come from somewhere else (metadata about shader?)
 	_program = [[C3DProgram alloc] initWithName:@"FlatShader" attributes:[_rootNode.object.vertexArrays valueForKey:@"attributeName"] uniforms:@[@"MVP"]];
 	_rootNode.object.program = _program;
-
-	[self prepareCameraUseOrthographic:YES];
+	
+	[self prepareCamera:_gl3View.camera useOrthographic:YES];
+	[self prepareCamera:_gl2View.camera useOrthographic:NO];
 }
 
 #pragma mark - C3DCameraDrawDelegate
@@ -78,22 +83,27 @@
 #pragma mark - C3DPropContainer
 
 - (NSArray *)sortedPropsForCamera:(C3DCamera *)camera {
-	return @[_rootNode];
+	if (camera == _gl3View.camera) {
+		return @[_rootNode];
+	}
+	else {
+		return @[_gl1Object];
+	}
 }
 
 #pragma mark - Private
 
-- (void)prepareCameraUseOrthographic:(BOOL)useOrtho {
+- (void)prepareCamera:(C3DCamera *)camera useOrthographic:(BOOL)useOrtho {
 	
-	C3DCamera *camera = _gl3View.camera;
-	camera.backgroundColor = (C3DColour_t){0, 1, 0, 1};
 	camera.cullingOn = YES;
 	camera.drawDelegate = self;
 	camera.depthOn = YES;
+	camera.lightsOn = NO;
 
 	C3DTransform *modelView = [[C3DTransform alloc] initWithMatrix:LIMatrixIdentity];
 
 	if (useOrtho) {
+		camera.backgroundColor = (C3DColour_t){0, 1, 0, 1};
 		camera.projectionStyle = C3DCameraProjectionOrthographic;
 		// 1 unit in GL equals 32 points on-screen
 		camera.scale = 1.0/32.0;
@@ -102,6 +112,7 @@
 		[modelView translate:LIVectorMake(0, 0, -5.0f)];
 	}
 	else {
+		camera.backgroundColor = (C3DColour_t){1, 0, 0, 1};
 		[modelView rotate:LIRotationMake(0, 1, 0, M_PI_4)];
 		[modelView translate:LIVectorMake(0.0, 0.0, -10.0f)];
 	}
