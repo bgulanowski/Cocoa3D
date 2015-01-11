@@ -48,4 +48,13 @@ extern const GLenum primitiveTypes[];
 @property (nonatomic) C3DCameraOptions changes;
 @property (nonatomic, retain) id<C3DPropContainer>container;
 
+// Subclasses should override this
+- (void)setup;
+
+// The -capture method invokes these in order
+- (void)synch;
+- (void)clear;
+- (void)paint;
+- (void)flush;
+
 @end

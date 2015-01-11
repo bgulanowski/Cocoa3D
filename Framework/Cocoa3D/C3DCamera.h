@@ -139,10 +139,6 @@ typedef NS_ENUM(NSUInteger, C3DCameraProjectionStyle) {
 - (void)logCameraState;
 - (void)logFramerate:(NSTimeInterval)start;
 
-// all the following methods must be implemented by subclasses
-- (void)setup;
-- (void)updateGLState;
-
 - (void)drawElementsWithType:(C3DObjectType)type count:(NSInteger)count;
 - (void)drawArraysWithType:(C3DObjectType)type count:(NSInteger)count;
 

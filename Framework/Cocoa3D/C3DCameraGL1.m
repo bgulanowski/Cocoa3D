@@ -74,7 +74,7 @@ static void C3DDrawOrigin( void ) {
 	[super revertViewTransform];
 }
 
-- (void)updateGLState {
+- (void)synch {
 	
 	C3DCameraOptions changes = self.changes;
 	C3DCameraOptions options = self.options;
@@ -95,7 +95,7 @@ static void C3DDrawOrigin( void ) {
 		glLightfv(GL_LIGHT0, GL_SPECULAR, &lightShine.r);
 	}
 	
-	[super updateGLState];
+	[super synch];
 }
 
 - (void)updateProjectionForViewportSize:(CGSize)size {
@@ -104,27 +104,27 @@ static void C3DDrawOrigin( void ) {
 	glLoadMatrixf(self.projection.matrix.i);
 }
 
-- (void)capture {
+- (void)paint {
 	
 	C3DCameraOptions options = self.options;
-	NSTimeInterval start = options.rateOn ? [NSDate timeIntervalSinceReferenceDate] : 0;
-	
-    glMatrixMode(GL_MODELVIEW);
+
+	glMatrixMode(GL_MODELVIEW);
 	glRenderMode(GL_RENDER);
-    
-    glPushMatrix();
 	
-    LIMatrix_t m;
-    
-    if(options.revolveOn)
-        m = LIMatrixFocus(self.position.point, self.focusPosition.point);
-    else
-        m = self.transform.matrix;
-    
-    glLoadMatrixf(m.i);
+	glPushMatrix();
 	
+	LIMatrix_t m;
+	
+	if(options.revolveOn)
+		m = LIMatrixFocus(self.position.point, self.focusPosition.point);
+	else
+		m = self.transform.matrix;
+	
+	glLoadMatrixf(m.i);
+	
+	[super paint];
+
 #if ! TARGET_OS_IPHONE
-	// TODO: make these into C3DVisible objects; add to props
 //	if(options.testOn) {
 //		static GLUquadric *quad = NULL;
 //		if(NULL == quad) quad = gluNewQuadric();
@@ -140,12 +140,17 @@ static void C3DDrawOrigin( void ) {
 		glEnd();
 	}
 #endif
+
+	glPopMatrix();
+}
+
+- (void)capture {
+	
+	NSTimeInterval start =  self.rateOn ? [NSDate timeIntervalSinceReferenceDate] : 0;
 	
 	[super capture];
 	
-	glPopMatrix();
-	
-	if(options.rateOn)
+	if(self.rateOn)
 		[self logFramerate:start];
 }
 
@@ -174,6 +179,13 @@ static void C3DDrawOrigin( void ) {
     NSLog(@"Depth test: %@", STRING(depthOn));
     NSLog(@"Front mode: %@", C3DStringForPolygonMode(polygonModes[0]));
     NSLog(@"Back mode:  %@", C3DStringForPolygonMode(polygonModes[1]));
+	
+	LIMatrix_t matrix;
+	glGetFloatv(GL_MODELVIEW_MATRIX, matrix.i);
+	NSLog(@"Model View Matrix:\n%@", LIMatrixToString(matrix));
+	
+	glGetFloatv(GL_PROJECTION_MATRIX, matrix.i);
+	NSLog(@"Projection Matrix:\n%@", LIMatrixToString(matrix));
 }
 
 @end

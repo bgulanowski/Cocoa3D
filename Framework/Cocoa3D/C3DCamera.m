@@ -292,6 +292,11 @@ NSString *C3DCameraOptionsToString(C3DCameraOptions _options) {
 //	// FIXME: if velocity has a value, we need to update periodically
 //}
 
+- (void)setDrawDelegate:(id<C3DCameraDrawDelegate>)drawDelegate {
+	_drawDelegate = drawDelegate;
+	_container = [_drawDelegate propContainer];
+}
+
 #pragma mark - NSObject
 
 - (id)init {
@@ -418,7 +423,7 @@ NSString *C3DCameraOptionsToString(C3DCameraOptions _options) {
 	LOG_UNIMPLEMENTED();
 }
 
-- (void)updateGLState {
+- (void)synch {
 	
 	if(_changes.cullOn)   _options.cullOn   ? glEnable(GL_CULL_FACE)  : glDisable(GL_CULL_FACE);
 	if(_changes.depthOn)  _options.depthOn  ? glEnable(GL_DEPTH_TEST) : glDisable(GL_DEPTH_TEST);
@@ -437,24 +442,32 @@ NSString *C3DCameraOptionsToString(C3DCameraOptions _options) {
 	_colorChanges = (C3DCameraColorChanges) {};
 }
 
-- (void)capture {
-	
-	[self updateGLState];
-
+- (void)clear {
 	glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+}
 
-	if (!_container) {
-		_container = [_drawDelegate propContainer];
-	}
+- (NSArray *)sortedProps {
+	return [_container sortedPropsForCamera:self];
+}
+
+- (void)paint {
 	_transformStack = [NSMutableArray array];
-	NSArray *props = [_container sortedPropsForCamera:self];
-	[props makeObjectsPerformSelector:@selector(paintForCamera:) withObject:self];
+	[[self sortedProps] makeObjectsPerformSelector:@selector(paintForCamera:) withObject:self];
 	[_drawDelegate paintForCamera:self];
 	_transformStack = nil;
+}
 
+- (void)flush {
 #if ! TARGET_OS_IPHONE
 	CGLFlushDrawable(CGLGetCurrentContext());
 #endif
+}
+
+- (void)capture {
+	[self synch];
+	[self clear];
+	[self paint];
+	[self flush];
 }
 
 - (void)logCameraState {
