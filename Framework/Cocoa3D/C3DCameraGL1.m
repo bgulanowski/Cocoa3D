@@ -99,7 +99,7 @@ static void C3DDrawOrigin( void ) {
 }
 
 - (void)updateProjectionForViewportSize:(CGSize)size {
-	[super updateProjectionForViewportSize:CGSizeMake(1, 1)];
+	[super updateProjectionForViewportSize:size];
 	glMatrixMode(GL_PROJECTION);
 	glLoadMatrixf(self.projection.matrix.i);
 }
