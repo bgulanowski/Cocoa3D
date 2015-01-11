@@ -107,8 +107,6 @@
 		camera.projectionStyle = C3DCameraProjectionOrthographic;
 		// 1 unit in GL equals 32 points on-screen
 		camera.scale = 1.0/32.0;
-		
-		[camera updateProjectionForViewportSize:_gl3View.bounds.size];
 		[modelView translate:LIVectorMake(0, 0, -5.0f)];
 	}
 	else {
