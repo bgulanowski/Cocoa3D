@@ -77,9 +77,6 @@ static CVReturn C3DViewDisplayLink(CVDisplayLinkRef displayLink,
 - (id)initWithCoder:(NSCoder *)aDecoder {
 	self = [super initWithCoder:aDecoder];
 	if (self) {
-		if ([self pixelFormat].profile == NSOpenGLProfileVersionLegacy) {
-			[self setOpenGLContext:[NSOpenGLContext C3DContext]];
-		}
 		self.camera = [C3DCamera cameraForGLContext:self.openGLContext];
 		self.movementRate = 1.0f;
 	}
@@ -352,6 +349,13 @@ static CVReturn C3DViewDisplayLink(CVDisplayLinkRef displayLink,
 	if (!_displayLink)
 		return;
 	CVDisplayLinkRelease(_displayLink), _displayLink = NULL;
+}
+
+- (void)useModernContext {
+	if ([self pixelFormat].profile == NSOpenGLProfileVersionLegacy) {
+		[self setOpenGLContext:[NSOpenGLContext C3DContext]];
+		self.camera = [C3DCamera cameraForGLContext:self.openGLContext];
+	}
 }
 
 @end

@@ -17,4 +17,6 @@
 @property (nonatomic) BOOL drawInBackground;
 @property (nonatomic) BOOL trackMouse;
 
+- (void)useModernContext;
+
 @end
