@@ -63,7 +63,7 @@ static void C3DDrawOrigin( void ) {
 }
 
 - (C3DTransform *)applyViewTransform:(C3DTransform *)transform {
-	transform = [super applyViewTransform:transform];
+	[super applyViewTransform:transform];
 	glPushMatrix();
 	glMultMatrixf( transform.matrix.i );
 	return transform;
@@ -111,6 +111,7 @@ static void C3DDrawOrigin( void ) {
 	glMatrixMode(GL_MODELVIEW);
 	glRenderMode(GL_RENDER);
 	
+	glLoadIdentity();
 	glPushMatrix();
 	
 	LIMatrix_t m;

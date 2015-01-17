@@ -118,6 +118,7 @@ BOOL CGSizeIsPowerOf2(CGSize size) {
 }
 
 - (void)updateWithData:(NSData *)data region:(CGRect)region {
+	glBindTexture(_target, _name);
     glTexSubImage2D(_target, 0, region.origin.x, (GLint)region.origin.y, (GLsizei)region.size.width, (GLsizei)region.size.height,
                     _format, _type, [data bytes]);
 }

@@ -52,13 +52,14 @@
 - (void)awakeFromNib {
 	[self.window makeFirstResponder:_gl3View];
 	[self.window setNextResponder:self];
+	[self prepareCamera:_gl2View.camera useOrthographic:YES];
+	[_gl3View useModernContext];
+	[self prepareCamera:_gl3View.camera useOrthographic:NO];
 }
 
 #pragma mark - NSApplicationDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-	
-	[_gl3View useModernContext];
 	
 	NSOpenGLContext *glContext = [_gl3View openGLContext];
 	
@@ -67,9 +68,6 @@
 	// FIXME: the attributes should come from somewhere else (metadata about shader?)
 	_program = [[C3DProgram alloc] initWithName:@"FlatShader" attributes:[_rootNode.object.vertexArrays valueForKey:@"attributeName"] uniforms:@[@"MVP"]];
 	_rootNode.object.program = _program;
-	
-	[self prepareCamera:_gl3View.camera useOrthographic:YES];
-	[self prepareCamera:_gl2View.camera useOrthographic:NO];
 }
 
 #pragma mark - C3DCameraDrawDelegate

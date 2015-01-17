@@ -325,6 +325,7 @@ NSString *C3DCameraOptionsToString(C3DCameraOptions _options) {
 		_fieldOfView = M_PI_4;
 		_nearPlane = 0.1f;
 		_farPlane = 100.0f;
+		_scale = 1.0f;
 		
 		self.lightPosition = [LIPoint pointWithX:0 y:0 z:0 w:1.0f];
 		self.frontMode = self.backMode = C3DPolygonModeFill;
