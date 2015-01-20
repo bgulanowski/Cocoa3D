@@ -333,6 +333,8 @@ NSString *C3DCameraOptionsToString(C3DCameraOptions _options) {
 		self.lightsOn = YES;
         self.cullingOn = YES;
         self.depthOn = YES;
+		
+		[self setup];
 	}
 	return self;
 }
@@ -413,7 +415,6 @@ NSString *C3DCameraOptionsToString(C3DCameraOptions _options) {
 }
 
 - (void)setup {
-	LOG_UNIMPLEMENTED();
 }
 
 - (void)drawElementsWithType:(C3DObjectType)type count:(NSInteger)count {
@@ -535,7 +536,9 @@ NSString *C3DCameraOptionsToString(C3DCameraOptions _options) {
 }
 
 + (C3DCamera *)cameraForGLContext:(NSOpenGLContext *)context {
-	return [[[self classForGLContext:context] alloc] init];
+	C3DCamera *camera = [[[self classForGLContext:context] alloc] init];
+	[context makeCurrentContext];
+	return camera;
 }
 #endif
 
