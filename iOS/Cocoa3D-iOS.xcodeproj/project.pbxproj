@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8467A6C01A74964800F89F66 /* C3DColour.h in Headers */ = {isa = PBXBuildFile; fileRef = 8467A6BE1A74964800F89F66 /* C3DColour.h */; };
+		8467A6C11A74964800F89F66 /* C3DColour.m in Sources */ = {isa = PBXBuildFile; fileRef = 8467A6BF1A74964800F89F66 /* C3DColour.m */; };
 		84B8F27A1A183BC8000C1AE5 /* C3DCamera_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 84B8F2511A183BC8000C1AE5 /* C3DCamera_Private.h */; };
 		84B8F27B1A183BC8000C1AE5 /* C3DCamera.h in Headers */ = {isa = PBXBuildFile; fileRef = 84B8F2521A183BC8000C1AE5 /* C3DCamera.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		84B8F27C1A183BC8000C1AE5 /* C3DCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B8F2531A183BC8000C1AE5 /* C3DCamera.m */; };
@@ -88,6 +90,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8467A6BE1A74964800F89F66 /* C3DColour.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C3DColour.h; sourceTree = "<group>"; };
+		8467A6BF1A74964800F89F66 /* C3DColour.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C3DColour.m; sourceTree = "<group>"; };
 		84B8F18F1A178E3C000C1AE5 /* Cocoa3D.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Cocoa3D.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84B8F1931A178E3C000C1AE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84B8F1941A178E3C000C1AE5 /* Cocoa3D-iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cocoa3D-iOS.h"; sourceTree = "<group>"; };
@@ -199,6 +203,8 @@
 		84B8F2791A183BC8000C1AE5 /* Cocoa3D */ = {
 			isa = PBXGroup;
 			children = (
+				8467A6BE1A74964800F89F66 /* C3DColour.h */,
+				8467A6BF1A74964800F89F66 /* C3DColour.m */,
 				84B8F2511A183BC8000C1AE5 /* C3DCamera_Private.h */,
 				84B8F2521A183BC8000C1AE5 /* C3DCamera.h */,
 				84B8F2531A183BC8000C1AE5 /* C3DCamera.m */,
@@ -262,6 +268,7 @@
 				84B8F28D1A183BC8000C1AE5 /* C3DTexture.h in Headers */,
 				84B8F2C51A1919FB000C1AE5 /* C3DView.h in Headers */,
 				84B8F2BD1A190D86000C1AE5 /* Cocoa3D.h in Headers */,
+				8467A6C01A74964800F89F66 /* C3DColour.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,6 +388,7 @@
 				84B8F2BC1A190D49000C1AE5 /* C3DCameraEAGL3.m in Sources */,
 				84B8F2821A183BC8000C1AE5 /* C3DLight.m in Sources */,
 				84B8F2841A183BC8000C1AE5 /* C3DMotion.m in Sources */,
+				8467A6C11A74964800F89F66 /* C3DColour.m in Sources */,
 				84B8F2861A183BC8000C1AE5 /* C3DNode.m in Sources */,
 				84B8F2881A183BC8000C1AE5 /* C3DObject.m in Sources */,
 				84B8F28A1A183BC8000C1AE5 /* C3DProgram.m in Sources */,
