@@ -178,6 +178,7 @@ static CVReturn C3DViewDisplayLink(CVDisplayLinkRef displayLink,
 		CGLSetCurrentContext(cglContext);
 		
 		[_camera capture];
+        CGLUnlockContext(cglContext);
 	}
 }
 
