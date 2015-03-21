@@ -15,12 +15,4 @@
 
 @implementation C3DCameraGL3
 
-- (void)drawElementsWithType:(C3DObjectType)type count:(NSInteger)count {
-	glDrawElements(primitiveTypes[type], (GLsizei)count, GL_UNSIGNED_INT, NULL);
-}
-
-- (void)drawArraysWithType:(C3DObjectType)type count:(NSInteger)count {
-	glDrawArrays(primitiveTypes[type], 0, (GLsizei)count);
-}
-
 @end

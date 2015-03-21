@@ -10,6 +10,8 @@
 
 #import "C3DProgram.h"
 
+// ???: separate vertex array classes for each type?
+
 GLsizei C3DSizeForVertexArrayType(C3DVertexArrayType type) {
 	GLsizei size;
 	switch (type) {
@@ -48,29 +50,47 @@ NSString *C3DAttributeNameForVertexArrayType(C3DVertexArrayType type) {
 @end
 
 @implementation C3DVertexArray {
-	GLuint _name;
+	GLuint _bufferName;
 }
 
 - (NSString *)attributeName {
 	return C3DAttributeNameForVertexArrayType(_type);
 }
 
+- (void)bindAndLoad:(BOOL)load {
+    if (0 == _bufferName) {
+        glGenBuffers(1, &_bufferName);
+    }
+    GLenum const target = _type == C3DVertexArrayIndex ? GL_ELEMENT_ARRAY_BUFFER : GL_ARRAY_BUFFER;
+    glBindBuffer(target, _bufferName);
+    if (load) {
+        glBufferData(target, [_elements length], [_elements bytes], GL_STATIC_DRAW);
+    }
+}
+
 - (void)submit {
-	glBindVertexArray(_name);
+    [self bindAndLoad:NO];
+}
+
+- (void)delete {
+    if (_bufferName) {
+        glDeleteBuffers(1, &_bufferName);
+        _bufferName = 0;
+    }
 }
 
 - (void)loadInBuffer:(GLuint)buffer forProgram:(C3DProgram *)program {
 	
-	GLenum const target = _type == C3DVertexArrayIndex ? GL_ELEMENT_ARRAY_BUFFER : GL_ARRAY_BUFFER;
-
-	glBindBuffer(target, buffer);
-	glBufferData(target, [_elements length], [_elements bytes], GL_STATIC_DRAW);
-
-	if (_type == C3DVertexArrayIndex) {
+    if (0 == _bufferName) {
+        _bufferName = buffer;
+    }
+    
+    [self bindAndLoad:YES];
+    
+    if (_type == C3DVertexArrayIndex) {
 		return;
 	}
 
-	GLuint location = [program locationForAttribute:C3DAttributeNameForVertexArrayType(_type)];
 	GLboolean normalize = GL_FALSE;
 	GLenum dataType = GL_FLOAT;
 	
@@ -79,8 +99,13 @@ NSString *C3DAttributeNameForVertexArrayType(C3DVertexArrayType type) {
 		dataType = GL_INT;
 	}
 
-	glEnableVertexAttribArray(location);
-	glVertexAttribPointer(location, C3DSizeForVertexArrayType(_type), dataType, normalize, 0, 0);
+    // FIXME: responsibility of the program, not the array?
+    if (program) {
+        GLuint location = [program locationForAttribute:C3DAttributeNameForVertexArrayType(_type)];
+        
+        glEnableVertexAttribArray(location);
+        glVertexAttribPointer(location, C3DSizeForVertexArrayType(_type), dataType, normalize, 0, 0);
+    }
 }
 
 - (instancetype)initWithType:(C3DVertexArrayType)type elements:(NSData *)elements {

@@ -418,11 +418,11 @@ NSString *C3DCameraOptionsToString(C3DCameraOptions _options) {
 }
 
 - (void)drawElementsWithType:(C3DObjectType)type count:(NSInteger)count {
-	LOG_UNIMPLEMENTED();
+    glDrawElements(primitiveTypes[type], (GLsizei)count, GL_UNSIGNED_INT, NULL);
 }
 
 - (void)drawArraysWithType:(C3DObjectType)type count:(NSInteger)count {
-	LOG_UNIMPLEMENTED();
+    glDrawArrays(primitiveTypes[type], 0, (GLsizei)count);
 }
 
 - (void)synch {

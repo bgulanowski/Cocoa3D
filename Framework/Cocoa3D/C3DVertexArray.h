@@ -50,8 +50,9 @@ NS_INLINE GLsizei C3DPrimitiveSizeForVertexArrayType(C3DVertexArrayType type) {
 @property (nonatomic, readonly) NSUInteger count;
 @property (nonatomic, readonly) NSString *attributeName;
 
-- (void)loadInBuffer:(GLuint)buffer forProgram:(C3DProgram *)program;
 - (void)submit;
+- (void)delete;
+- (void)loadInBuffer:(GLuint)buffer forProgram:(C3DProgram *)program;
 
 - (instancetype)initWithType:(C3DVertexArrayType)type elements:(NSData *)elements;
 - (instancetype)initWithType:(C3DVertexArrayType)type elements:(void *)elements count:(NSUInteger)count;

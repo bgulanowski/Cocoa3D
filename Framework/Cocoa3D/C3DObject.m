@@ -21,8 +21,10 @@
 #endif
 
 @implementation C3DObject {
+    // ???: separate classes for each type?
 	C3DObjectType _type;
 	GLuint _vao;
+    // FIXME: These buffers should be in the vertex arrays, not in here
 	GLuint *_buffers;
 	GLsizei _bufferCount;
 	NSUInteger _elementCount;
@@ -32,6 +34,7 @@
 #pragma mark - Accessors
 
 - (void)setProgram:(C3DProgram *)program {
+    // FIXME: Should this only release if removing program, and allocate if adding program? Or not at all?
 	if (_program != program) {
 		if (_program) {
 			[self releaseBuffers];
@@ -58,6 +61,7 @@
 	[_program loadMVPMatrix:[camera currentTransform]];
 
 	if (_vao) {
+        // Binding the vertex array automatically binds all the individual arrays (VBOs)
 		glBindVertexArray(_vao);
 	}
 	else {
