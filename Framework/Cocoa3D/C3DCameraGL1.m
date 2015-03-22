@@ -236,7 +236,7 @@ static void C3DDrawOrigin( void ) {
 }
 
 + (void)loadVertexArray:(C3DVertexArray *)vertexArray {
-    [vertexArray submit];
+    [vertexArray bind];
     switch (vertexArray.type) {
         case C3DVertexArrayColour:
             glColorPointer(4, GL_FLOAT, 0, NULL);
@@ -261,7 +261,7 @@ static void C3DDrawOrigin( void ) {
 
 + (void)loadVertexArrays:(NSArray *)vertexArrays {
     for (C3DVertexArray *vertexArray in vertexArrays) {
-        [vertexArray submit];
+        [vertexArray bind];
         [self loadVertexArray:vertexArray];
     }
 }

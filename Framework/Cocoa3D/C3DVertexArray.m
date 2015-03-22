@@ -56,25 +56,23 @@ NSString *C3DAttributeNameForVertexArrayType(C3DVertexArrayType type) {
 
 @implementation C3DVertexArray {
 	GLuint _bufferName;
+    GLenum _bufferTarget;
 }
 
 - (NSString *)attributeName {
 	return C3DAttributeNameForVertexArrayType(_type);
 }
 
-- (void)bindAndLoad:(BOOL)load {
-    if (0 == _bufferName) {
+// FIXME: this method is bullshit
+- (void)bind {
+    BOOL createAndLoad = 0 == _bufferName;
+    if (createAndLoad) {
         glGenBuffers(1, &_bufferName);
     }
-    GLenum const target = _type == C3DVertexArrayIndex ? GL_ELEMENT_ARRAY_BUFFER : GL_ARRAY_BUFFER;
-    glBindBuffer(target, _bufferName);
-    if (load) {
-        glBufferData(target, [_elements length], [_elements bytes], GL_STATIC_DRAW);
+    glBindBuffer(_bufferTarget, _bufferName);
+    if (createAndLoad) {
+        glBufferData(_bufferTarget, [_elements length], [_elements bytes], GL_STATIC_DRAW);
     }
-}
-
-- (void)submit {
-    [self bindAndLoad:NO];
 }
 
 - (void)delete {
@@ -90,22 +88,24 @@ NSString *C3DAttributeNameForVertexArrayType(C3DVertexArrayType type) {
         _bufferName = buffer;
     }
     
-    [self bindAndLoad:YES];
+    glBindBuffer(_bufferTarget, _bufferName);
+    glBufferData(_bufferTarget, [_elements length], [_elements bytes], GL_STATIC_DRAW);
     
     if (_type == C3DVertexArrayIndex) {
 		return;
 	}
 
-	GLboolean normalize = GL_FALSE;
-	GLenum dataType = GL_FLOAT;
-	
-	if (_type == C3DVertexArrayNormal) {
-		normalize = GL_TRUE;
-		dataType = GL_INT;
-	}
-
     // FIXME: responsibility of the program, not the array?
     if (program) {
+
+        GLboolean normalize = GL_FALSE;
+        GLenum dataType = GL_FLOAT;
+        
+        if (_type == C3DVertexArrayNormal) {
+            normalize = GL_TRUE;
+            dataType = GL_INT;
+        }
+        
         GLuint location = [program locationForAttribute:C3DAttributeNameForVertexArrayType(_type)];
         
         glEnableVertexAttribArray(location);
@@ -113,24 +113,24 @@ NSString *C3DAttributeNameForVertexArrayType(C3DVertexArrayType type) {
     }
 }
 
-- (instancetype)initWithType:(C3DVertexArrayType)type elements:(NSData *)elements {
-	self = [self init];
-	if (self) {
-		_type = type;
-		_elements = elements;
-		_count = [elements countForType:_type];
-	}
-	return self;
+- (instancetype)initWithType:(C3DVertexArrayType)type data:(NSData *)data count:(NSUInteger)count {
+    self = [super init];
+    if (self) {
+        _type = type;
+        _count = count;
+        _elements = data;
+        _bufferTarget = _type == C3DVertexArrayIndex ? GL_ELEMENT_ARRAY_BUFFER : GL_ARRAY_BUFFER;
+    }
+    return self;
+}
+
+- (instancetype)initWithType:(C3DVertexArrayType)type data:(NSData *)data {
+	return [self initWithType:type data:data count:[data countForType:type]];
 }
 
 - (instancetype)initWithType:(C3DVertexArrayType)type elements:(void *)elements count:(NSUInteger)count {
-	self = [self init];
-	if (self) {
-		_type = type;
-		_count = count;
-		_elements = [NSData dataWithBytes:elements length:_count * C3DSizeForVertexArrayType(_type) * C3DPrimitiveSizeForVertexArrayType(_type)];
-	}
-	return self;
+    NSData *data = [NSData dataWithBytes:elements length:count * C3DSizeForVertexArrayType(type) * C3DPrimitiveSizeForVertexArrayType(type)];
+    return [self initWithType:type data:data count:count];
 }
 
 + (instancetype)coloursWithElements:(GLfloat *)elements count:(NSUInteger)count {

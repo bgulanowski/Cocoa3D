@@ -27,6 +27,7 @@ typedef NS_ENUM(NSUInteger, C3DVertexArrayType) {
 	C3DVertexArrayTextureCoord,
 	C3DVertexArrayFogCoord,
 	// scalars
+    // FIXME: this is colour index array, not vertex indices
 	C3DVertexArrayIndex,
 	C3DVertexArrayEdgeFlag
 };
@@ -51,11 +52,12 @@ NS_INLINE GLsizei C3DPrimitiveSizeForVertexArrayType(C3DVertexArrayType type) {
 @property (nonatomic, readonly) NSUInteger count;
 @property (nonatomic, readonly) NSString *attributeName;
 
-- (void)submit;
+- (void)bind;
 - (void)delete;
 - (void)loadInBuffer:(GLuint)buffer forProgram:(C3DProgram *)program;
 
-- (instancetype)initWithType:(C3DVertexArrayType)type elements:(NSData *)elements;
+- (instancetype)initWithType:(C3DVertexArrayType)type data:(NSData *)data count:(NSUInteger)count NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithType:(C3DVertexArrayType)type data:(NSData *)data;
 - (instancetype)initWithType:(C3DVertexArrayType)type elements:(void *)elements count:(NSUInteger)count;
 
 + (instancetype)coloursWithElements:(GLfloat *)elements count:(NSUInteger)count;

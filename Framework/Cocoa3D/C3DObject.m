@@ -8,9 +8,10 @@
 
 #import "C3DObject.h"
 
-#import "C3DVertexArray.h"
+#import "C3DCameraGL1.h"
 #import "C3DProgram.h"
 #import "C3DTransform.h"
+#import "C3DVertexArray.h"
 
 #if TARGET_OS_IPHONE
 #import <OpenGLES/ES3/gl.h>
@@ -56,23 +57,27 @@
 #pragma mark - C3DVisible
 
 - (void)paintForCamera:(C3DCamera *)camera {
-	
-	[_program prepareToDraw];
-	[_program loadMVPMatrix:[camera currentTransform]];
-
-	if (_vao) {
+    
+    [_program prepareToDraw];
+    [_program loadMVPMatrix:[camera currentTransform]];
+    
+    if (_vao) {
         // Binding the vertex array automatically binds all the individual arrays (VBOs)
-		glBindVertexArray(_vao);
-	}
-	else {
-		[_vertexArrays makeObjectsPerformSelector:@selector(submit)];
-	}
-	if (_indexed) {
-		[camera drawElementsWithType:_type count:_elementCount];
-	}
-	else {
-		[camera drawArraysWithType:_type count:_elementCount];
-	}
+        glBindVertexArray(_vao);
+    }
+    else {
+        [C3DCameraGL1 enableVertexArrays:_vertexArrays];
+        [C3DCameraGL1 loadVertexArrays:_vertexArrays];
+    }
+    if (_indexed) {
+        [camera drawElementsWithType:_type count:_elementCount];
+    }
+    else {
+        [camera drawArraysWithType:_type count:_elementCount];
+    }
+    if (!_vao) {
+        [C3DCameraGL1 disableVertexArrays:_vertexArrays];
+    }
 }
 
 // FIXME: this is too simple-minded
@@ -93,6 +98,9 @@
 			[self allocateBuffers];
 			[self refreshBuffers];
 		}
+        else {
+            
+        }
 	}
 	
 	return self;
