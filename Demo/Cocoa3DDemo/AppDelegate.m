@@ -35,7 +35,6 @@
 - (instancetype)init {
 	self = [super init];
 	if (self) {
-		_rootNode = [C3DNode demoScene];
 		_gl1Object = [C3DObject demoTriangleGL1];
 	}
 	return self;
