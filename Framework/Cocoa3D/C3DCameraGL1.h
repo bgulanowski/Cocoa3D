@@ -7,6 +7,14 @@
 //
 
 #import <Cocoa3D/C3DCamera.h>
+#import <Cocoa3D/C3DVertexArray.h>
+
+extern GLenum C3DArrayNameForType (C3DVertexArrayType type);
 
 @interface C3DCameraGL1 : C3DCamera
+
++ (void)enableVertexArrays:(NSArray *)vertexArrays;
++ (void)disableVertexArrays:(NSArray *)vertexArrays;
++ (void)loadVertexArrays:(NSArray *)vertexArrays;
+
 @end

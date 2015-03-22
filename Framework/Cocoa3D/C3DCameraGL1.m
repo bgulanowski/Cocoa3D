@@ -16,6 +16,28 @@
 #import <OpenGL/gl.h>
 #import <OpenGL/glu.h>
 
+GLenum C3DArrayNameForType (C3DVertexArrayType type) {
+    switch (type) {
+        case C3DVertexArrayColour:
+        case C3DVertexArraySecondaryColour:
+            return GL_COLOR_ARRAY;
+        case C3DVertexArrayPosition:
+            return GL_VERTEX_ARRAY;
+        case C3DVertexArrayNormal:
+            return GL_NORMAL_ARRAY;
+        case C3DVertexArrayTextureCoord:
+            return GL_TEXTURE_COORD_ARRAY;
+        case C3DVertexArrayIndex:
+            return GL_INDEX_ARRAY;
+        case C3DVertexArrayEdgeFlag:
+            return GL_EDGE_FLAG_ARRAY;
+            
+        case C3DVertexArrayFogCoord:
+        default:
+            return 0;
+    }
+}
+
 extern const GLenum objectTypes[];
 
 static void C3DDrawOrigin( void ) {
@@ -187,6 +209,46 @@ static void C3DDrawOrigin( void ) {
 	
 	glGetFloatv(GL_PROJECTION_MATRIX, matrix.i);
 	NSLog(@"Projection Matrix:\n%@", LIMatrixToString(matrix));
+}
+
++ (void)enableVertexArrays:(NSArray *)vertexArrays {
+    for (C3DVertexArray *vertexArray in vertexArrays) {
+        glEnableClientState(C3DArrayNameForType(vertexArray.type));
+    }
+}
+
++ (void)disableVertexArrays:(NSArray *)vertexArrays {
+    for (C3DVertexArray *vertexArray in vertexArrays) {
+        glDisableClientState(C3DArrayNameForType(vertexArray.type));
+    }
+}
+
++ (void)loadVertexArrays:(NSArray *)vertexArrays {
+    for (C3DVertexArray *vertexArray in vertexArrays) {
+        [vertexArray bind];
+        switch (vertexArray.type) {
+            case C3DVertexArrayColour:
+                glColorPointer(4/*???*/, GL_FLOAT, 0, NULL);
+                break;
+            case C3DVertexArrayPosition:
+                glVertexPointer(3, GL_FLOAT, 0, NULL);
+                break;
+            case C3DVertexArrayNormal:
+                glNormalPointer(3, GL_FLOAT, NULL);
+                break;
+            case C3DVertexArrayTextureCoord:
+                glTexCoordPointer(3, GL_FLOAT, 0, NULL);
+                break;
+            case C3DVertexArrayIndex:
+                glIndexPointer(GL_UNSIGNED_INT, 0, NULL);
+                break;
+            case C3DVertexArrayEdgeFlag:
+            case C3DVertexArraySecondaryColour:
+            case C3DVertexArrayFogCoord:
+            default:
+                break;
+        }
+    }
 }
 
 @end
