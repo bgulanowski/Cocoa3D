@@ -35,7 +35,7 @@
 - (instancetype)init {
 	self = [super init];
 	if (self) {
-		_gl1Object = [C3DObject demoTriangleGL1];
+        _gl1Object = [C3DObject demoCubeWithProgram:nil];
 	}
 	return self;
 }
@@ -107,13 +107,12 @@
 		camera.projectionStyle = C3DCameraProjectionOrthographic;
 		// 1 unit in GL equals 32 points on-screen
 		camera.scale = 1.0/32.0;
-		[modelView translate:LIVectorMake(0, 0, -5.0f)];
 	}
 	else {
 		camera.backgroundColor = (C3DColour_t){1, 0, 0, 1};
-		[modelView rotate:LIRotationMake(0, 1, 0, M_PI_4)];
-		[modelView translate:LIVectorMake(0.0, 0.0, -10.0f)];
 	}
+    [modelView rotate:LIRotationMake(0.5, 1, 0, M_PI_4)];
+    [modelView translate:LIVectorMake(0.0, 0.0, -10.0f)];
 	camera.transform = modelView;
 }
 

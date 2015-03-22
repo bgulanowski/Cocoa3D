@@ -261,7 +261,6 @@ static void C3DDrawOrigin( void ) {
 
 + (void)loadVertexArrays:(NSArray *)vertexArrays {
     for (C3DVertexArray *vertexArray in vertexArrays) {
-        [vertexArray bind];
         [self loadVertexArray:vertexArray];
     }
 }

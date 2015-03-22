@@ -41,7 +41,7 @@ static NSArray *attributeNames;
 NSArray *C3DAttributeNames( void ) {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        attributeNames = @[@"colour", @"colour2", @"position", @"normal", @"texCoord", @"FogCoord", @"Index", @"EdgeFlag"];
+        attributeNames = @[@"colour", @"colour2", @"position", @"normal", @"texCoord", @"fogCoord", @"index", @"edgeFlag"];
     });
     return attributeNames;
 }
@@ -58,6 +58,14 @@ NSString *C3DAttributeNameForVertexArrayType(C3DVertexArrayType type) {
 	GLuint _bufferName;
     GLenum _bufferTarget;
 }
+
+#pragma mark - NSObject
+
+- (NSString *)debugDescription {
+    return [NSString stringWithFormat:@"[%@ %p] %@ %zu", [self class], self, C3DAttributeNameForVertexArrayType(_type), _count];
+}
+
+#pragma mark - C3DVertexArray
 
 - (NSString *)attributeName {
 	return C3DAttributeNameForVertexArrayType(_type);

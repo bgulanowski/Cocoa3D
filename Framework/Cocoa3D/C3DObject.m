@@ -94,13 +94,21 @@
 		_type = type;
 		_vertexArrays = vertexArrays;
 		_program = program;
+        NSUInteger vCount = 0, iCount = 0;
+        for (C3DVertexArray *vertexArray in _vertexArrays) {
+            if (vertexArray.type == C3DVertexArrayPosition) {
+                vCount = [vertexArray count];
+            }
+            else if (vertexArray.type == C3DVertexArrayIndex) {
+                iCount = [vertexArray count];
+                _indexed = YES;
+            }
+        }
+        _elementCount = iCount ?: vCount;
 		if (_program) {
 			[self allocateBuffers];
 			[self refreshBuffers];
 		}
-        else {
-            
-        }
 	}
 	
 	return self;
@@ -129,20 +137,10 @@
 	glBindVertexArray(_vao);
 	
 	NSUInteger i = 0;
-	NSUInteger vCount = 0, iCount = 0;
 	for (C3DVertexArray *vertexArray in _vertexArrays) {
-		if (vertexArray.type == C3DVertexArrayPosition) {
-			vCount = [vertexArray count];
-		}
-		else if (vertexArray.type == C3DVertexArrayIndex) {
-			iCount = [vertexArray count];
-			_indexed = YES;
-		}
 		[vertexArray loadInBuffer:_buffers[i++] forProgram:_program];
 	}
-	
-	_elementCount = iCount ?: vCount;
-	
+		
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 }
