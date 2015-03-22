@@ -211,43 +211,58 @@ static void C3DDrawOrigin( void ) {
 	NSLog(@"Projection Matrix:\n%@", LIMatrixToString(matrix));
 }
 
++ (void)enableVertexArray:(C3DVertexArray *)vertexArray {
+    glEnableClientState(C3DArrayNameForType(vertexArray.type));
+}
+
++ (void)disableVertexArray:(C3DVertexArray *)vertexArray {
+    glDisableClientState(C3DArrayNameForType(vertexArray.type));
+}
+
 + (void)enableVertexArrays:(NSArray *)vertexArrays {
     for (C3DVertexArray *vertexArray in vertexArrays) {
-        glEnableClientState(C3DArrayNameForType(vertexArray.type));
+        if (vertexArray.type != C3DVertexArrayIndex) {
+            [self enableVertexArray:vertexArray];
+        }
     }
 }
 
 + (void)disableVertexArrays:(NSArray *)vertexArrays {
     for (C3DVertexArray *vertexArray in vertexArrays) {
-        glDisableClientState(C3DArrayNameForType(vertexArray.type));
+        if (vertexArray.type != C3DVertexArrayIndex) {
+            [self disableVertexArray:vertexArray];
+        }
+    }
+}
+
++ (void)loadVertexArray:(C3DVertexArray *)vertexArray {
+    [vertexArray submit];
+    switch (vertexArray.type) {
+        case C3DVertexArrayColour:
+            glColorPointer(4, GL_FLOAT, 0, NULL);
+            break;
+        case C3DVertexArrayPosition:
+            glVertexPointer(3, GL_FLOAT, 0, NULL);
+            break;
+        case C3DVertexArrayNormal:
+            glNormalPointer(3, GL_FLOAT, NULL);
+            break;
+        case C3DVertexArrayTextureCoord:
+            glTexCoordPointer(3, GL_FLOAT, 0, NULL);
+            break;
+        case C3DVertexArrayIndex:
+        case C3DVertexArrayEdgeFlag:
+        case C3DVertexArraySecondaryColour:
+        case C3DVertexArrayFogCoord:
+        default:
+            break;
     }
 }
 
 + (void)loadVertexArrays:(NSArray *)vertexArrays {
     for (C3DVertexArray *vertexArray in vertexArrays) {
-        [vertexArray bind];
-        switch (vertexArray.type) {
-            case C3DVertexArrayColour:
-                glColorPointer(4/*???*/, GL_FLOAT, 0, NULL);
-                break;
-            case C3DVertexArrayPosition:
-                glVertexPointer(3, GL_FLOAT, 0, NULL);
-                break;
-            case C3DVertexArrayNormal:
-                glNormalPointer(3, GL_FLOAT, NULL);
-                break;
-            case C3DVertexArrayTextureCoord:
-                glTexCoordPointer(3, GL_FLOAT, 0, NULL);
-                break;
-            case C3DVertexArrayIndex:
-                glIndexPointer(GL_UNSIGNED_INT, 0, NULL);
-                break;
-            case C3DVertexArrayEdgeFlag:
-            case C3DVertexArraySecondaryColour:
-            case C3DVertexArrayFogCoord:
-            default:
-                break;
-        }
+        [vertexArray submit];
+        [self loadVertexArray:vertexArray];
     }
 }
 
