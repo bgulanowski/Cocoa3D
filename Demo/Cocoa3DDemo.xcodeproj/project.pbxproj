@@ -20,6 +20,7 @@
 		849D2B72196FD54E0051F434 /* Cocoa3DDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 849D2B71196FD54E0051F434 /* Cocoa3DDemoTests.m */; };
 		849D2B84196FD59E0051F434 /* Cocoa3D.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 849D2B81196FD58B0051F434 /* Cocoa3D.framework */; };
 		849D2B86196FD5A70051F434 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 849D2B85196FD5A70051F434 /* OpenGL.framework */; };
+		84BB79B21ABDC63A00115276 /* C3DProgram+Demo.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BB79B11ABDC63A00115276 /* C3DProgram+Demo.m */; };
 		84C1EAC11985920A002760E4 /* LichenMath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C1EAC01985920A002760E4 /* LichenMath.framework */; };
 		84CED76A1974270100FFF722 /* FlatShader.fp in Resources */ = {isa = PBXBuildFile; fileRef = 84CED7681974270100FFF722 /* FlatShader.fp */; };
 		84CED76B1974270100FFF722 /* FlatShader.vp in Resources */ = {isa = PBXBuildFile; fileRef = 84CED7691974270100FFF722 /* FlatShader.vp */; };
@@ -93,6 +94,8 @@
 		849D2B71196FD54E0051F434 /* Cocoa3DDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Cocoa3DDemoTests.m; sourceTree = "<group>"; };
 		849D2B7B196FD58B0051F434 /* Cocoa3D.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Cocoa3D.xcodeproj; path = ../Framework/Cocoa3D.xcodeproj; sourceTree = "<group>"; };
 		849D2B85196FD5A70051F434 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		84BB79B01ABDC63A00115276 /* C3DProgram+Demo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "C3DProgram+Demo.h"; sourceTree = "<group>"; };
+		84BB79B11ABDC63A00115276 /* C3DProgram+Demo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "C3DProgram+Demo.m"; sourceTree = "<group>"; };
 		84C1EAC01985920A002760E4 /* LichenMath.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LichenMath.framework; path = ../../../../../../../Shared/Xcode/Products/Debug/LichenMath.framework; sourceTree = "<group>"; };
 		84CED7681974270100FFF722 /* FlatShader.fp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FlatShader.fp; sourceTree = "<group>"; };
 		84CED7691974270100FFF722 /* FlatShader.vp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FlatShader.vp; sourceTree = "<group>"; };
@@ -178,10 +181,12 @@
 				84CED7681974270100FFF722 /* FlatShader.fp */,
 				84CED7691974270100FFF722 /* FlatShader.vp */,
 				849D2B4E196FD54E0051F434 /* Supporting Files */,
-				84D7F82119C6178F00CC2B70 /* C3DObject+Demo.h */,
-				84D7F82219C6178F00CC2B70 /* C3DObject+Demo.m */,
 				84F7E2441A1C4F4E008AD005 /* C3DNode+Demo.h */,
 				84F7E2451A1C4F4E008AD005 /* C3DNode+Demo.m */,
+				84D7F82119C6178F00CC2B70 /* C3DObject+Demo.h */,
+				84D7F82219C6178F00CC2B70 /* C3DObject+Demo.m */,
+				84BB79B01ABDC63A00115276 /* C3DProgram+Demo.h */,
+				84BB79B11ABDC63A00115276 /* C3DProgram+Demo.m */,
 			);
 			path = Cocoa3DDemo;
 			sourceTree = "<group>";
@@ -353,6 +358,7 @@
 				849D2B5B196FD54E0051F434 /* AppDelegate.m in Sources */,
 				84F7E2461A1C4F4E008AD005 /* C3DNode+Demo.m in Sources */,
 				849D2B54196FD54E0051F434 /* main.m in Sources */,
+				84BB79B21ABDC63A00115276 /* C3DProgram+Demo.m in Sources */,
 				84D7F82319C6178F00CC2B70 /* C3DObject+Demo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
