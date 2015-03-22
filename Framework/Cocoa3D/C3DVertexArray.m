@@ -36,13 +36,18 @@ GLsizei C3DSizeForVertexArrayType(C3DVertexArrayType type) {
 	return size;
 }
 
+static NSArray *attributeNames;
+
+NSArray *C3DAttributeNames( void ) {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        attributeNames = @[@"colour", @"colour2", @"position", @"normal", @"texCoord", @"FogCoord", @"Index", @"EdgeFlag"];
+    });
+    return attributeNames;
+}
+
 NSString *C3DAttributeNameForVertexArrayType(C3DVertexArrayType type) {
-	static NSArray *attributeNames;
-	static dispatch_once_t onceToken;
-	dispatch_once(&onceToken, ^{
-		attributeNames = @[@"colour", @"colour2", @"position", @"normal", @"texCoord", @"FogCoord", @"Index", @"EdgeFlag"];
-	});
-	return attributeNames[(NSUInteger)type];
+	return C3DAttributeNames()[(NSUInteger)type];
 }
 
 @interface NSData (C3DVertexArrayData)

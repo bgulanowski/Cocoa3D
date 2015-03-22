@@ -32,6 +32,7 @@ typedef NS_ENUM(NSUInteger, C3DVertexArrayType) {
 };
 
 extern GLsizei C3DSizeForVertexArrayType(C3DVertexArrayType type);
+extern NSArray *C3DAttributeNames( void );
 
 NS_INLINE GLenum C3DPrimitiveTypeForVertexArrayType(C3DVertexArrayType type) {
 	return type == C3DVertexArrayIndex ? GL_UNSIGNED_INT : GL_FLOAT;
