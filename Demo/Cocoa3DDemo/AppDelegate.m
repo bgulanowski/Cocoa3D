@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 
 #import "C3DObject+Demo.h"
+#import "C3DProgram+Demo.h"
 #import "C3DNode+Demo.h"
 
 #import <Cocoa3D/C3DCamera.h>
@@ -65,9 +66,11 @@
 	
 	[glContext makeCurrentContext];
 	
-	// FIXME: the attributes should come from somewhere else (metadata about shader?)
-	_program = [[C3DProgram alloc] initWithName:@"FlatShader" attributes:[_rootNode.object.vertexArrays valueForKey:@"attributeName"] uniforms:@[@"MVP"]];
-	_rootNode.object.program = _program;
+    // The shader created requres a working current gl3 context
+    _rootNode = [C3DNode demoScene];
+
+    [_gl2View.openGLContext makeCurrentContext];
+    [C3DCameraGL1 loadVertexArrays:_gl1Object.vertexArrays];
 }
 
 #pragma mark - C3DCameraDrawDelegate

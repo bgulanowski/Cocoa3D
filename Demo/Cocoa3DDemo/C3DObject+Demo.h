@@ -10,10 +10,10 @@
 
 @interface C3DObject (Demo)
 
-+ (instancetype)demoTriangle;
-+ (instancetype)demoTriangleIndexed;
++ (instancetype)demoTriangleWithProgram:(C3DProgram *)program;
++ (instancetype)demoTriangleIndexedWithProgram:(C3DProgram *)program;
 // a 2x2x2 cube centered about the origin
-+ (instancetype)demoCube;
++ (instancetype)demoCubeWithProgram:(C3DProgram *)program;
 
 + (instancetype)demoTriangleGL1;
 

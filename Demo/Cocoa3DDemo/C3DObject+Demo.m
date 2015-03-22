@@ -60,7 +60,7 @@ static GLuint triangleIndices[] = { 0, 1, 2 };
 
 @implementation C3DObject (Demo)
 
-+ (instancetype)demoTriangle {
++ (instancetype)demoTriangleWithProgram:(C3DProgram *)program {
 	
 	GLfloat colours[3][4] = {
 		{ 1, 0, 1, 1},
@@ -71,22 +71,20 @@ static GLuint triangleIndices[] = { 0, 1, 2 };
 	C3DVertexArray *positionArray = [[C3DVertexArray alloc] initWithType:C3DVertexArrayPosition elements:trianglePoints count:3];
 	C3DVertexArray *colourArray = [[C3DVertexArray alloc] initWithType:C3DVertexArrayColour elements:colours count:3];
 	NSArray *vertexArrays = @[positionArray, colourArray];
-	C3DProgram *program = [[C3DProgram alloc] initWithName:@"FlatShader" attributes:[vertexArrays valueForKey:@"attributeName"] uniforms:@[@"MVP"]];
 	
 	return [[[self class] alloc] initWithType:C3DObjectTypeTriangles vertexArrays:vertexArrays program:program];
 }
 
-+ (instancetype)demoTriangleIndexed {
++ (instancetype)demoTriangleIndexedWithProgram:(C3DProgram *)program {
 	
 	C3DVertexArray *positionArray = [C3DVertexArray positionsWithElements:trianglePoints[0] count:3];
 	C3DVertexArray *indexArray = [C3DVertexArray indicesWithElements:&triangleIndices[0] count:3];
 	NSArray *vertexArrays = @[positionArray, indexArray];
-	C3DProgram *program = [[C3DProgram alloc] initWithName:@"FlatShader" attributes:[vertexArrays valueForKey:@"attributeName"] uniforms:@[@"MVP"]];
 	
 	return [[[self class] alloc] initWithType:C3DObjectTypeTriangles vertexArrays:vertexArrays program:program];
 }
 
-+ (instancetype)demoCube {
++ (instancetype)demoCubeWithProgram:(C3DProgram *)program {
 	
 	LIVector_t points[] = { p000, p001, p010, p011, p100, p101, p110, p111 };
 	// quads
@@ -98,11 +96,11 @@ static GLuint triangleIndices[] = { 0, 1, 2 };
 	C3DVertexArray *indexArray = [C3DVertexArray indicesWithElements:&indices[0] count:36];
 	NSArray *vertexArrays = @[positionArray, indexArray, coloursArray];
 	
-	return [[[self class] alloc] initWithType:C3DObjectTypeTriangles vertexArrays:vertexArrays program:nil];
+	return [[[self class] alloc] initWithType:C3DObjectTypeTriangles vertexArrays:vertexArrays program:program];
 }
 
 + (instancetype)demoTriangleGL1 {
-	return [C3DObjectGL1 demoTriangle];
+	return [C3DObjectGL1 demoTriangleWithProgram:nil];
 }
 
 @end

@@ -8,6 +8,7 @@
 
 #import "C3DNode+Demo.h"
 
+#import "C3DProgram+Demo.h"
 #import "C3DObject+Demo.h"
 
 @implementation C3DNode (Demo)
@@ -16,7 +17,7 @@
 	
 	C3DNode *rootNode = [C3DNode new];
 	
-	C3DObject *object = [C3DObject demoCube];
+	C3DObject *object = [C3DObject demoCubeWithProgram:[C3DProgram demoProgram]];
 	rootNode.object = object;
 	
 	C3DNode *node = [C3DNode new];
