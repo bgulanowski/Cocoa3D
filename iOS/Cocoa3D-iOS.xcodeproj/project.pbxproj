@@ -30,8 +30,8 @@
 		84B8F2901A183BC8000C1AE5 /* C3DTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B8F2671A183BC8000C1AE5 /* C3DTransform.m */; };
 		84B8F2911A183BC8000C1AE5 /* C3DVertex.h in Headers */ = {isa = PBXBuildFile; fileRef = 84B8F2681A183BC8000C1AE5 /* C3DVertex.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		84B8F2921A183BC8000C1AE5 /* C3DVertex.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B8F2691A183BC8000C1AE5 /* C3DVertex.m */; };
-		84B8F2931A183BC8000C1AE5 /* C3DVertexArray.h in Headers */ = {isa = PBXBuildFile; fileRef = 84B8F26A1A183BC8000C1AE5 /* C3DVertexArray.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		84B8F2941A183BC8000C1AE5 /* C3DVertexArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B8F26B1A183BC8000C1AE5 /* C3DVertexArray.m */; };
+		84B8F2931A183BC8000C1AE5 /* C3DVertexBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 84B8F26A1A183BC8000C1AE5 /* C3DVertexBuffer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		84B8F2941A183BC8000C1AE5 /* C3DVertexBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B8F26B1A183BC8000C1AE5 /* C3DVertexBuffer.m */; };
 		84B8F2981A183BC8000C1AE5 /* Cocoa3D.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B8F26F1A183BC8000C1AE5 /* Cocoa3D.m */; };
 		84B8F2B31A18400E000C1AE5 /* LichenMath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B8F24E1A183B97000C1AE5 /* LichenMath.framework */; };
 		84B8F2B51A18425F000C1AE5 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B8F2B41A18425F000C1AE5 /* OpenGLES.framework */; };
@@ -117,8 +117,8 @@
 		84B8F2671A183BC8000C1AE5 /* C3DTransform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C3DTransform.m; sourceTree = "<group>"; };
 		84B8F2681A183BC8000C1AE5 /* C3DVertex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C3DVertex.h; sourceTree = "<group>"; };
 		84B8F2691A183BC8000C1AE5 /* C3DVertex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C3DVertex.m; sourceTree = "<group>"; };
-		84B8F26A1A183BC8000C1AE5 /* C3DVertexArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C3DVertexArray.h; sourceTree = "<group>"; };
-		84B8F26B1A183BC8000C1AE5 /* C3DVertexArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C3DVertexArray.m; sourceTree = "<group>"; };
+		84B8F26A1A183BC8000C1AE5 /* C3DVertexBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C3DVertexBuffer.h; sourceTree = "<group>"; };
+		84B8F26B1A183BC8000C1AE5 /* C3DVertexBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C3DVertexBuffer.m; sourceTree = "<group>"; };
 		84B8F26E1A183BC8000C1AE5 /* Cocoa3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cocoa3D.h; sourceTree = "<group>"; };
 		84B8F26F1A183BC8000C1AE5 /* Cocoa3D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cocoa3D.m; sourceTree = "<group>"; };
 		84B8F2B41A18425F000C1AE5 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -226,8 +226,8 @@
 				84B8F2671A183BC8000C1AE5 /* C3DTransform.m */,
 				84B8F2681A183BC8000C1AE5 /* C3DVertex.h */,
 				84B8F2691A183BC8000C1AE5 /* C3DVertex.m */,
-				84B8F26A1A183BC8000C1AE5 /* C3DVertexArray.h */,
-				84B8F26B1A183BC8000C1AE5 /* C3DVertexArray.m */,
+				84B8F26A1A183BC8000C1AE5 /* C3DVertexBuffer.h */,
+				84B8F26B1A183BC8000C1AE5 /* C3DVertexBuffer.m */,
 				84B8F26E1A183BC8000C1AE5 /* Cocoa3D.h */,
 				84B8F26F1A183BC8000C1AE5 /* Cocoa3D.m */,
 			);
@@ -264,7 +264,7 @@
 				84B8F28B1A183BC8000C1AE5 /* C3DShader.h in Headers */,
 				84B8F28F1A183BC8000C1AE5 /* C3DTransform.h in Headers */,
 				84B8F2911A183BC8000C1AE5 /* C3DVertex.h in Headers */,
-				84B8F2931A183BC8000C1AE5 /* C3DVertexArray.h in Headers */,
+				84B8F2931A183BC8000C1AE5 /* C3DVertexBuffer.h in Headers */,
 				84B8F28D1A183BC8000C1AE5 /* C3DTexture.h in Headers */,
 				84B8F2C51A1919FB000C1AE5 /* C3DView.h in Headers */,
 				84B8F2BD1A190D86000C1AE5 /* Cocoa3D.h in Headers */,
@@ -397,7 +397,7 @@
 				84B8F2901A183BC8000C1AE5 /* C3DTransform.m in Sources */,
 				84B8F2921A183BC8000C1AE5 /* C3DVertex.m in Sources */,
 				84B8F2C61A1919FB000C1AE5 /* C3DView.m in Sources */,
-				84B8F2941A183BC8000C1AE5 /* C3DVertexArray.m in Sources */,
+				84B8F2941A183BC8000C1AE5 /* C3DVertexBuffer.m in Sources */,
 				84B8F2981A183BC8000C1AE5 /* Cocoa3D.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

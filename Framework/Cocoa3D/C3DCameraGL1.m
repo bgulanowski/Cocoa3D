@@ -211,16 +211,16 @@ static void C3DDrawOrigin( void ) {
 	NSLog(@"Projection Matrix:\n%@", LIMatrixToString(matrix));
 }
 
-+ (void)enableVertexArray:(C3DVertexArray *)vertexArray {
++ (void)enableVertexArray:(C3DVertexBuffer *)vertexArray {
     glEnableClientState(C3DArrayNameForType(vertexArray.type));
 }
 
-+ (void)disableVertexArray:(C3DVertexArray *)vertexArray {
++ (void)disableVertexArray:(C3DVertexBuffer *)vertexArray {
     glDisableClientState(C3DArrayNameForType(vertexArray.type));
 }
 
 + (void)enableVertexArrays:(NSArray *)vertexArrays {
-    for (C3DVertexArray *vertexArray in vertexArrays) {
+    for (C3DVertexBuffer *vertexArray in vertexArrays) {
         if (vertexArray.type != C3DVertexArrayIndex) {
             [self enableVertexArray:vertexArray];
         }
@@ -228,14 +228,14 @@ static void C3DDrawOrigin( void ) {
 }
 
 + (void)disableVertexArrays:(NSArray *)vertexArrays {
-    for (C3DVertexArray *vertexArray in vertexArrays) {
+    for (C3DVertexBuffer *vertexArray in vertexArrays) {
         if (vertexArray.type != C3DVertexArrayIndex) {
             [self disableVertexArray:vertexArray];
         }
     }
 }
 
-+ (void)loadVertexArray:(C3DVertexArray *)vertexArray {
++ (void)loadVertexArray:(C3DVertexBuffer *)vertexArray {
     [vertexArray bind];
     switch (vertexArray.type) {
         case C3DVertexArrayColour:
@@ -260,7 +260,7 @@ static void C3DDrawOrigin( void ) {
 }
 
 + (void)loadVertexArrays:(NSArray *)vertexArrays {
-    for (C3DVertexArray *vertexArray in vertexArrays) {
+    for (C3DVertexBuffer *vertexArray in vertexArrays) {
         [self loadVertexArray:vertexArray];
     }
 }

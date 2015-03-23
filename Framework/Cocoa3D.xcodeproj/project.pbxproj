@@ -33,8 +33,8 @@
 		849D2B96196FD65F0051F434 /* C3DTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = 849D2B94196FD65F0051F434 /* C3DTexture.m */; };
 		849D2B99196FD8280051F434 /* C3DVertex.h in Headers */ = {isa = PBXBuildFile; fileRef = 849D2B97196FD8280051F434 /* C3DVertex.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		849D2B9A196FD8280051F434 /* C3DVertex.m in Sources */ = {isa = PBXBuildFile; fileRef = 849D2B98196FD8280051F434 /* C3DVertex.m */; };
-		849D2B9D196FDA940051F434 /* C3DVertexArray.h in Headers */ = {isa = PBXBuildFile; fileRef = 849D2B9B196FDA940051F434 /* C3DVertexArray.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		849D2B9E196FDA940051F434 /* C3DVertexArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 849D2B9C196FDA940051F434 /* C3DVertexArray.m */; };
+		849D2B9D196FDA940051F434 /* C3DVertexBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 849D2B9B196FDA940051F434 /* C3DVertexBuffer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		849D2B9E196FDA940051F434 /* C3DVertexBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 849D2B9C196FDA940051F434 /* C3DVertexBuffer.m */; };
 		84AFA92E19A97C8500296196 /* C3DCameraGL3.h in Headers */ = {isa = PBXBuildFile; fileRef = 84AFA92C19A97C8500296196 /* C3DCameraGL3.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		84AFA92F19A97C8500296196 /* C3DCameraGL3.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AFA92D19A97C8500296196 /* C3DCameraGL3.m */; };
 		84B8F2C21A190FA5000C1AE5 /* LichenMath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B8F1431A178B48000C1AE5 /* LichenMath.framework */; };
@@ -139,8 +139,8 @@
 		849D2B94196FD65F0051F434 /* C3DTexture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C3DTexture.m; sourceTree = "<group>"; };
 		849D2B97196FD8280051F434 /* C3DVertex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C3DVertex.h; sourceTree = "<group>"; };
 		849D2B98196FD8280051F434 /* C3DVertex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C3DVertex.m; sourceTree = "<group>"; };
-		849D2B9B196FDA940051F434 /* C3DVertexArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C3DVertexArray.h; sourceTree = "<group>"; };
-		849D2B9C196FDA940051F434 /* C3DVertexArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C3DVertexArray.m; sourceTree = "<group>"; };
+		849D2B9B196FDA940051F434 /* C3DVertexBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C3DVertexBuffer.h; sourceTree = "<group>"; };
+		849D2B9C196FDA940051F434 /* C3DVertexBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C3DVertexBuffer.m; sourceTree = "<group>"; };
 		84AFA92C19A97C8500296196 /* C3DCameraGL3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C3DCameraGL3.h; sourceTree = "<group>"; };
 		84AFA92D19A97C8500296196 /* C3DCameraGL3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C3DCameraGL3.m; sourceTree = "<group>"; };
 		84B8F13C1A178B48000C1AE5 /* LichenMath.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LichenMath.xcodeproj; path = ../LichenMath/LichenMath.xcodeproj; sourceTree = "<group>"; };
@@ -253,8 +253,8 @@
 				842015E2198D22F400853E68 /* C3DTransform.m */,
 				849D2B97196FD8280051F434 /* C3DVertex.h */,
 				849D2B98196FD8280051F434 /* C3DVertex.m */,
-				849D2B9B196FDA940051F434 /* C3DVertexArray.h */,
-				849D2B9C196FDA940051F434 /* C3DVertexArray.m */,
+				849D2B9B196FDA940051F434 /* C3DVertexBuffer.h */,
+				849D2B9C196FDA940051F434 /* C3DVertexBuffer.m */,
 				84C1EAB11985919A002760E4 /* C3DView.h */,
 				84C1EAB21985919A002760E4 /* C3DView.m */,
 				849D2B1D196FD4C70051F434 /* Cocoa3D.h */,
@@ -332,7 +332,7 @@
 				842015E3198D22F400853E68 /* C3DTransform.h in Headers */,
 				84C1EAB31985919A002760E4 /* C3DView.h in Headers */,
 				849D2B99196FD8280051F434 /* C3DVertex.h in Headers */,
-				849D2B9D196FDA940051F434 /* C3DVertexArray.h in Headers */,
+				849D2B9D196FDA940051F434 /* C3DVertexBuffer.h in Headers */,
 				845ADD7B19FADCF70034CE4C /* C3DNode.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -488,7 +488,7 @@
 				84D7F82019C6136700CC2B70 /* NSOpenGLPixelFormat+Cocoa3D.m in Sources */,
 				84C1EAB41985919A002760E4 /* C3DView.m in Sources */,
 				84F99EAC1A504B7F008EEA65 /* C3DColour.m in Sources */,
-				849D2B9E196FDA940051F434 /* C3DVertexArray.m in Sources */,
+				849D2B9E196FDA940051F434 /* C3DVertexBuffer.m in Sources */,
 				849D2B96196FD65F0051F434 /* C3DTexture.m in Sources */,
 				849D2B8A196FD5D30051F434 /* C3DCamera.m in Sources */,
 				849D2B1F196FD4C70051F434 /* Cocoa3D.m in Sources */,

@@ -1,12 +1,12 @@
 //
-//  C3DVertexArray.m
+//  C3DVertexBuffer.m
 //  Cocoa3D
 //
 //  Created by Brent Gulanowski on 2014-07-11.
 //  Copyright (c) 2014 Lichen Labs. All rights reserved.
 //
 
-#import "C3DVertexArray.h"
+#import "C3DVertexBuffer.h"
 
 #import "C3DProgram.h"
 
@@ -54,7 +54,7 @@ NSString *C3DAttributeNameForVertexArrayType(C3DVertexArrayType type) {
 - (NSUInteger)countForType:(C3DVertexArrayType)type;
 @end
 
-@implementation C3DVertexArray {
+@implementation C3DVertexBuffer {
 	GLuint _bufferName;
     GLenum _bufferTarget;
 }

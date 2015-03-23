@@ -1,5 +1,5 @@
 //
-//  C3DVertexArray.h
+//  C3DVertexBuffer.h
 //  Cocoa3D
 //
 //  Created by Brent Gulanowski on 2014-07-11.
@@ -45,7 +45,7 @@ NS_INLINE GLsizei C3DPrimitiveSizeForVertexArrayType(C3DVertexArrayType type) {
 
 @class C3DProgram;
 
-@interface C3DVertexArray : NSObject
+@interface C3DVertexBuffer : NSObject
 
 @property (nonatomic) C3DVertexArrayType type;
 @property (nonatomic) NSData *elements;

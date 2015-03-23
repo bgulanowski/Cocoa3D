@@ -26,7 +26,7 @@
 #import <Cocoa3D/C3DTexture.h>
 #import <Cocoa3D/C3DTransform.h>
 #import <Cocoa3D/C3DVertex.h>
-#import <Cocoa3D/C3DVertexArray.h>
+#import <Cocoa3D/C3DVertexBuffer.h>
 
 @interface Cocoa3D : NSObject
 

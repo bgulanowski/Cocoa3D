@@ -11,7 +11,7 @@
 #import "C3DCameraGL1.h"
 #import "C3DProgram.h"
 #import "C3DTransform.h"
-#import "C3DVertexArray.h"
+#import "C3DVertexBuffer.h"
 
 #if TARGET_OS_IPHONE
 #import <OpenGLES/ES3/gl.h>
@@ -95,7 +95,7 @@
 		_vertexArrays = vertexArrays;
 		_program = program;
         NSUInteger vCount = 0, iCount = 0;
-        for (C3DVertexArray *vertexArray in _vertexArrays) {
+        for (C3DVertexBuffer *vertexArray in _vertexArrays) {
             if (vertexArray.type == C3DVertexArrayPosition) {
                 vCount = [vertexArray count];
             }
@@ -137,7 +137,7 @@
 	glBindVertexArray(_vao);
 	
 	NSUInteger i = 0;
-	for (C3DVertexArray *vertexArray in _vertexArrays) {
+	for (C3DVertexBuffer *vertexArray in _vertexArrays) {
 		[vertexArray loadInBuffer:_buffers[i++] forProgram:_program];
 	}
 		
