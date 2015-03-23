@@ -105,8 +105,8 @@
 		84B8F25B1A183BC8000C1AE5 /* C3DMotion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C3DMotion.m; sourceTree = "<group>"; };
 		84B8F25C1A183BC8000C1AE5 /* C3DNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C3DNode.h; sourceTree = "<group>"; };
 		84B8F25D1A183BC8000C1AE5 /* C3DNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C3DNode.m; sourceTree = "<group>"; };
-		84B8F25E1A183BC8000C1AE5 /* C3DObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C3DObject.h; sourceTree = "<group>"; };
-		84B8F25F1A183BC8000C1AE5 /* C3DObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C3DObject.m; sourceTree = "<group>"; };
+		84B8F25E1A183BC8000C1AE5 /* C3DObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = C3DObject.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		84B8F25F1A183BC8000C1AE5 /* C3DObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = C3DObject.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		84B8F2601A183BC8000C1AE5 /* C3DProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C3DProgram.h; sourceTree = "<group>"; };
 		84B8F2611A183BC8000C1AE5 /* C3DProgram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C3DProgram.m; sourceTree = "<group>"; };
 		84B8F2621A183BC8000C1AE5 /* C3DShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C3DShader.h; sourceTree = "<group>"; };
@@ -117,8 +117,8 @@
 		84B8F2671A183BC8000C1AE5 /* C3DTransform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C3DTransform.m; sourceTree = "<group>"; };
 		84B8F2681A183BC8000C1AE5 /* C3DVertex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C3DVertex.h; sourceTree = "<group>"; };
 		84B8F2691A183BC8000C1AE5 /* C3DVertex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C3DVertex.m; sourceTree = "<group>"; };
-		84B8F26A1A183BC8000C1AE5 /* C3DVertexBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C3DVertexBuffer.h; sourceTree = "<group>"; };
-		84B8F26B1A183BC8000C1AE5 /* C3DVertexBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C3DVertexBuffer.m; sourceTree = "<group>"; };
+		84B8F26A1A183BC8000C1AE5 /* C3DVertexBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = C3DVertexBuffer.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		84B8F26B1A183BC8000C1AE5 /* C3DVertexBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = C3DVertexBuffer.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		84B8F26E1A183BC8000C1AE5 /* Cocoa3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cocoa3D.h; sourceTree = "<group>"; };
 		84B8F26F1A183BC8000C1AE5 /* Cocoa3D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cocoa3D.m; sourceTree = "<group>"; };
 		84B8F2B41A18425F000C1AE5 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };

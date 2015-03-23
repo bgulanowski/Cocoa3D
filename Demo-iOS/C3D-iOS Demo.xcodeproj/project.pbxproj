@@ -53,7 +53,7 @@
 		84B8F1571A178BEB000C1AE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84B8F1581A178BEB000C1AE5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		84B8F15A1A178BEB000C1AE5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		84B8F15B1A178BEB000C1AE5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		84B8F15B1A178BEB000C1AE5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		84B8F15D1A178BEB000C1AE5 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		84B8F15E1A178BEB000C1AE5 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		84B8F1611A178BEB000C1AE5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -70,7 +70,7 @@
 		84B8F2DE1A1997A9000C1AE5 /* FlatShader.fp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FlatShader.fp; sourceTree = "<group>"; };
 		84B8F2DF1A1997A9000C1AE5 /* FlatShader.vp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FlatShader.vp; sourceTree = "<group>"; };
 		84F7E2411A1C4AC6008AD005 /* C3DObject+Demo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "C3DObject+Demo.h"; path = "../../Demo/Cocoa3DDemo/C3DObject+Demo.h"; sourceTree = "<group>"; };
-		84F7E2421A1C4AC6008AD005 /* C3DObject+Demo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "C3DObject+Demo.m"; path = "../../Demo/Cocoa3DDemo/C3DObject+Demo.m"; sourceTree = "<group>"; };
+		84F7E2421A1C4AC6008AD005 /* C3DObject+Demo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = "C3DObject+Demo.m"; path = "../../Demo/Cocoa3DDemo/C3DObject+Demo.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		84F7E2481A1C4FBF008AD005 /* C3DNode+Demo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "C3DNode+Demo.h"; path = "../../Demo/Cocoa3DDemo/C3DNode+Demo.h"; sourceTree = "<group>"; };
 		84F7E2491A1C4FBF008AD005 /* C3DNode+Demo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "C3DNode+Demo.m"; path = "../../Demo/Cocoa3DDemo/C3DNode+Demo.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
