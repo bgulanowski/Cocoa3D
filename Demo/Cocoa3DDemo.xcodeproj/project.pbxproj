@@ -100,7 +100,7 @@
 		84CED7681974270100FFF722 /* FlatShader.fp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FlatShader.fp; sourceTree = "<group>"; };
 		84CED7691974270100FFF722 /* FlatShader.vp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FlatShader.vp; sourceTree = "<group>"; };
 		84D7F82119C6178F00CC2B70 /* C3DObject+Demo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "C3DObject+Demo.h"; sourceTree = "<group>"; };
-		84D7F82219C6178F00CC2B70 /* C3DObject+Demo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "C3DObject+Demo.m"; sourceTree = "<group>"; };
+		84D7F82219C6178F00CC2B70 /* C3DObject+Demo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "C3DObject+Demo.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		84F7E2441A1C4F4E008AD005 /* C3DNode+Demo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "C3DNode+Demo.h"; sourceTree = "<group>"; };
 		84F7E2451A1C4F4E008AD005 /* C3DNode+Demo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "C3DNode+Demo.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */

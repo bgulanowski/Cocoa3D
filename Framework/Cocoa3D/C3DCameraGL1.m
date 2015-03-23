@@ -16,23 +16,23 @@
 #import <OpenGL/gl.h>
 #import <OpenGL/glu.h>
 
-GLenum C3DArrayNameForType (C3DVertexArrayType type) {
+GLenum C3DArrayNameForType (C3DVertexBufferType type) {
     switch (type) {
-        case C3DVertexArrayColour:
-        case C3DVertexArraySecondaryColour:
+        case C3DVertexBufferColour:
+        case C3DVertexBufferSecondaryColour:
             return GL_COLOR_ARRAY;
-        case C3DVertexArrayPosition:
+        case C3DVertexBufferPosition:
             return GL_VERTEX_ARRAY;
-        case C3DVertexArrayNormal:
+        case C3DVertexBufferNormal:
             return GL_NORMAL_ARRAY;
-        case C3DVertexArrayTextureCoord:
+        case C3DVertexBufferTextureCoord:
             return GL_TEXTURE_COORD_ARRAY;
-        case C3DVertexArrayIndex:
+        case C3DVertexBufferIndex:
             return GL_INDEX_ARRAY;
-        case C3DVertexArrayEdgeFlag:
+        case C3DVertexBufferEdgeFlag:
             return GL_EDGE_FLAG_ARRAY;
             
-        case C3DVertexArrayFogCoord:
+        case C3DVertexBufferFogCoord:
         default:
             return 0;
     }
@@ -211,57 +211,57 @@ static void C3DDrawOrigin( void ) {
 	NSLog(@"Projection Matrix:\n%@", LIMatrixToString(matrix));
 }
 
-+ (void)enableVertexArray:(C3DVertexBuffer *)vertexArray {
-    glEnableClientState(C3DArrayNameForType(vertexArray.type));
++ (void)enableVertexBuffer:(C3DVertexBuffer *)vertexBuffer {
+    glEnableClientState(C3DArrayNameForType(vertexBuffer.type));
 }
 
-+ (void)disableVertexArray:(C3DVertexBuffer *)vertexArray {
-    glDisableClientState(C3DArrayNameForType(vertexArray.type));
++ (void)disableVertexBuffer:(C3DVertexBuffer *)vertexBuffer {
+    glDisableClientState(C3DArrayNameForType(vertexBuffer.type));
 }
 
-+ (void)enableVertexArrays:(NSArray *)vertexArrays {
-    for (C3DVertexBuffer *vertexArray in vertexArrays) {
-        if (vertexArray.type != C3DVertexArrayIndex) {
-            [self enableVertexArray:vertexArray];
++ (void)enableVertexBuffers:(NSArray *)vertexBuffers {
+    for (C3DVertexBuffer *vertexBuffer in vertexBuffers) {
+        if (vertexBuffer.type != C3DVertexBufferIndex) {
+            [self enableVertexBuffer:vertexBuffer];
         }
     }
 }
 
-+ (void)disableVertexArrays:(NSArray *)vertexArrays {
-    for (C3DVertexBuffer *vertexArray in vertexArrays) {
-        if (vertexArray.type != C3DVertexArrayIndex) {
-            [self disableVertexArray:vertexArray];
++ (void)disableVertexBuffers:(NSArray *)vertexBuffers {
+    for (C3DVertexBuffer *vertexBuffer in vertexBuffers) {
+        if (vertexBuffer.type != C3DVertexBufferIndex) {
+            [self disableVertexBuffer:vertexBuffer];
         }
     }
 }
 
-+ (void)loadVertexArray:(C3DVertexBuffer *)vertexArray {
-    [vertexArray bind];
-    switch (vertexArray.type) {
-        case C3DVertexArrayColour:
++ (void)loadVertexBuffer:(C3DVertexBuffer *)vertexBuffer {
+    [vertexBuffer bind];
+    switch (vertexBuffer.type) {
+        case C3DVertexBufferColour:
             glColorPointer(4, GL_FLOAT, 0, NULL);
             break;
-        case C3DVertexArrayPosition:
+        case C3DVertexBufferPosition:
             glVertexPointer(3, GL_FLOAT, 0, NULL);
             break;
-        case C3DVertexArrayNormal:
+        case C3DVertexBufferNormal:
             glNormalPointer(3, GL_FLOAT, NULL);
             break;
-        case C3DVertexArrayTextureCoord:
+        case C3DVertexBufferTextureCoord:
             glTexCoordPointer(3, GL_FLOAT, 0, NULL);
             break;
-        case C3DVertexArrayIndex:
-        case C3DVertexArrayEdgeFlag:
-        case C3DVertexArraySecondaryColour:
-        case C3DVertexArrayFogCoord:
+        case C3DVertexBufferIndex:
+        case C3DVertexBufferEdgeFlag:
+        case C3DVertexBufferSecondaryColour:
+        case C3DVertexBufferFogCoord:
         default:
             break;
     }
 }
 
-+ (void)loadVertexArrays:(NSArray *)vertexArrays {
-    for (C3DVertexBuffer *vertexArray in vertexArrays) {
-        [self loadVertexArray:vertexArray];
++ (void)loadVertexBuffers:(NSArray *)vertexBuffers {
+    for (C3DVertexBuffer *vertexBuffer in vertexBuffers) {
+        [self loadVertexBuffer:vertexBuffer];
     }
 }
 

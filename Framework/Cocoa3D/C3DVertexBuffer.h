@@ -16,38 +16,38 @@
 #import <OpenGL/gl3.h>
 #endif
 
-typedef NS_ENUM(NSUInteger, C3DVertexArrayType) {
+typedef NS_ENUM(NSUInteger, C3DVertexBufferType) {
 	// quadruples
-	C3DVertexArrayColour,
-	C3DVertexArraySecondaryColour,
+	C3DVertexBufferColour,
+	C3DVertexBufferSecondaryColour,
 	// triples
-	C3DVertexArrayPosition,
-	C3DVertexArrayNormal,
+	C3DVertexBufferPosition,
+	C3DVertexBufferNormal,
 	// pairs
-	C3DVertexArrayTextureCoord,
-	C3DVertexArrayFogCoord,
+	C3DVertexBufferTextureCoord,
+	C3DVertexBufferFogCoord,
 	// scalars
     // FIXME: this is colour index array, not vertex indices
-	C3DVertexArrayIndex,
-	C3DVertexArrayEdgeFlag
+	C3DVertexBufferIndex,
+	C3DVertexBufferEdgeFlag
 };
 
-extern GLsizei C3DSizeForVertexArrayType(C3DVertexArrayType type);
+extern GLsizei C3DSizeForVertexBufferType(C3DVertexBufferType type);
 extern NSArray *C3DAttributeNames( void );
 
-NS_INLINE GLenum C3DPrimitiveTypeForVertexArrayType(C3DVertexArrayType type) {
-	return type == C3DVertexArrayIndex ? GL_UNSIGNED_INT : GL_FLOAT;
+NS_INLINE GLenum C3DPrimitiveTypeForVertexBufferType(C3DVertexBufferType type) {
+	return type == C3DVertexBufferIndex ? GL_UNSIGNED_INT : GL_FLOAT;
 }
 
-NS_INLINE GLsizei C3DPrimitiveSizeForVertexArrayType(C3DVertexArrayType type) {
-	return type == C3DVertexArrayIndex ? sizeof(GLuint) : sizeof(GLfloat);
+NS_INLINE GLsizei C3DPrimitiveSizeForVertexBufferType(C3DVertexBufferType type) {
+	return type == C3DVertexBufferIndex ? sizeof(GLuint) : sizeof(GLfloat);
 }
 
 @class C3DProgram;
 
 @interface C3DVertexBuffer : NSObject
 
-@property (nonatomic) C3DVertexArrayType type;
+@property (nonatomic) C3DVertexBufferType type;
 @property (nonatomic) NSData *elements;
 @property (nonatomic, readonly) NSUInteger count;
 @property (nonatomic, readonly) NSString *attributeName;
@@ -56,9 +56,9 @@ NS_INLINE GLsizei C3DPrimitiveSizeForVertexArrayType(C3DVertexArrayType type) {
 - (void)delete;
 - (void)loadInBuffer:(GLuint)buffer forProgram:(C3DProgram *)program;
 
-- (instancetype)initWithType:(C3DVertexArrayType)type data:(NSData *)data count:(NSUInteger)count NS_DESIGNATED_INITIALIZER;
-- (instancetype)initWithType:(C3DVertexArrayType)type data:(NSData *)data;
-- (instancetype)initWithType:(C3DVertexArrayType)type elements:(void *)elements count:(NSUInteger)count;
+- (instancetype)initWithType:(C3DVertexBufferType)type data:(NSData *)data count:(NSUInteger)count NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithType:(C3DVertexBufferType)type data:(NSData *)data;
+- (instancetype)initWithType:(C3DVertexBufferType)type elements:(void *)elements count:(NSUInteger)count;
 
 + (instancetype)coloursWithElements:(GLfloat *)elements count:(NSUInteger)count;
 + (instancetype)secondaryColoursWithElements:(GLfloat *)elements count:(NSUInteger)count;

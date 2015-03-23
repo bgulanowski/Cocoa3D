@@ -69,7 +69,7 @@
     _rootNode = [C3DNode demoScene];
 
     [_gl2View.openGLContext makeCurrentContext];
-    [C3DCameraGL1 loadVertexArrays:_gl1Object.vertexArrays];
+    [C3DCameraGL1 loadVertexBuffers:_gl1Object.vertexBuffers];
 }
 
 #pragma mark - C3DCameraDrawDelegate

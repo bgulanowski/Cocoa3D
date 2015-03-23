@@ -66,8 +66,8 @@
         glBindVertexArray(_vao);
     }
     else {
-        [C3DCameraGL1 enableVertexArrays:_vertexArrays];
-        [C3DCameraGL1 loadVertexArrays:_vertexArrays];
+        [C3DCameraGL1 enableVertexBuffers:_vertexBuffers];
+        [C3DCameraGL1 loadVertexBuffers:_vertexBuffers];
     }
     if (_indexed) {
         [camera drawElementsWithType:_type count:_elementCount];
@@ -76,7 +76,7 @@
         [camera drawArraysWithType:_type count:_elementCount];
     }
     if (!_vao) {
-        [C3DCameraGL1 disableVertexArrays:_vertexArrays];
+        [C3DCameraGL1 disableVertexBuffers:_vertexBuffers];
     }
 }
 
@@ -87,20 +87,20 @@
 // should support interleaved arrays for vertex attributes
 // should support dynamic_draw (see c3dvertexarray class which is only static_draw)
 // should support adding and removing additional vertex attributes (normals, fog, secondary colour etc)
-- (instancetype)initWithType:(C3DObjectType)type vertexArrays:(NSArray *)vertexArrays program:(C3DProgram *)program {
+- (instancetype)initWithType:(C3DObjectType)type vertexBuffers:(NSArray *)vertexBuffers program:(C3DProgram *)program {
 
 	self = [super init];
 	if (self) {
 		_type = type;
-		_vertexArrays = vertexArrays;
+		_vertexBuffers = vertexBuffers;
 		_program = program;
         NSUInteger vCount = 0, iCount = 0;
-        for (C3DVertexBuffer *vertexArray in _vertexArrays) {
-            if (vertexArray.type == C3DVertexArrayPosition) {
-                vCount = [vertexArray count];
+        for (C3DVertexBuffer *vertexBuffer in _vertexBuffers) {
+            if (vertexBuffer.type == C3DVertexBufferPosition) {
+                vCount = [vertexBuffer count];
             }
-            else if (vertexArray.type == C3DVertexArrayIndex) {
-                iCount = [vertexArray count];
+            else if (vertexBuffer.type == C3DVertexBufferIndex) {
+                iCount = [vertexBuffer count];
                 _indexed = YES;
             }
         }
@@ -126,7 +126,7 @@
 }
 
 - (void)allocateBuffers {
-	_bufferCount = (GLsizei)[_vertexArrays count];
+	_bufferCount = (GLsizei)[_vertexBuffers count];
 	_buffers = malloc(sizeof(GLuint) * _bufferCount);
 	glGenBuffers(_bufferCount, _buffers);
 	glGenVertexArrays(1, &_vao);
@@ -137,8 +137,8 @@
 	glBindVertexArray(_vao);
 	
 	NSUInteger i = 0;
-	for (C3DVertexBuffer *vertexArray in _vertexArrays) {
-		[vertexArray loadInBuffer:_buffers[i++] forProgram:_program];
+	for (C3DVertexBuffer *vertexBuffer in _vertexBuffers) {
+		[vertexBuffer loadInBuffer:_buffers[i++] forProgram:_program];
 	}
 		
 	glBindBuffer(GL_ARRAY_BUFFER, 0);

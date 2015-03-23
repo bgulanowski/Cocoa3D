@@ -48,7 +48,7 @@
 	[self setUpGL];
 	[self setUpCameraForView:glkView];
 	
-	_program = [[C3DProgram alloc] initWithName:@"FlatShader" attributes:[_rootNode.object.vertexArrays valueForKey:@"attributeName"] uniforms:@[@"MVP"]];
+	_program = [[C3DProgram alloc] initWithName:@"FlatShader" attributes:[_rootNode.object.vertexBuffers valueForKey:@"attributeName"] uniforms:@[@"MVP"]];
 	_rootNode.object.program = _program;
 	
 	[glkView display];
