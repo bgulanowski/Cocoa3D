@@ -68,18 +68,18 @@ static GLuint triangleIndices[] = { 0, 1, 2 };
 		{ 1, 1, 0, 1}
 	};
 	
-	C3DVertexBuffer *positionArray = [[C3DVertexBuffer alloc] initWithType:C3DVertexBufferPosition elements:trianglePoints count:3];
-	C3DVertexBuffer *colourArray = [[C3DVertexBuffer alloc] initWithType:C3DVertexBufferColour elements:colours count:3];
-	NSArray *vertexBuffers = @[positionArray, colourArray];
+	C3DVertexBuffer *positionBuffer = [[C3DVertexBuffer alloc] initWithType:C3DVertexBufferPosition elements:trianglePoints count:3];
+	C3DVertexBuffer *colourBuffer = [[C3DVertexBuffer alloc] initWithType:C3DVertexBufferColour elements:colours count:3];
+	NSArray *vertexBuffers = @[positionBuffer, colourBuffer];
 	
 	return [[[self class] alloc] initWithType:C3DObjectTypeTriangles vertexBuffers:vertexBuffers program:program];
 }
 
 + (instancetype)demoTriangleIndexedWithProgram:(C3DProgram *)program {
 	
-	C3DVertexBuffer *positionArray = [C3DVertexBuffer positionsWithElements:trianglePoints[0] count:3];
-	C3DVertexBuffer *indexArray = [C3DVertexBuffer indicesWithElements:&triangleIndices[0] count:3];
-	NSArray *vertexBuffers = @[positionArray, indexArray];
+	C3DVertexBuffer *positionBuffer = [C3DVertexBuffer positionsWithElements:trianglePoints[0] count:3];
+	C3DVertexBuffer *indexBuffer = [C3DVertexBuffer indicesWithElements:&triangleIndices[0] count:3];
+	NSArray *vertexBuffers = @[positionBuffer, indexBuffer];
 	
 	return [[[self class] alloc] initWithType:C3DObjectTypeTriangles vertexBuffers:vertexBuffers program:program];
 }
@@ -91,10 +91,10 @@ static GLuint triangleIndices[] = { 0, 1, 2 };
 	LIPoint_t colours[] = { { 0,0,0,1 }, { 0,0,1,1 }, { 0,1,0,1 }, { 0,1,1,1 }, { 1,0,0,1 }, { 1,0,1,1 }, { 1,1,0,1 }, { 1,1,1,1 } };
 	GLuint indices[] = { 0,1,3, 3,2,0,  0,2,6, 6,4,0,  0,4,5, 5,1,0,  1,5,7, 7,3,1,  2,3,7, 7,6,2,  4,6,7, 7,5,4 };
 
-	C3DVertexBuffer *positionArray = [C3DVertexBuffer positionsWithElements:&points[0].x count:8];
-	C3DVertexBuffer *coloursArray = [C3DVertexBuffer coloursWithElements:&colours[0].x count:8];
-	C3DVertexBuffer *indexArray = [C3DVertexBuffer indicesWithElements:&indices[0] count:36];
-	NSArray *vertexBuffers = @[positionArray, indexArray, coloursArray];
+	C3DVertexBuffer *positionBuffer = [C3DVertexBuffer positionsWithElements:&points[0].x count:8];
+	C3DVertexBuffer *coloursBuffer = [C3DVertexBuffer coloursWithElements:&colours[0].x count:8];
+	C3DVertexBuffer *indexBuffer = [C3DVertexBuffer indicesWithElements:&indices[0] count:36];
+	NSArray *vertexBuffers = @[positionBuffer, indexBuffer, coloursBuffer];
 	
 	return [[[self class] alloc] initWithType:C3DObjectTypeTriangles vertexBuffers:vertexBuffers program:program];
 }

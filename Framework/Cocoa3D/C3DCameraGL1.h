@@ -9,8 +9,6 @@
 #import <Cocoa3D/C3DCamera.h>
 #import <Cocoa3D/C3DVertexBuffer.h>
 
-extern GLenum C3DArrayNameForType (C3DVertexBufferType type);
-
 @interface C3DCameraGL1 : C3DCamera
 
 + (void)enableVertexBuffer:(C3DVertexBuffer *)vertexBuffer;

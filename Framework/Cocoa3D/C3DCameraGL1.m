@@ -16,7 +16,7 @@
 #import <OpenGL/gl.h>
 #import <OpenGL/glu.h>
 
-GLenum C3DArrayNameForType (C3DVertexBufferType type) {
+static GLenum C3DArrayForBufferType (C3DVertexBufferType type) {
     switch (type) {
         case C3DVertexBufferColour:
         case C3DVertexBufferSecondaryColour:
@@ -212,11 +212,11 @@ static void C3DDrawOrigin( void ) {
 }
 
 + (void)enableVertexBuffer:(C3DVertexBuffer *)vertexBuffer {
-    glEnableClientState(C3DArrayNameForType(vertexBuffer.type));
+    glEnableClientState(C3DArrayForBufferType(vertexBuffer.type));
 }
 
 + (void)disableVertexBuffer:(C3DVertexBuffer *)vertexBuffer {
-    glDisableClientState(C3DArrayNameForType(vertexBuffer.type));
+    glDisableClientState(C3DArrayForBufferType(vertexBuffer.type));
 }
 
 + (void)enableVertexBuffers:(NSArray *)vertexBuffers {
