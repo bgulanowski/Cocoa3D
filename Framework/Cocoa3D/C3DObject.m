@@ -28,8 +28,6 @@
     // FIXME: These buffers should be in the vertex arrays, not in here
 	GLuint *_buffers;
 	GLsizei _bufferCount;
-	NSUInteger _elementCount;
-	BOOL _indexed;
 }
 
 #pragma mark - Accessors
@@ -46,6 +44,11 @@
 			[self refreshBuffers];
 		}
 	}
+}
+
+- (void)setIndexElements:(C3DVertexBuffer *)indexElements
+{
+    _indexElements = indexElements;
 }
 
 #pragma mark - NSObject
@@ -68,17 +71,21 @@
     else {
         [C3DCameraGL1 enableVertexBuffers:_vertexBuffers];
         [C3DCameraGL1 loadVertexBuffers:_vertexBuffers];
+        [C3DCameraGL1 enableVertexBuffer:_indexElements];
+        [C3DCameraGL1 loadVertexBuffer:_indexElements];
     }
-    if (_indexed) {
-        [camera drawElementsWithType:_type count:_elementCount];
+    if (_indexElements) {
+        [camera drawElementsWithType:_type count:_indexElements.count];
     }
     else {
-        [camera drawArraysWithType:_type count:_elementCount];
+        [camera drawArraysWithType:_type count:[[_vertexBuffers firstObject] count]];
     }
     if (!_vao) {
         [C3DCameraGL1 disableVertexBuffers:_vertexBuffers];
     }
 }
+
+#pragma mark - Designated Initializer
 
 // FIXME: this is too simple-minded
 // position array should be explicitly specified (it's mandatory)
@@ -87,31 +94,12 @@
 // should support interleaved arrays for vertex attributes
 // should support dynamic_draw (see c3dvertexarray class which is only static_draw)
 // should support adding and removing additional vertex attributes (normals, fog, secondary colour etc)
-- (instancetype)initWithType:(C3DObjectType)type vertexBuffers:(NSArray *)vertexBuffers program:(C3DProgram *)program {
-
+- (instancetype)initWithType:(C3DObjectType)type {
 	self = [super init];
 	if (self) {
 		_type = type;
-		_vertexBuffers = vertexBuffers;
-		_program = program;
-        NSUInteger vCount = 0, iCount = 0;
-        for (C3DVertexBuffer *vertexBuffer in _vertexBuffers) {
-            if (vertexBuffer.type == C3DVertexBufferPosition) {
-                vCount = [vertexBuffer count];
-            }
-            else if (vertexBuffer.type == C3DVertexBufferIndex) {
-                iCount = [vertexBuffer count];
-                _indexed = YES;
-            }
-        }
-        _elementCount = iCount ?: vCount;
-		if (_program) {
-			[self allocateBuffers];
-			[self refreshBuffers];
-		}
 	}
-	
-	return self;
+    return self;
 }
 
 #pragma mark - Private
@@ -127,6 +115,9 @@
 
 - (void)allocateBuffers {
 	_bufferCount = (GLsizei)[_vertexBuffers count];
+    if (_indexElements) {
+        ++_bufferCount;
+    }
 	_buffers = malloc(sizeof(GLuint) * _bufferCount);
 	glGenBuffers(_bufferCount, _buffers);
 	glGenVertexArrays(1, &_vao);
@@ -140,7 +131,9 @@
 	for (C3DVertexBuffer *vertexBuffer in _vertexBuffers) {
 		[vertexBuffer loadInBuffer:_buffers[i++] forProgram:_program];
 	}
-		
+    
+    [_indexElements loadInBuffer:_buffers[i] forProgram:_program];
+    
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 }

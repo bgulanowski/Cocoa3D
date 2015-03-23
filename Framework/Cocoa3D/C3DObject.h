@@ -10,13 +10,14 @@
 
 #import <Cocoa3D/C3DCamera.h>
 
-@class C3DProgram;
+@class C3DProgram, C3DVertexBuffer;
 
 @interface C3DObject : NSObject<C3DVisible>
 
-@property (nonatomic, strong, readonly) NSArray *vertexBuffers;
 @property (nonatomic, strong) C3DProgram *program;
+@property (nonatomic, strong) C3DVertexBuffer *indexElements;
+@property (nonatomic, strong) NSArray *vertexBuffers;
 
-- (instancetype)initWithType:(C3DObjectType)type vertexBuffers:(NSArray *)vertexBuffers program:(C3DProgram *)program;
+- (instancetype)initWithType:(C3DObjectType)type;
 
 @end

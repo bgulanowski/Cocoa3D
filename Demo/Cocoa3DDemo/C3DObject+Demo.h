@@ -15,6 +15,4 @@
 // a 2x2x2 cube centered about the origin
 + (instancetype)demoCubeWithProgram:(C3DProgram *)program;
 
-+ (instancetype)demoTriangleGL1;
-
 @end

@@ -54,10 +54,6 @@ static GLuint triangleIndices[] = { 0, 1, 2 };
 
 #pragma mark -
 
-@interface C3DObjectGL1 : C3DObject
-
-@end
-
 @implementation C3DObject (Demo)
 
 + (instancetype)demoTriangleWithProgram:(C3DProgram *)program {
@@ -70,18 +66,19 @@ static GLuint triangleIndices[] = { 0, 1, 2 };
 	
 	C3DVertexBuffer *positionBuffer = [[C3DVertexBuffer alloc] initWithType:C3DVertexBufferPosition elements:trianglePoints count:3];
 	C3DVertexBuffer *colourBuffer = [[C3DVertexBuffer alloc] initWithType:C3DVertexBufferColour elements:colours count:3];
-	NSArray *vertexBuffers = @[positionBuffer, colourBuffer];
-	
-	return [[[self class] alloc] initWithType:C3DObjectTypeTriangles vertexBuffers:vertexBuffers program:program];
+	C3DObject *object = [[[self class] alloc] initWithType:C3DObjectTypeTriangles];
+    object.vertexBuffers = @[positionBuffer, colourBuffer];
+    object.program = program;
+    return object;
 }
 
 + (instancetype)demoTriangleIndexedWithProgram:(C3DProgram *)program {
 	
-	C3DVertexBuffer *positionBuffer = [C3DVertexBuffer positionsWithElements:trianglePoints[0] count:3];
-	C3DVertexBuffer *indexBuffer = [C3DVertexBuffer indicesWithElements:&triangleIndices[0] count:3];
-	NSArray *vertexBuffers = @[positionBuffer, indexBuffer];
-	
-	return [[[self class] alloc] initWithType:C3DObjectTypeTriangles vertexBuffers:vertexBuffers program:program];
+	C3DObject *object = [[[self class] alloc] initWithType:C3DObjectTypeTriangles];
+    object.vertexBuffers = @[[C3DVertexBuffer positionsWithElements:trianglePoints[0] count:3]];
+    object.indexElements = [C3DVertexBuffer indicesWithElements:&triangleIndices[0] count:3];
+    object.program = program;
+    return object;
 }
 
 + (instancetype)demoCubeWithProgram:(C3DProgram *)program {
@@ -93,35 +90,11 @@ static GLuint triangleIndices[] = { 0, 1, 2 };
 
 	C3DVertexBuffer *positionBuffer = [C3DVertexBuffer positionsWithElements:&points[0].x count:8];
 	C3DVertexBuffer *coloursBuffer = [C3DVertexBuffer coloursWithElements:&colours[0].x count:8];
-	C3DVertexBuffer *indexBuffer = [C3DVertexBuffer indicesWithElements:&indices[0] count:36];
-	NSArray *vertexBuffers = @[positionBuffer, indexBuffer, coloursBuffer];
-	
-	return [[[self class] alloc] initWithType:C3DObjectTypeTriangles vertexBuffers:vertexBuffers program:program];
-}
-
-+ (instancetype)demoTriangleGL1 {
-	return [C3DObjectGL1 demoTriangleWithProgram:nil];
-}
-
-@end
-
-@implementation C3DObjectGL1
-
-- (void)paintForCamera:(C3DCamera *)camera {
-	
-	glColor3f(1, 1, 1);
-	
-	glBegin(GL_TRIANGLES);
-	
-	for (int i=0; i<3; ++i) {
-		glVertex3f(trianglePoints[i][0], trianglePoints[i][1], trianglePoints[i][2]);
-	}
-	
-	glEnd();
-}
-
-- (instancetype)initWithType:(C3DObjectType)type vertexBuffers:(NSArray *)vertexBuffers program:(C3DProgram *)program {
-	return [super initWithType:type vertexBuffers:vertexBuffers program:nil];
+	C3DObject *object = [[[self class] alloc] initWithType:C3DObjectTypeTriangles];
+    object.indexElements = [C3DVertexBuffer indicesWithElements:&indices[0] count:36];
+    object.vertexBuffers = @[positionBuffer, coloursBuffer];
+    object.program = program;
+    return object;
 }
 
 @end
