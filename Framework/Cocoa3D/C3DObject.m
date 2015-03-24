@@ -8,17 +8,19 @@
 
 #import "C3DObject.h"
 
-#import "C3DCameraGL1.h"
 #import "C3DProgram.h"
 #import "C3DTransform.h"
 #import "C3DVertexBuffer.h"
 
 #if TARGET_OS_IPHONE
 #import <OpenGLES/ES3/gl.h>
-#elif C3D_GL_COMPATIBILITY
-#import <OpenGL/gl.h>
 #else
-#import <OpenGL/gl3.h>
+    #import "C3DCameraGL1.h"
+    #if C3D_GL_COMPATIBILITY
+        #import <OpenGL/gl.h>
+    #else
+        #import <OpenGL/gl3.h>
+    #endif
 #endif
 
 @implementation C3DObject {
@@ -68,21 +70,26 @@
         // Binding the vertex array automatically binds all the individual arrays (VBOs)
         glBindVertexArray(_vao);
     }
+#if ! TARGET_OS_IPHONE
     else {
+        // FIXME: update for iOS!
         [C3DCameraGL1 enableVertexBuffers:_vertexBuffers];
         [C3DCameraGL1 loadVertexBuffers:_vertexBuffers];
         [C3DCameraGL1 enableVertexBuffer:_indexElements];
         [C3DCameraGL1 loadVertexBuffer:_indexElements];
     }
+#endif
     if (_indexElements) {
         [camera drawElementsWithType:_type count:_indexElements.count];
     }
     else {
         [camera drawArraysWithType:_type count:[[_vertexBuffers firstObject] count]];
     }
+#if ! TARGET_OS_IPHONE
     if (!_vao) {
         [C3DCameraGL1 disableVertexBuffers:_vertexBuffers];
     }
+#endif
 }
 
 #pragma mark - Designated Initializer

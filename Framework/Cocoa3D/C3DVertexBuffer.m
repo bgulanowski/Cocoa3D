@@ -62,7 +62,7 @@ NSString *C3DAttributeNameForVertexBufferType(C3DVertexBufferType type) {
 #pragma mark - NSObject
 
 - (NSString *)debugDescription {
-    return [NSString stringWithFormat:@"[%@ %p] %@ %zu", [self class], self, C3DAttributeNameForVertexBufferType(_type), _count];
+    return [NSString stringWithFormat:@"[%@ %p] %@ %tu", [self class], self, C3DAttributeNameForVertexBufferType(_type), _count];
 }
 
 #pragma mark - C3DVertexBuffer
