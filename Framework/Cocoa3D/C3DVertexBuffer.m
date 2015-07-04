@@ -141,6 +141,10 @@ NSString *C3DAttributeNameForVertexBufferType(C3DVertexBufferType type) {
     return [self initWithType:type data:data count:count];
 }
 
+- (instancetype)init {
+    return [self initWithType:C3DVertexBufferPosition elements:NULL count:0];
+}
+
 + (instancetype)coloursWithElements:(GLfloat *)elements count:(NSUInteger)count {
 	return [[self alloc] initWithType:C3DVertexBufferColour elements:elements count:count];
 }

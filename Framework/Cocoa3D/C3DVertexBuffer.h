@@ -56,6 +56,7 @@ NS_INLINE GLsizei C3DPrimitiveSizeForVertexBufferType(C3DVertexBufferType type) 
 - (void)delete;
 - (void)loadInBuffer:(GLuint)buffer forProgram:(C3DProgram *)program;
 
+- (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithType:(C3DVertexBufferType)type data:(NSData *)data count:(NSUInteger)count NS_DESIGNATED_INITIALIZER;
 - (instancetype)initWithType:(C3DVertexBufferType)type data:(NSData *)data;
 - (instancetype)initWithType:(C3DVertexBufferType)type elements:(void *)elements count:(NSUInteger)count;
