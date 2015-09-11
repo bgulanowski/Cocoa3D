@@ -205,7 +205,7 @@ static void C3DDrawOrigin( void ) {
 	
 	LIMatrix_t matrix;
 	glGetFloatv(GL_MODELVIEW_MATRIX, matrix.i);
-	NSLog(@"Model View Matrix:\n%@", LIMatrixToString(matrix));
+	NSLog(@"Modelview Matrix:\n%@", LIMatrixToString(matrix));
 	
 	glGetFloatv(GL_PROJECTION_MATRIX, matrix.i);
 	NSLog(@"Projection Matrix:\n%@", LIMatrixToString(matrix));
