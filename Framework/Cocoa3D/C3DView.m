@@ -72,6 +72,16 @@ static CVReturn C3DViewDisplayLink(CVDisplayLinkRef displayLink,
 	_diagRate = _movementRate*M_SQRT1_2;
 }
 
+- (id<C3DCameraDrawDelegate>)drawDelegate
+{
+    return self.camera.drawDelegate;
+}
+
+- (void)setDrawDelegate:(id<C3DCameraDrawDelegate>)drawDelegate
+{
+    self.camera.drawDelegate = drawDelegate;
+}
+
 #pragma mark - NSCoding
 
 - (id)initWithCoder:(NSCoder *)aDecoder {

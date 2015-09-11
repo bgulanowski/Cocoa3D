@@ -46,7 +46,7 @@ extern const GLenum primitiveTypes[];
 @property (nonatomic) C3DCameraColorChanges colorChanges;
 @property (nonatomic) C3DCameraOptions options;
 @property (nonatomic) C3DCameraOptions changes;
-@property (nonatomic, retain) id<C3DPropContainer>container;
+@property (nonatomic, retain) id<C3DObjectContainer>container;
 
 // Subclasses should override this
 - (void)setup;

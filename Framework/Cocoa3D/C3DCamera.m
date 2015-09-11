@@ -294,7 +294,7 @@ NSString *C3DCameraOptionsToString(C3DCameraOptions _options) {
 
 - (void)setDrawDelegate:(id<C3DCameraDrawDelegate>)drawDelegate {
 	_drawDelegate = drawDelegate;
-	_container = [_drawDelegate propContainer];
+	_container = [_drawDelegate objectContainer];
 }
 
 #pragma mark - NSObject
@@ -448,13 +448,13 @@ NSString *C3DCameraOptionsToString(C3DCameraOptions _options) {
 	glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
 }
 
-- (NSArray *)sortedProps {
-	return [_container sortedPropsForCamera:self];
+- (NSArray *)sortedObjects {
+	return [_container sortedObjectsForCamera:self];
 }
 
 - (void)paint {
 	_transformStack = [NSMutableArray array];
-	[[self sortedProps] makeObjectsPerformSelector:@selector(paintForCamera:) withObject:self];
+	[[self sortedObjects] makeObjectsPerformSelector:@selector(paintForCamera:) withObject:self];
 	[_drawDelegate paintForCamera:self];
 	_transformStack = nil;
 }

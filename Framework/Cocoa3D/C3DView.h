@@ -9,6 +9,8 @@
 #import <Cocoa/Cocoa.h>
 
 @class C3DCamera;
+@protocol C3DCameraDrawDelegate;
+@protocol C3DPropContainer;
 
 @interface C3DView : NSOpenGLView
 
@@ -16,6 +18,8 @@
 @property (nonatomic) GLfloat movementRate;
 @property (nonatomic) BOOL drawInBackground;
 @property (nonatomic) BOOL trackMouse;
+
+@property (nonatomic) IBOutlet id<C3DCameraDrawDelegate>drawDelegate;
 
 - (void)useModernContext;
 

@@ -45,8 +45,8 @@ typedef NS_ENUM(NSUInteger, C3DCameraProjectionStyle) {
 };
 
 
-@protocol C3DPropContainer<NSObject>
-- (NSArray *)sortedPropsForCamera:(C3DCamera *)camera;
+@protocol C3DObjectContainer<NSObject>
+- (NSArray *)sortedObjectsForCamera:(C3DCamera *)camera;
 @end
 
 @protocol C3DVisible<NSObject>
@@ -55,7 +55,7 @@ typedef NS_ENUM(NSUInteger, C3DCameraProjectionStyle) {
 
 @protocol C3DCameraDrawDelegate<NSObject>
 - (void)paintForCamera:(C3DCamera *)camera;
-- (id<C3DPropContainer>)propContainer;
+- (id<C3DObjectContainer>)objectContainer;
 @end
 
 @class C3DTransform;
