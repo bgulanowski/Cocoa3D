@@ -22,7 +22,7 @@ static NSString * const basic33VertFunc = @"#version 330 core\n"
                                            "smooth out vec4 vColour;\n"
                                            "uniform mat4 MVP;\n"
                                            "void main() {\n"
-                                           "    outColour = vColour;\n"
+                                           "    vColour = colour;\n"
                                            "    gl_Position = MVP*vec4(position,1);\n"
                                            "}";
 
@@ -30,7 +30,7 @@ static NSString * const basic33FragFunc = @"#version 330 core\n"
                                            "smooth in vec4 vColour;\n"
                                            "layout(location = 0) out vec4 vFragColor;\n"
                                            "void main() {\n"
-                                           "    vFragColor = vColor;\n"
+                                           "    vFragColor = vColour;\n"
                                            "}";
 
 static NSString * const legacyVertFunc = @"attribute vec3 position;\n"
