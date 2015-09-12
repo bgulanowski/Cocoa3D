@@ -20,7 +20,7 @@
 
 #import <Cocoa3D/Cocoa3D.h>
 
-@interface AppDelegate () <C3DCameraDrawDelegate, C3DPropContainer, GLKViewDelegate>
+@interface AppDelegate () <C3DCameraDrawDelegate, C3DObjectContainer, GLKViewDelegate>
 @end
 
 @implementation AppDelegate {
@@ -67,11 +67,11 @@
 
 - (void)paintForCamera:(C3DCamera *)camera {}
 
-- (id<C3DPropContainer>)propContainer {
+- (id<C3DObjectContainer>)propContainer {
 	return self;
 }
 
-#pragma mark - C3DPropContainer
+#pragma mark - C3DObjectContainer
 
 - (NSArray *)sortedPropsForCamera:(C3DCamera *)camera {
 	return @[_rootNode];

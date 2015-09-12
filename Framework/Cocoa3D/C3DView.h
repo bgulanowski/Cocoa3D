@@ -10,7 +10,7 @@
 
 @class C3DCamera;
 @protocol C3DCameraDrawDelegate;
-@protocol C3DPropContainer;
+@protocol C3DObjectContainer;
 
 @interface C3DView : NSOpenGLView
 

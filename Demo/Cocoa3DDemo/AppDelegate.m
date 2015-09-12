@@ -18,7 +18,7 @@
 #import <Cocoa3D/C3DTransform.h>
 #import <Cocoa3D/C3DView.h>
 
-@interface AppDelegate () <C3DCameraDrawDelegate, C3DPropContainer>
+@interface AppDelegate () <C3DCameraDrawDelegate, C3DObjectContainer>
 
 @end
 
@@ -76,13 +76,13 @@
 
 - (void)paintForCamera:(C3DCamera *)camera {}
 
-- (id<C3DPropContainer>)propContainer {
+- (id<C3DObjectContainer>)objectContainer {
 	return self;
 }
 
-#pragma mark - C3DPropContainer
+#pragma mark - C3DObjectContainer
 
-- (NSArray *)sortedPropsForCamera:(C3DCamera *)camera {
+- (NSArray *)sortedObjectsForCamera:(C3DCamera *)camera {
 	if (camera == _gl3View.camera) {
 		return @[_rootNode];
 	}
@@ -100,8 +100,6 @@
 	camera.depthOn = YES;
 	camera.lightsOn = NO;
 
-	C3DTransform *modelView = [[C3DTransform alloc] initWithMatrix:LIMatrixIdentity];
-
 	if (useOrtho) {
 		camera.backgroundColor = (C3DColour_t){0, 1, 0, 1};
 		camera.projectionStyle = C3DCameraProjectionOrthographic;
@@ -111,6 +109,8 @@
 	else {
 		camera.backgroundColor = (C3DColour_t){1, 0, 0, 1};
 	}
+    
+    C3DTransform *modelView = [C3DTransform identity];
     [modelView rotate:LIRotationMake(0.5, 1, 0, M_PI_4)];
     [modelView translate:LIVectorMake(0.0, 0.0, -10.0f)];
 	camera.transform = modelView;
