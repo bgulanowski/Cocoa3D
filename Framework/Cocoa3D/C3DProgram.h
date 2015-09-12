@@ -13,6 +13,7 @@
 #endif
 
 @class C3DCamera;
+@class C3DShader;
 @class C3DTransform;
 
 @interface C3DProgram : NSObject
@@ -22,7 +23,7 @@
 
 @property (nonatomic, weak) C3DCamera *camera;
 
-- (instancetype)initWithVertexShader:(id)vertexShader fragmentShader:(id)fragmentShader;
+- (instancetype)initWithVertexShader:(C3DShader *)vertexShader fragmentShader:(C3DShader *)fragmentShader attributes:(NSArray *)attributes uniforms:(NSArray *)uniforms;
 - (instancetype)initWithName:(NSString *)name attributes:(NSArray *)attributes uniforms:(NSArray *)uniforms;
 - (GLuint)locationForAttribute:(NSString *)attribute;
 - (GLuint)locationForUniform:(NSString *)uniform;

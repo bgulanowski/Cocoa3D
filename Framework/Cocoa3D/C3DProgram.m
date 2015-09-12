@@ -10,6 +10,9 @@
 
 #import "C3DShader.h"
 #import "C3DTransform.h"
+#import "C3DVertexBuffer.h"
+
+#import "NSOpenGLContext+Cocoa3D.h"
 
 #if TARGET_OS_IPHONE
 #import <OpenGLES/ES3/gl.h>
@@ -17,8 +20,10 @@
 #import <OpenGL/gl3.h>
 #endif
 
-static NSString *attributeKVO = @"C3DProgramAttribute";
-static NSString *uniformKVO = @"C3DProgramUniform";
+void * attributeKVOContext = &attributeKVOContext;
+void *   uniformKVOContext = &uniformKVOContext;
+
+#pragma mark -
 
 @implementation C3DProgram {
 	GLuint _name;
@@ -30,7 +35,11 @@ static NSString *uniformKVO = @"C3DProgramUniform";
 
 #pragma mark - Designated Initializer
 
-- (instancetype)initWithVertexShader:(id)vertexShader fragmentShader:(id)fragmentShader {
+- (instancetype)initWithVertexShader:(C3DShader *)vertexShader fragmentShader:(C3DShader *)fragmentShader attributes:(NSArray *)attributes uniforms:(NSArray *)uniforms {
+    
+    NSParameterAssert(vertexShader);
+    NSParameterAssert(fragmentShader);
+    
 	self = [super init];
 	if (self) {
 		_attributes = [NSMutableDictionary dictionary];
@@ -45,7 +54,24 @@ static NSString *uniformKVO = @"C3DProgramUniform";
 		glAttachShader(_name, [vertexShader shaderName]);
 		glAttachShader(_name, [fragmentShader shaderName]);
 		glLinkProgram(_name);
-	}
+
+        if(![self linkStatus]) {
+            NSLog(@"Failed to link program: %@", [self linkLog]);
+        }
+
+        for (NSString *attributeName in attributes) {
+            GLint const location = glGetAttribLocation(_name, [attributeName UTF8String]);
+            if (location > -1) {
+                _attributes[attributeName] = @(location);
+            }
+        }
+        for (NSString *uniformName in uniforms) {
+            GLint const location = glGetUniformLocation(_name, [uniformName UTF8String]);
+            if (location > -1) {
+                _uniforms[uniformName] = @(location);
+            }
+        }
+    }
 	
 	return self;
 }
@@ -57,26 +83,51 @@ static NSString *uniformKVO = @"C3DProgramUniform";
 	[self removeAllBindings];
 }
 
+#pragma mark - NSKeyValueObserving
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    
+}
+
 #pragma mark - C3DProgram
 
 - (instancetype)initWithName:(NSString *)name attributes:(NSArray *)attributes uniforms:(NSArray *)uniforms {
+    NSParameterAssert(name);
 	C3DShader *vs = [C3DShader vertexShaderWithName:name];
 	C3DShader *fs = [C3DShader fragmentShaderWithName:name];
-	if(! vs || !fs) return nil;
-	self = [self initWithVertexShader:vs fragmentShader:fs];
-	if (self) {
-		for (NSString *attributeName in attributes) {
-			_attributes[attributeName] = @(glGetAttribLocation(_name, [attributeName UTF8String]));
-		}
-		for (NSString *uniformName in uniforms) {
-			_uniforms[uniformName] = @(glGetUniformLocation(_name, [uniformName UTF8String]));
-		}
-	}
-	return self;
+	return [self initWithVertexShader:vs fragmentShader:fs attributes:attributes uniforms:uniforms];
+}
+
+- (instancetype)init {
+    C3DShader *vertShader = nil;
+    C3DShader *fragShader = nil;
+    if ([NSOpenGLContext currentContext].usesCoreProfile) {
+        vertShader = [C3DShader basic33VertexShader];
+        fragShader = [C3DShader basic33FragmentShader];
+    }
+    else {
+        vertShader = [C3DShader basicLegacyVertexShader];
+        fragShader = [C3DShader basicLegacyFragmentShader];
+    }
+    return [self initWithVertexShader:vertShader fragmentShader:fragShader attributes:C3DAttributeNames() uniforms:@[@"MVP"]];
 }
 
 - (void)prepareToDraw {
 	glUseProgram(_name);
+}
+
+- (BOOL)linkStatus {
+    GLint res = 0;
+    glGetProgramiv(_name, GL_LINK_STATUS, &res);
+    return res == GL_TRUE;
+}
+
+- (NSString *)linkLog {
+    const int bufferLength = 1000;
+    GLchar logs[bufferLength];
+    logs[0] = '\0';
+    glGetShaderInfoLog(_name, bufferLength, NULL, logs);
+    return [NSString stringWithUTF8String:logs];
 }
 
 - (GLuint)locationForAttribute:(NSString *)attribute {
@@ -101,12 +152,6 @@ static NSString *uniformKVO = @"C3DProgramUniform";
 
 - (void)loadMVPMatrix:(C3DTransform *)matrix {
 	glUniformMatrix4fv([self locationForUniform:@"MVP"], 1, GL_FALSE, matrix.r_matrix->i);
-}
-
-#pragma mark - NSKeyValueObserving
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-	
 }
 
 @end
