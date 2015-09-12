@@ -276,7 +276,7 @@
 		849D2B3C196FD54E0051F434 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Lichen Labs";
 				TargetAttributes = {
 					849D2B64196FD54E0051F434 = {
@@ -439,6 +439,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -505,6 +506,7 @@
 				GCC_PREFIX_HEADER = "Cocoa3DDemo/Cocoa3DDemo-Prefix.pch";
 				INFOPLIST_FILE = "Cocoa3DDemo/Cocoa3DDemo-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lichenlabs.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -523,6 +525,7 @@
 				GCC_PREFIX_HEADER = "Cocoa3DDemo/Cocoa3DDemo-Prefix.pch";
 				INFOPLIST_FILE = "Cocoa3DDemo/Cocoa3DDemo-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lichenlabs.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -544,6 +547,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "Cocoa3DDemoTests/Cocoa3DDemoTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lichenlabs.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -562,6 +566,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cocoa3DDemo/Cocoa3DDemo-Prefix.pch";
 				INFOPLIST_FILE = "Cocoa3DDemoTests/Cocoa3DDemoTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lichenlabs.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
