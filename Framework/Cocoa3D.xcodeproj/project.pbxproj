@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		842015E3198D22F400853E68 /* C3DTransform.h in Headers */ = {isa = PBXBuildFile; fileRef = 842015E1198D22F400853E68 /* C3DTransform.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		842015E4198D22F400853E68 /* C3DTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = 842015E2198D22F400853E68 /* C3DTransform.m */; };
+		844833B31BA44E4E00F657AE /* C3DObject+C3DPolyhedra.h in Headers */ = {isa = PBXBuildFile; fileRef = 844833B11BA44E4E00F657AE /* C3DObject+C3DPolyhedra.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		844833B41BA44E4E00F657AE /* C3DObject+C3DPolyhedra.m in Sources */ = {isa = PBXBuildFile; fileRef = 844833B21BA44E4E00F657AE /* C3DObject+C3DPolyhedra.m */; settings = {ASSET_TAGS = (); }; };
+		844833BA1BA450E200F657AE /* C3DConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 844833B91BA450E200F657AE /* C3DConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		84552029198EE10D00571109 /* C3DLight.h in Headers */ = {isa = PBXBuildFile; fileRef = 84552027198EE10D00571109 /* C3DLight.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8455202A198EE10D00571109 /* C3DLight.m in Sources */ = {isa = PBXBuildFile; fileRef = 84552028198EE10D00571109 /* C3DLight.m */; };
 		845ADD7B19FADCF70034CE4C /* C3DNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 845ADD7919FADCF70034CE4C /* C3DNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -109,6 +112,9 @@
 /* Begin PBXFileReference section */
 		842015E1198D22F400853E68 /* C3DTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C3DTransform.h; sourceTree = "<group>"; };
 		842015E2198D22F400853E68 /* C3DTransform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C3DTransform.m; sourceTree = "<group>"; };
+		844833B11BA44E4E00F657AE /* C3DObject+C3DPolyhedra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "C3DObject+C3DPolyhedra.h"; sourceTree = "<group>"; };
+		844833B21BA44E4E00F657AE /* C3DObject+C3DPolyhedra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "C3DObject+C3DPolyhedra.m"; sourceTree = "<group>"; };
+		844833B91BA450E200F657AE /* C3DConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C3DConstants.h; sourceTree = "<group>"; };
 		84552027198EE10D00571109 /* C3DLight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C3DLight.h; sourceTree = "<group>"; };
 		84552028198EE10D00571109 /* C3DLight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C3DLight.m; sourceTree = "<group>"; };
 		845ADD7919FADCF70034CE4C /* C3DNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C3DNode.h; sourceTree = "<group>"; };
@@ -235,6 +241,7 @@
 				84AFA92D19A97C8500296196 /* C3DCameraGL3.m */,
 				84F99EA91A504B7F008EEA65 /* C3DColour.h */,
 				84F99EAA1A504B7F008EEA65 /* C3DColour.m */,
+				844833B91BA450E200F657AE /* C3DConstants.h */,
 				84552027198EE10D00571109 /* C3DLight.h */,
 				84552028198EE10D00571109 /* C3DLight.m */,
 				845ADD9219FC2CBD0034CE4C /* C3DMotion.h */,
@@ -243,6 +250,8 @@
 				845ADD7A19FADCF70034CE4C /* C3DNode.m */,
 				849D2B8B196FD5F00051F434 /* C3DObject.h */,
 				849D2B8C196FD5F00051F434 /* C3DObject.m */,
+				844833B11BA44E4E00F657AE /* C3DObject+C3DPolyhedra.h */,
+				844833B21BA44E4E00F657AE /* C3DObject+C3DPolyhedra.m */,
 				849D2B8F196FD6160051F434 /* C3DProgram.h */,
 				849D2B90196FD6160051F434 /* C3DProgram.m */,
 				84CED76419741F2F00FFF722 /* C3DShader.h */,
@@ -315,8 +324,10 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				844833B31BA44E4E00F657AE /* C3DObject+C3DPolyhedra.h in Headers */,
 				849D2B89196FD5D30051F434 /* C3DCamera.h in Headers */,
 				84C1EAC819860B8C002760E4 /* C3DCameraGL1.h in Headers */,
+				844833BA1BA450E200F657AE /* C3DConstants.h in Headers */,
 				84AFA92E19A97C8500296196 /* C3DCameraGL3.h in Headers */,
 				84552029198EE10D00571109 /* C3DLight.h in Headers */,
 				84D7F81919C6132500CC2B70 /* NSOpenGLContext+Cocoa3D.h in Headers */,
@@ -482,6 +493,7 @@
 				84AFA92F19A97C8500296196 /* C3DCameraGL3.m in Sources */,
 				84D7F81A19C6132500CC2B70 /* NSOpenGLContext+Cocoa3D.m in Sources */,
 				849D2B92196FD6160051F434 /* C3DProgram.m in Sources */,
+				844833B41BA44E4E00F657AE /* C3DObject+C3DPolyhedra.m in Sources */,
 				845ADD7C19FADCF70034CE4C /* C3DNode.m in Sources */,
 				849D2B9A196FD8280051F434 /* C3DVertex.m in Sources */,
 				842015E4198D22F400853E68 /* C3DTransform.m in Sources */,
