@@ -39,8 +39,31 @@
 #define p11h {  1.0f,  1.0f,  0.0f }
 #define p111 {  1.0f,  1.0f,  1.0f }
 
+#define tau (0.70710678118655f) //   τ = 1/√2  = √2/2 =
+#define ta2 (0.35355339059328)  // τ/2 = 1/2√2 = √2/4
+#define psi (1.1180339887499f)  //   ξ = √5/2 (forgot why this was useful)
+#define chi (1.224744871391589) //   χ = √6/3 or √(3/2) = height of
 
-#define phi (1.618033988749895f) // (1+√5)/2
+/*
+ Tetrahdron vertices aligned with X/Y axes
+ */
+
+#define tt01 { -0.5f,  0.0f, -ta2 }
+#define tt02 {  0.5f,  0.0f, -ta2 }
+#define tt03 {  0.0f,  0.5f,  ta2 }
+#define tt04 {  0.0f, -0.5f,  ta2 }
+
+/*
+ Tetrahedron vertices with base aligned with X-Y plane
+ */
+
+#define ta01 { -0.5f, 0.0f,
+
+/*
+ Tetrahedron subscribed in the unit cube
+ */
+
+#define phi (1.618033988749895f) // φ: (1+√5)/2
 #define ihp (1/phi)
 
 
