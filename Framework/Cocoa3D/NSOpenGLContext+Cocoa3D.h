@@ -15,6 +15,10 @@
 @property (nonatomic, readonly) C3DView *c3dView;
 @property (nonatomic, readonly) BOOL usesCoreProfile;
 
+#if ! TARGET_OS_IPHONE
+- (CGLOpenGLProfile)C3D_profile;
+#endif
+
 + (instancetype)C3DContext;
 
 @end

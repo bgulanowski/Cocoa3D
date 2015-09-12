@@ -18,9 +18,29 @@
     return [c3dView isKindOfClass:[C3DView class]] ? c3dView : nil;
 }
 
+#if ! TARGET_OS_IPHONE
+- (CGLOpenGLProfile)C3D_profile {
+    
+    CGLContextObj cglContext = [self CGLContextObj];
+    CGLPixelFormatObj cglPixelFormat = CGLGetPixelFormat(cglContext);
+    GLint format = 0;
+    CGLError cglError = CGLDescribePixelFormat(cglPixelFormat, 0, kCGLPFAOpenGLProfile, &format);
+    
+    if (cglError != 0) {
+        NSLog(@"Error reading pixel format for NSOpenGLContext");
+    }
+    
+    return (CGLOpenGLProfile)format;
+}
+#endif
+
 - (BOOL)usesCoreProfile {
-    GLint profile = self.c3dView.pixelFormat.profile;
+#if TARGET_OS_IPHONE
+    return YES;
+#else
+    CGLOpenGLProfile profile = [self C3D_profile];
     return profile == NSOpenGLProfileVersion3_2Core || profile == NSOpenGLProfileVersion4_1Core;
+#endif
 }
 
 + (instancetype)C3DContext {

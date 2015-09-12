@@ -18,6 +18,7 @@
 #endif
 
 #import "C3DTransform.h"
+#import "NSOpenGLContext+Cocoa3D.h"
 
 #import <LichenMath/LichenMath.h>
 
@@ -81,30 +82,6 @@ NSString *C3DCameraOptionsToString(C3DCameraOptions _options) {
 
 @interface C3DCameraGL4 : C3DCamera
 @end
-
-#if ! TARGET_OS_IPHONE
-@interface NSOpenGLContext (C3DCamera)
-- (CGLOpenGLProfile)C3D_profile;
-@end
-
-@implementation NSOpenGLContext (C3DCamera)
-
-- (CGLOpenGLProfile)C3D_profile {
-	
-	CGLContextObj cglContext = [self CGLContextObj];
-	CGLPixelFormatObj cglPixelFormat = CGLGetPixelFormat(cglContext);
-	GLint format = 0;
-	CGLError cglError = CGLDescribePixelFormat(cglPixelFormat, 0, kCGLPFAOpenGLProfile, &format);
-	
-	if (cglError != 0) {
-		NSLog(@"Error reading pixel format for NSOpenGLContext");
-	}
-	
-	return (CGLOpenGLProfile)format;
-}
-
-@end
-#endif
 
 
 #pragma mark -
