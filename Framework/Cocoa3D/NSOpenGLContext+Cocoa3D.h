@@ -8,7 +8,12 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class C3DView;
+
 @interface NSOpenGLContext (Cocoa3D)
+
+@property (nonatomic, readonly) C3DView *c3dView;
+@property (nonatomic, readonly) BOOL usesCoreProfile;
 
 + (instancetype)C3DContext;
 
