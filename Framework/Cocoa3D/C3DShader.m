@@ -42,6 +42,10 @@ static GLenum glTypes[] = { GL_VERTEX_SHADER, GL_FRAGMENT_SHADER, GL_GEOMETRY_SH
 	}
 }
 
+- (void)dealloc {
+    glDeleteShader(_name);
+}
+
 - (instancetype)initWithString:(NSString *)source type:(C3DShaderType)type {
 	self = [super init];
 	if (self) {

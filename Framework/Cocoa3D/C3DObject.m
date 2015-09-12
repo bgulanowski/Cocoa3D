@@ -118,6 +118,10 @@
 		_bufferCount = 0;
 		_buffers = NULL;
 	}
+    if (_vao) {
+        glDeleteVertexArrays(1, &_vao);
+        _vao = 0;
+    }
 }
 
 - (void)allocateBuffers {

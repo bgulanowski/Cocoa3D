@@ -53,6 +53,7 @@ static NSString *uniformKVO = @"C3DProgramUniform";
 #pragma mark - NSObject
 
 - (void)dealloc {
+    glDeleteProgram(_name);
 	[self removeAllBindings];
 }
 
