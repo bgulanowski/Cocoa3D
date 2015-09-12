@@ -13,13 +13,15 @@
 @interface C3DObject (C3DPolyhedra)
 
 // polyhedra composed of unit vectors
-+ (instancetype)unitTetrahedron;
+// four rotated corner tets + 1 regular tet make a unit cube
++ (instancetype)unitCornerTetrahedron;
++ (instancetype)unitRegularTetrahedron;
 + (instancetype)unitRectangularPrism;
 + (instancetype)unitCube;
 
 // polyhedra centered on the origin
-+ (instancetype)tetrahedron;
-+ (instancetype)rectangularPrism;
++ (instancetype)equilateralTetrahedron;
++ (instancetype)equilateralRectangularPrism;
 + (instancetype)octahedron;
 
 @end

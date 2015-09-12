@@ -35,12 +35,22 @@ static C3DVertexBuffer *unitColours;
     return object;
 }
 
-+ (instancetype)unitTetrahedron {
++ (instancetype)unitCornerTetrahedron {
     GLuint indices[] = {
         0, 1, 2,
         0, 2, 4,
         0, 4, 1,
         1, 4, 2
+    };
+    return [self unitPolyhedronWithIndices:[C3DVertexBuffer indicesWithElements:&(indices[0]) count:3 * 4]];
+}
+
++ (instancetype)unitRegularTetrahedron {
+    GLuint indices[] = {
+        0, 3, 1,
+        0, 5, 3,
+        0, 6, 5,
+        3, 5, 6
     };
     return [self unitPolyhedronWithIndices:[C3DVertexBuffer indicesWithElements:&(indices[0]) count:3 * 4]];
 }
@@ -89,12 +99,49 @@ static C3DVertexBuffer *unitColours;
     return [self unitPolyhedronWithIndices:[C3DVertexBuffer indicesWithElements:&(indices[0]) count:3 * 12]];
 }
 
-+ (instancetype)tetrahedron {
-    // TODO:
-    return nil;
++ (instancetype)equilateralTetrahedron {
+    
+    const GLfloat unit = 1.0f;
+    const GLfloat hu = unit * 0.5f;
+    
+    const GLfloat faceHeightSquared = unit * unit - hu * hu;
+    const GLfloat fh = sqrtf(faceHeightSquared);
+    const GLfloat hfh = fh * 0.5f;
+    
+    const GLfloat tetrahedronHeightSquared = fh * fh + hfh * hfh;
+    const GLfloat th = sqrtf(tetrahedronHeightSquared);
+    
+    LIVector_t points[] = {
+        {  hu,  0, -hfh },
+        { -hu,  0, -hfh },
+        {   0,  0,  hfh },
+        {   0, th,    0 }
+    };
+    C3DColour_t colours[] = {
+        { 1.0f, 0.0f, 0.0f },
+        { 0.0f, 1.0f, 0.0f },
+        { 0.0f, 0.0f, 1.0f },
+        { 1.0f, 1.0f, 0.0f }
+    };
+    GLuint indices[] = {
+        0, 2, 1,
+        0, 3, 1,
+        1, 3, 2,
+        2, 3, 0
+    };
+    
+    C3DVertexBuffer *pBuffer = [C3DVertexBuffer positionsWithElements:&(points[0].x)  count:4];
+    C3DVertexBuffer *cBuffer = [C3DVertexBuffer   coloursWithElements:&(colours[0].a) count:4];
+    C3DVertexBuffer *iBuffer = [C3DVertexBuffer   indicesWithElements:&(indices[0])   count:3 * 4];
+    
+    C3DObject *object = [[C3DObject alloc] initWithType:C3DObjectTypeTriangles];
+    object.vertexBuffers = @[pBuffer, cBuffer];
+    object.indexElements = iBuffer;
+    
+    return object;
 }
 
-+ (instancetype)rectangularPrism {
++ (instancetype)equilateralRectangularPrism {
     // TODO:
     return nil;
 }

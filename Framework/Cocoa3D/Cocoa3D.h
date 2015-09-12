@@ -21,6 +21,7 @@
 #import <Cocoa3D/C3DMotion.h>
 #import <Cocoa3D/C3DNode.h>
 #import <Cocoa3D/C3DObject.h>
+#import <Cocoa3D/C3DObject+C3DPolyhedra.h>
 #import <Cocoa3D/C3DProgram.h>
 #import <Cocoa3D/C3DShader.h>
 #import <Cocoa3D/C3DTexture.h>
