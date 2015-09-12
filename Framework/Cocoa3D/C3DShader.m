@@ -16,11 +16,40 @@
 
 static NSArray *typeNames;
 
+static NSString * const basic33VertFunc = @"#version 330 core\n"
+                                           "layout(location = 0) in vec3 position;\n"
+                                           "layout(location = 1) in vec4 colour;\n"
+                                           "smooth out vec4 vColour;\n"
+                                           "uniform mat4 MVP;\n"
+                                           "void main() {\n"
+                                           "    outColour = vColour;\n"
+                                           "    gl_Position = MVP*vec4(position,1);\n"
+                                           "}";
+
+static NSString * const basic33FragFunc = @"#version 330 core\n"
+                                           "smooth in vec4 vColour;\n"
+                                           "layout(location = 0) out vec4 vFragColor;\n"
+                                           "void main() {\n"
+                                           "    vFragColor = vColor;\n"
+                                           "}";
+
+static NSString * const legacyVertFunc = @"attribute vec3 position;\n"
+                                          "uniform mat4 MVP;\n"
+                                          "void main() {\n"
+                                          "    gl_Position = MVP*vec4(position,1);\n"
+                                          "}";
+
+static NSString * const legacyFragFunc = @"void main() {\n"
+                                          "    gl_FragColor = vec4(0.5, 0.5, 0.5, 1.0);\n"
+                                          "}";
+
 #if TARGET_OS_IPHONE
 static GLenum glTypes[] = { GL_VERTEX_SHADER, GL_FRAGMENT_SHADER };
 #else
 static GLenum glTypes[] = { GL_VERTEX_SHADER, GL_FRAGMENT_SHADER, GL_GEOMETRY_SHADER };
 #endif
+
+#pragma mark -
 
 @interface NSBundle (Cocoa3D)
 + (NSURL *)URLForVertexShaderNamed:(NSString *)name;
@@ -31,6 +60,8 @@ static GLenum glTypes[] = { GL_VERTEX_SHADER, GL_FRAGMENT_SHADER, GL_GEOMETRY_SH
 + (instancetype)vertexShaderStringWithName:(NSString *)name;
 + (instancetype)fragmentShaderStringWithName:(NSString *)name;
 @end
+
+#pragma mark -
 
 @implementation C3DShader {
 	GLuint _name;
@@ -93,6 +124,22 @@ static GLenum glTypes[] = { GL_VERTEX_SHADER, GL_FRAGMENT_SHADER, GL_GEOMETRY_SH
 
 + (instancetype)fragmentShaderWithName:(NSString *)name {
 	return [[self alloc] initWithString:[NSString fragmentShaderStringWithName:name] type:C3DShaderTypeFragment];
+}
+
++ (instancetype)basicLegacyVertexShader {
+    return [[self alloc] initWithString:legacyVertFunc type:C3DShaderTypeVertex];
+}
+
++ (instancetype)basicLegacyFragmentShader {
+    return [[self alloc] initWithString:legacyFragFunc type:C3DShaderTypeVertex];
+}
+
++ (instancetype)basic33VertexShader {
+    return [[self alloc] initWithString:basic33VertFunc type:C3DShaderTypeVertex];
+}
+
++ (instancetype)basic33FragmentShader {
+    return [[self alloc] initWithString:basic33FragFunc type:C3DShaderTypeFragment];
 }
 
 + (C3DShaderType)typeForFileExtension:(NSString *)extension {

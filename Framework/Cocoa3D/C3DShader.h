@@ -28,6 +28,13 @@ typedef NS_ENUM(NSUInteger, C3DShaderType) {
 
 + (instancetype)vertexShaderWithName:(NSString *)name;
 + (instancetype)fragmentShaderWithName:(NSString *)name;
+
++ (instancetype)basicLegacyVertexShader;
++ (instancetype)basicLegacyFragmentShader;
+
++ (instancetype)basic33VertexShader;
++ (instancetype)basic33FragmentShader;
+
 + (C3DShaderType)typeForFileExtension:(NSString *)extension;
 + (C3DShaderType)typeForURL:(NSURL *)url;
 + (NSString *)preferredExtensionForShaderType:(C3DShaderType)type; // "vp", "fp", "gp"
