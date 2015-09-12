@@ -57,6 +57,7 @@ NSString *C3DAttributeNameForVertexBufferType(C3DVertexBufferType type) {
 @implementation C3DVertexBuffer {
 	GLuint _bufferName;
     GLenum _bufferTarget;
+    BOOL _ownsBuffer;
 }
 
 #pragma mark - NSObject
@@ -65,46 +66,52 @@ NSString *C3DAttributeNameForVertexBufferType(C3DVertexBufferType type) {
     return [NSString stringWithFormat:@"[%@ %p] %@ %tu", [self class], self, C3DAttributeNameForVertexBufferType(_type), _count];
 }
 
+- (void)dealloc {
+    if (_bufferName > 0) {
+        [self delete];
+    }
+}
+
 #pragma mark - C3DVertexBuffer
 
 - (NSString *)attributeName {
 	return C3DAttributeNameForVertexBufferType(_type);
 }
 
-// FIXME: this method is bullshit
+- (void)genBuffer {
+    NSAssert(_bufferName == 0, @"Attempt to regenerate vertex buffer");
+    glGenBuffers(1, &_bufferName);
+    _ownsBuffer = YES;
+}
+
+- (void)loadDataForBuffer:(GLuint)buffer {
+    glBindBuffer(_bufferTarget, buffer);
+    glBufferData(_bufferTarget, [_elements length], [_elements bytes], GL_STATIC_DRAW);
+}
+
 - (void)bind {
-    BOOL createAndLoad = 0 == _bufferName;
-    if (createAndLoad) {
-        glGenBuffers(1, &_bufferName);
+    if (_bufferName == 0) {
+        [self genBuffer];
+        [self loadDataForBuffer:_bufferName];
     }
-    glBindBuffer(_bufferTarget, _bufferName);
-    if (createAndLoad) {
-        glBufferData(_bufferTarget, [_elements length], [_elements bytes], GL_STATIC_DRAW);
+    else {
+        glBindBuffer(_bufferTarget, _bufferName);
     }
 }
 
 - (void)delete {
-    if (_bufferName) {
-        glDeleteBuffers(1, &_bufferName);
-        _bufferName = 0;
-    }
+    NSAssert(_bufferName > 0, @"Attempt to delete vertex buffer twice");
+    glDeleteBuffers(1, &_bufferName);
+    _bufferName = 0;
+    _ownsBuffer = NO;
 }
 
 - (void)loadInBuffer:(GLuint)buffer forProgram:(C3DProgram *)program {
-	
-    if (0 == _bufferName) {
-        _bufferName = buffer;
-    }
     
-    glBindBuffer(_bufferTarget, _bufferName);
-    glBufferData(_bufferTarget, [_elements length], [_elements bytes], GL_STATIC_DRAW);
-    
-    if (_type == C3DVertexBufferIndex) {
-		return;
-	}
+    [self loadDataForBuffer:buffer];
 
     // FIXME: responsibility of the program, not the array?
-    if (program) {
+    if (program && _type != C3DVertexBufferIndex) {
 
         GLboolean normalize = GL_FALSE;
         GLenum dataType = GL_FLOAT;
