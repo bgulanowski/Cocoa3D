@@ -36,9 +36,6 @@
 - (void)awakeFromNib {
 	[self.window makeFirstResponder:_gl3View];
 	[self.window setNextResponder:self];
-    
-    [_gl2View.camera configureStyle:CameraStyleA];
-    [_gl3View.camera configureStyle:CameraStyleB];
 }
 
 #pragma mark - NSApplicationDelegate
@@ -46,6 +43,9 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     _legacyScene = [[LegacyScene alloc] initWithPresenter:_gl2View];
     _modernScene = [[ModernScene alloc] initWithPresenter:_gl3View];
+    
+    [_gl2View.camera configureStyle:CameraStyleA];
+    [_gl3View.camera configureStyle:CameraStyleB];
 
     _gl2View.camera.drawDelegate = self;
     _gl3View.camera.drawDelegate = self;
