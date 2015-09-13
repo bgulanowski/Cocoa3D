@@ -70,16 +70,16 @@
 
 + (instancetype)origin {
     C3DObject *object = [[self alloc] initWithType:C3DObjectTypeLines];
-    object.program = [[C3DProgram alloc] init];
     object.vertexBuffers = @[[C3DVertexBuffer originColours], [C3DVertexBuffer originPositions]];
+    object.program = [[C3DProgram alloc] init];
     return object;
 }
 
 + (instancetype)test {
     C3DObject *object = [[self alloc] initWithType:C3DObjectTypeTriangles];
-    object.program = [[C3DProgram alloc] init];
     object.vertexBuffers = @[[C3DVertexBuffer testColours], [C3DVertexBuffer testPositions]];
     object.indexElements = [C3DVertexBuffer testIndices];
+    object.program = [[C3DProgram alloc] init];
     return object;
 }
 
