@@ -10,11 +10,13 @@
 
 @implementation NSOpenGLPixelFormat (Cocoa3D)
 
-+ (instancetype)C3DFormat {
++ (instancetype)C3DPixelFormatWithProfile:(NSOpenGLPixelFormatAttribute)profile {
 	
+    NSParameterAssert(profile == NSOpenGLProfileVersion3_2Core || profile == NSOpenGLProfileVersionLegacy);
+    
 	NSOpenGLPixelFormatAttribute attributes[] = {
 		NSOpenGLPFAOpenGLProfile,
-		NSOpenGLProfileVersion3_2Core,
+		profile,
 		NSOpenGLPFAAccelerated,
 		NSOpenGLPFADoubleBuffer,
 		NSOpenGLPFAColorSize, 32,
@@ -22,6 +24,18 @@
 		0
 	};
 	return [[NSOpenGLPixelFormat alloc] initWithAttributes:attributes];
+}
+
++ (instancetype)C3DModernPixelFormat {
+    return [self C3DPixelFormatWithProfile:NSOpenGLProfileVersion3_2Core];
+}
+
++ (instancetype)C3DLegacyPixelFormat {
+    return [self C3DPixelFormatWithProfile:NSOpenGLProfileVersionLegacy];
+}
+
++ (instancetype)C3DFormat {
+    return [self C3DModernPixelFormat];
 }
 
 - (GLint)profile {

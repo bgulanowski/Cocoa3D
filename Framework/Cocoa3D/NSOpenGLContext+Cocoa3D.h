@@ -19,6 +19,8 @@
 - (CGLOpenGLProfile)C3D_profile;
 #endif
 
++ (instancetype)C3DModernContext;
++ (instancetype)C3DLegacyContext;
 + (instancetype)C3DContext;
 
 @end

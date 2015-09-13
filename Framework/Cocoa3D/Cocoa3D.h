@@ -30,6 +30,9 @@
 #import <Cocoa3D/C3DVertexBuffer.h>
 #import <Cocoa3D/C3DView.h>
 
+#import <Cocoa3D/NSOpenGLContext+Cocoa3D.h>
+#import <Cocoa3D/NSOpenGLPixelFormat+Cocoa3D.h>
+
 @interface Cocoa3D : NSObject
 
 @end

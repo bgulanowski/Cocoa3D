@@ -12,6 +12,9 @@
 
 @property (nonatomic, readonly) GLint profile;
 
++ (instancetype)C3DPixelFormatWithProfile:(NSOpenGLPixelFormatAttribute)profile;
++ (instancetype)C3DModernPixelFormat;
++ (instancetype)C3DLegacyPixelFormat;
 + (instancetype)C3DFormat;
 
 @end

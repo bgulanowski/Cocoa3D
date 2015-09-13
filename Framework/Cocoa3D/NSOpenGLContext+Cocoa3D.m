@@ -43,8 +43,16 @@
 #endif
 }
 
++ (instancetype)C3DModernContext {
+	return [[self alloc] initWithFormat:[NSOpenGLPixelFormat C3DModernPixelFormat] shareContext:nil];
+}
+
++ (instancetype)C3DLegacyContext {
+    return [[self alloc] initWithFormat:[NSOpenGLPixelFormat C3DLegacyPixelFormat] shareContext:nil];
+}
+
 + (instancetype)C3DContext {
-	return [[self alloc] initWithFormat:[NSOpenGLPixelFormat C3DFormat] shareContext:nil];
+    return [self C3DModernContext];
 }
 
 @end
