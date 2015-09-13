@@ -25,8 +25,8 @@
 
 - (instancetype)initWithVertexShader:(C3DShader *)vertexShader fragmentShader:(C3DShader *)fragmentShader attributes:(NSArray *)attributes uniforms:(NSArray *)uniforms;
 - (instancetype)initWithName:(NSString *)name attributes:(NSArray *)attributes uniforms:(NSArray *)uniforms;
-- (GLuint)locationForAttribute:(NSString *)attribute;
-- (GLuint)locationForUniform:(NSString *)uniform;
+- (GLint)locationForAttribute:(NSString *)attribute;
+- (GLint)locationForUniform:(NSString *)uniform;
 
 - (void)bindUniform:(NSString *)binding toObject:(id)observable withKeyPath:(NSString *)keyPath;
 - (void)bindAttribute:(NSString *)binding toObject:(id)observable withKeyPath:(NSString *)keyPath;

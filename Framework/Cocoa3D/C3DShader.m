@@ -101,7 +101,7 @@ static GLenum glTypes[] = { GL_VERTEX_SHADER, GL_FRAGMENT_SHADER, GL_GEOMETRY_SH
 	return _name;
 }
 
-- (void)compile {
+- (BOOL)compile {
 	glCompileShader(_name);
 	
 	GLint res = 0;
@@ -116,6 +116,8 @@ static GLenum glTypes[] = { GL_VERTEX_SHADER, GL_FRAGMENT_SHADER, GL_GEOMETRY_SH
 		NSString *msg = [NSString stringWithCString:info encoding:NSUTF8StringEncoding];
 		NSLog(@"Compile error for shader: %@", msg);
 	}
+    
+    return res == GL_TRUE;
 }
 
 + (instancetype)vertexShaderWithName:(NSString *)name {

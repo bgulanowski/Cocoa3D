@@ -27,8 +27,8 @@ void *   uniformKVOContext = &uniformKVOContext;
 
 @implementation C3DProgram {
 	GLuint _name;
-	NSMutableDictionary *_attributes;
-	NSMutableDictionary *_uniforms;
+	NSDictionary *_attributeLocations;
+	NSDictionary *_uniformLocations;
 	NSMutableDictionary *_attributeBindings;
 	NSMutableDictionary *_uniformBindings;
 }
@@ -42,34 +42,24 @@ void *   uniformKVOContext = &uniformKVOContext;
     
 	self = [super init];
 	if (self) {
-		_attributes = [NSMutableDictionary dictionary];
-		_uniforms = [NSMutableDictionary dictionary];
-		_attributeBindings = [NSMutableDictionary dictionary];
-		_uniformBindings = [NSMutableDictionary dictionary];
-		_name = glCreateProgram();
-		
-		[vertexShader compile];
-		[fragmentShader compile];
-		
-		glAttachShader(_name, [vertexShader shaderName]);
-		glAttachShader(_name, [fragmentShader shaderName]);
-		glLinkProgram(_name);
-
-        if(![self linkStatus]) {
+        
+        BOOL success = [vertexShader compile] && [fragmentShader compile];
+        if (success) {
+            _name = glCreateProgram();
+            glAttachShader(_name, [vertexShader shaderName]);
+            glAttachShader(_name, [fragmentShader shaderName]);
+            glLinkProgram(_name);
+            success = [self linkStatus];
+        }
+        if(success) {
+            _attributeLocations = [self locationsForAttributes:attributes];
+            _uniformLocations = [self locationsForUniforms:uniforms];
+            _attributeBindings = [NSMutableDictionary dictionary];
+            _uniformBindings = [NSMutableDictionary dictionary];
+        }
+        else {
             NSLog(@"Failed to link program: %@", [self linkLog]);
-        }
-
-        for (NSString *attributeName in attributes) {
-            GLint const location = glGetAttribLocation(_name, [attributeName UTF8String]);
-            if (location > -1) {
-                _attributes[attributeName] = @(location);
-            }
-        }
-        for (NSString *uniformName in uniforms) {
-            GLint const location = glGetUniformLocation(_name, [uniformName UTF8String]);
-            if (location > -1) {
-                _uniforms[uniformName] = @(location);
-            }
+            self = nil;
         }
     }
 	
@@ -90,6 +80,28 @@ void *   uniformKVOContext = &uniformKVOContext;
 }
 
 #pragma mark - C3DProgram
+
+- (NSDictionary *)locationsForAttributes:(NSArray *)attributes {
+    NSMutableDictionary *locations = [NSMutableDictionary dictionary];
+    for (NSString *attributeName in attributes) {
+        GLint const location = glGetAttribLocation(_name, [attributeName UTF8String]);
+        if (location > -1) {
+            locations[attributeName] = @(location);
+        }
+    }
+    return locations;
+}
+
+- (NSDictionary *)locationsForUniforms:(NSArray *)uniforms {
+    NSMutableDictionary *locations = [NSMutableDictionary dictionary];
+    for (NSString *uniformName in uniforms) {
+        GLint const location = glGetUniformLocation(_name, [uniformName UTF8String]);
+        if (location > -1) {
+            locations[uniformName] = @(location);
+        }
+    }
+    return locations;
+}
 
 - (instancetype)initWithName:(NSString *)name attributes:(NSArray *)attributes uniforms:(NSArray *)uniforms {
     NSParameterAssert(name);
@@ -130,12 +142,14 @@ void *   uniformKVOContext = &uniformKVOContext;
     return [NSString stringWithUTF8String:logs];
 }
 
-- (GLuint)locationForAttribute:(NSString *)attribute {
-	return (GLuint)[_attributes[attribute] unsignedIntValue];
+- (GLint)locationForAttribute:(NSString *)attribute {
+    NSNumber *location = _attributeLocations[attribute];
+    return location != nil ? [location intValue] : -1;
 }
 
-- (GLuint)locationForUniform:(NSString *)uniform {
-	return (GLuint)[_uniforms[uniform] unsignedIntValue];
+- (GLint)locationForUniform:(NSString *)uniform {
+    NSNumber *location = _uniformLocations[uniform];
+    return location != nil ? [location intValue] : -1;
 }
 
 - (void)bindAttribute:(NSString *)binding toObject:(id)observable withKeyPath:(NSString *)keyPath {
@@ -151,7 +165,10 @@ void *   uniformKVOContext = &uniformKVOContext;
 }
 
 - (void)loadMVPMatrix:(C3DTransform *)matrix {
-	glUniformMatrix4fv([self locationForUniform:@"MVP"], 1, GL_FALSE, matrix.r_matrix->i);
+    GLint location = [self locationForUniform:@"MVP"];
+    if (location != -1) {
+        glUniformMatrix4fv(location, 1, GL_FALSE, matrix.r_matrix->i);
+    }
 }
 
 @end

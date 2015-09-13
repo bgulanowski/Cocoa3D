@@ -24,7 +24,7 @@ typedef NS_ENUM(NSUInteger, C3DShaderType) {
 - (instancetype)initWithName:(NSString *)name;
 
 - (GLuint)shaderName;
-- (void)compile;
+- (BOOL)compile;
 
 + (instancetype)vertexShaderWithName:(NSString *)name;
 + (instancetype)fragmentShaderWithName:(NSString *)name;
