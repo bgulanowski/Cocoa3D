@@ -72,14 +72,24 @@ static CVReturn C3DViewDisplayLink(CVDisplayLinkRef displayLink,
 	_diagRate = _movementRate*M_SQRT1_2;
 }
 
-- (id<C3DCameraDrawDelegate>)drawDelegate
-{
+- (id<C3DCameraDrawDelegate>)drawDelegate {
     return self.camera.drawDelegate;
 }
 
-- (void)setDrawDelegate:(id<C3DCameraDrawDelegate>)drawDelegate
-{
+- (void)setDrawDelegate:(id<C3DCameraDrawDelegate>)drawDelegate {
     self.camera.drawDelegate = drawDelegate;
+}
+
+- (void)setUsesModernContext:(BOOL)usesModernContext {
+    if (_usesModernContext != usesModernContext) {
+        _usesModernContext = usesModernContext;
+        if (_usesModernContext) {
+            [self useModernContext];
+        }
+        else {
+            [self useLegacyContext];
+        }
+    }
 }
 
 #pragma mark - NSCoding
@@ -161,7 +171,7 @@ static CVReturn C3DViewDisplayLink(CVDisplayLinkRef displayLink,
 
 - (void)mouseMoved:(NSEvent *)theEvent {
 	
-	if (_trackMouse) {
+	if (_tracksMouse) {
 		NSPoint loc = [self convertPointFromBacking:[theEvent locationInWindow]];
 //        if (fabs(mouseLocation.x - loc.x)>2 && fabs(mouseLocation.y-loc.y)>2) {
 //            NSLog(@"Mouse at %@", NSStringFromPoint(loc));
@@ -190,6 +200,12 @@ static CVReturn C3DViewDisplayLink(CVDisplayLinkRef displayLink,
 		[_camera capture];
         CGLUnlockContext(cglContext);
 	}
+}
+
+#pragma mark - NSOpenGLView
+
+- (void)setOpenGLContext:(NSOpenGLContext *)openGLContext {
+    self.camera = [C3DCamera cameraForGLContext:openGLContext];
 }
 
 #pragma mark - Input Handlers
@@ -331,12 +347,12 @@ static CVReturn C3DViewDisplayLink(CVDisplayLinkRef displayLink,
 #pragma mark - Notifications
 
 - (void)windowDidBecomeMain:(NSNotification *)notif {
-	if (!_drawInBackground && _displayLink)
+	if (!_drawsInBackground && _displayLink)
 		CVDisplayLinkStart(_displayLink);
 }
 
 - (void)windowDidResignMain:(NSNotification *)notif {
-	if (!_drawInBackground && _displayLink)
+	if (!_drawsInBackground && _displayLink)
 		CVDisplayLinkStop(_displayLink);
 }
 
@@ -363,10 +379,11 @@ static CVReturn C3DViewDisplayLink(CVDisplayLinkRef displayLink,
 }
 
 - (void)useModernContext {
-	if ([self pixelFormat].profile == NSOpenGLProfileVersionLegacy) {
-		[self setOpenGLContext:[NSOpenGLContext C3DContext]];
-		self.camera = [C3DCamera cameraForGLContext:self.openGLContext];
-	}
+    self.openGLContext = [NSOpenGLContext C3DContext];
+}
+
+- (void)useLegacyContext {
+    self.openGLContext = [NSOpenGLContext C3DLegacyContext];
 }
 
 @end

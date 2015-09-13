@@ -16,11 +16,10 @@
 
 @property (nonatomic, strong) C3DCamera *camera;
 @property (nonatomic) GLfloat movementRate;
-@property (nonatomic) BOOL drawInBackground;
-@property (nonatomic) BOOL trackMouse;
+@property (nonatomic) BOOL drawsInBackground;
+@property (nonatomic) BOOL tracksMouse;
+@property (nonatomic) BOOL usesModernContext;
 
 @property (nonatomic) IBOutlet id<C3DCameraDrawDelegate>drawDelegate;
-
-- (void)useModernContext;
 
 @end

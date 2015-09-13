@@ -55,7 +55,7 @@ typedef NS_ENUM(NSUInteger, C3DCameraProjectionStyle) {
 
 @protocol C3DCameraDrawDelegate<NSObject>
 - (void)paintForCamera:(C3DCamera *)camera;
-- (id<C3DObjectContainer>)objectContainer;
+- (id<C3DObjectContainer>)objectContainerForCamera:(C3DCamera *)camera;
 @end
 
 @class C3DTransform;

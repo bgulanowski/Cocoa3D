@@ -271,7 +271,7 @@ NSString *C3DCameraOptionsToString(C3DCameraOptions _options) {
 
 - (void)setDrawDelegate:(id<C3DCameraDrawDelegate>)drawDelegate {
 	_drawDelegate = drawDelegate;
-	_container = [_drawDelegate objectContainer];
+	_container = [_drawDelegate objectContainerForCamera:self];
 }
 
 #pragma mark - NSObject

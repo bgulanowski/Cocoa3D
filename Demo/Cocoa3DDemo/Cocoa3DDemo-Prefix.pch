@@ -6,4 +6,5 @@
 
 #ifdef __OBJC__
 	#import <Cocoa/Cocoa.h>
+    #import <Cocoa3D/Cocoa3D.h>
 #endif

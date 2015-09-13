@@ -48,9 +48,9 @@
 		84C1EACB19860C49002760E4 /* C3DCamera_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 84C1EACA19860C49002760E4 /* C3DCamera_Private.h */; };
 		84CED76619741F2F00FFF722 /* C3DShader.h in Headers */ = {isa = PBXBuildFile; fileRef = 84CED76419741F2F00FFF722 /* C3DShader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		84CED76719741F2F00FFF722 /* C3DShader.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CED76519741F2F00FFF722 /* C3DShader.m */; };
-		84D7F81919C6132500CC2B70 /* NSOpenGLContext+Cocoa3D.h in Headers */ = {isa = PBXBuildFile; fileRef = 84D7F81719C6132500CC2B70 /* NSOpenGLContext+Cocoa3D.h */; };
+		84D7F81919C6132500CC2B70 /* NSOpenGLContext+Cocoa3D.h in Headers */ = {isa = PBXBuildFile; fileRef = 84D7F81719C6132500CC2B70 /* NSOpenGLContext+Cocoa3D.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		84D7F81A19C6132500CC2B70 /* NSOpenGLContext+Cocoa3D.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D7F81819C6132500CC2B70 /* NSOpenGLContext+Cocoa3D.m */; };
-		84D7F81F19C6136700CC2B70 /* NSOpenGLPixelFormat+Cocoa3D.h in Headers */ = {isa = PBXBuildFile; fileRef = 84D7F81D19C6136700CC2B70 /* NSOpenGLPixelFormat+Cocoa3D.h */; };
+		84D7F81F19C6136700CC2B70 /* NSOpenGLPixelFormat+Cocoa3D.h in Headers */ = {isa = PBXBuildFile; fileRef = 84D7F81D19C6136700CC2B70 /* NSOpenGLPixelFormat+Cocoa3D.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		84D7F82019C6136700CC2B70 /* NSOpenGLPixelFormat+Cocoa3D.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D7F81E19C6136700CC2B70 /* NSOpenGLPixelFormat+Cocoa3D.m */; };
 		84F7E24B1A1C508D008AD005 /* Cocoa3D.h in Headers */ = {isa = PBXBuildFile; fileRef = 849D2B1D196FD4C70051F434 /* Cocoa3D.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		84F99EAB1A504B7F008EEA65 /* C3DColour.h in Headers */ = {isa = PBXBuildFile; fileRef = 84F99EA91A504B7F008EEA65 /* C3DColour.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -324,19 +324,19 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84D7F81919C6132500CC2B70 /* NSOpenGLContext+Cocoa3D.h in Headers */,
+				84D7F81F19C6136700CC2B70 /* NSOpenGLPixelFormat+Cocoa3D.h in Headers */,
 				844833B31BA44E4E00F657AE /* C3DObject+C3DPolyhedra.h in Headers */,
 				849D2B89196FD5D30051F434 /* C3DCamera.h in Headers */,
 				84C1EAC819860B8C002760E4 /* C3DCameraGL1.h in Headers */,
 				844833BA1BA450E200F657AE /* C3DConstants.h in Headers */,
 				84AFA92E19A97C8500296196 /* C3DCameraGL3.h in Headers */,
 				84552029198EE10D00571109 /* C3DLight.h in Headers */,
-				84D7F81919C6132500CC2B70 /* NSOpenGLContext+Cocoa3D.h in Headers */,
 				845ADD9419FC2CBD0034CE4C /* C3DMotion.h in Headers */,
 				849D2B8D196FD5F00051F434 /* C3DObject.h in Headers */,
 				84F7E24B1A1C508D008AD005 /* Cocoa3D.h in Headers */,
 				849D2B91196FD6160051F434 /* C3DProgram.h in Headers */,
 				84C1EACB19860C49002760E4 /* C3DCamera_Private.h in Headers */,
-				84D7F81F19C6136700CC2B70 /* NSOpenGLPixelFormat+Cocoa3D.h in Headers */,
 				84CED76619741F2F00FFF722 /* C3DShader.h in Headers */,
 				84F99EAB1A504B7F008EEA65 /* C3DColour.h in Headers */,
 				849D2B95196FD65F0051F434 /* C3DTexture.h in Headers */,
