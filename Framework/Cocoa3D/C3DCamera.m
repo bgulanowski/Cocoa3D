@@ -294,6 +294,7 @@ NSString *C3DCameraOptionsToString(C3DCameraOptions _options) {
 	}
 	if(self) {
         _transform = [C3DTransform identity];
+        _projection = [C3DTransform identity];
 		_focusPosition = [LIPoint pointWithX:0 y:0 z:0 w:0];
 		_backgroundColor = (C3DColour_t){.r = 0.0f, .g = 0.0f, .b = 0.0f, .a = 1.0f};
 		_lightColor = (C3DColour_t){.r = 0.5f, .g = 0.5f, .b = 0.5f, .a = 1.0f};
