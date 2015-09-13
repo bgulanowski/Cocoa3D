@@ -19,6 +19,9 @@
 - (instancetype)initWithPresenter:(id<ScenePresenter>)presenter {
     self = [super init];
     if (self) {
+        if (!presenter.usesModernContext) {
+            presenter.usesModernContext = YES;
+        }
         [[presenter openGLContext] makeCurrentContext];
          _rootNode = [C3DNode demoScene];
     }
@@ -30,7 +33,7 @@
 #pragma mark - C3DObjectContainer
 
 - (NSArray *)sortedObjectsForCamera:(C3DCamera *)camera {
-    return @[];
+    return @[_rootNode];
 }
 
 @end
