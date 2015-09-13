@@ -35,7 +35,6 @@ static CVReturn C3DViewDisplayLink(CVDisplayLinkRef displayLink,
 	dispatch_source_t _drawTimer;
 }
 
-
 #pragma mark - Private
 
 - (void)updateDisplayLinkScreen {
@@ -81,15 +80,18 @@ static CVReturn C3DViewDisplayLink(CVDisplayLinkRef displayLink,
 }
 
 - (void)setUsesModernContext:(BOOL)usesModernContext {
-    if (_usesModernContext != usesModernContext) {
-        _usesModernContext = usesModernContext;
-        if (_usesModernContext) {
+    if (self.usesModernContext != usesModernContext) {
+        if (usesModernContext) {
             [self useModernContext];
         }
         else {
             [self useLegacyContext];
         }
     }
+}
+
+- (BOOL)usesModernContext {
+    return self.openGLContext.usesCoreProfile;
 }
 
 #pragma mark - NSCoding
@@ -205,6 +207,7 @@ static CVReturn C3DViewDisplayLink(CVDisplayLinkRef displayLink,
 #pragma mark - NSOpenGLView
 
 - (void)setOpenGLContext:(NSOpenGLContext *)openGLContext {
+    [super setOpenGLContext:openGLContext];
     self.camera = [C3DCamera cameraForGLContext:openGLContext];
 }
 
