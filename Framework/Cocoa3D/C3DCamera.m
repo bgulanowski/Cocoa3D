@@ -338,11 +338,14 @@ NSString *C3DCameraOptionsToString(C3DCameraOptions _options) {
 -(void)rotateX:(GLfloat)xDeg y:(GLfloat)yDeg {
 
 	// X rotation goes about Y axis, and vice versa
-	LIMatrix_t m = LIMatrixMakeWithYAxisRotation((_xRot+xDeg) * M_PI/180.0f);
-	LIMatrix_t t = LIMatrixMakeWithXAxisRotation(yDeg * M_PI/180.0f);
-	m = LIMatrixConcatenate(&m, &t);
-	t = LIMatrixMakeWithYAxisRotation(-_xRot * M_PI/180.0f);
-	m = LIMatrixConcatenate(&m, &t);
+    // unwide the pitch before applying yaw, to prevent unintentional roll (avoid left/right tilt)
+    // not 100% sure why this (applying the new pitch amount first) works
+    // I get a bit confused by the significance of the concatenation order
+    LIMatrix_t m = LIMatrixMakeWithXAxisRotation((_yRot+yDeg) * M_PI/180.0f);
+    LIMatrix_t t = LIMatrixMakeWithYAxisRotation(xDeg * M_PI/180.0f);
+    m = LIMatrixConcatenate(&m, &t);
+    t = LIMatrixMakeWithXAxisRotation(-_yRot * M_PI/180.0f);
+    m = LIMatrixConcatenate(&m, &t);
 	m = LIMatrixConcatenate(&m, _transform.r_matrix);
 	_transform = [C3DTransform matrixWithMatrix:m];
 	
@@ -409,8 +412,15 @@ NSString *C3DCameraOptionsToString(C3DCameraOptions _options) {
 	if(_changes.depthOn)  _options.depthOn  ? glEnable(GL_DEPTH_TEST) : glDisable(GL_DEPTH_TEST);
 	
 #if ! TARGET_OS_IPHONE
-	if(_changes.frontMode) glPolygonMode(GL_FRONT, C3DPolygonModeToGL(self.frontMode));
-	if(_changes.backMode)  glPolygonMode(GL_BACK, C3DPolygonModeToGL(self.backMode));
+    // OpenGL 3+ requires changing both frant and back together, but GL2 supports different values
+    BOOL restoreBackMode = NO;
+    if(_changes.frontMode) {
+        glPolygonMode(GL_FRONT_AND_BACK, C3DPolygonModeToGL(self.frontMode));
+        restoreBackMode = _options.frontMode != _options.backMode;
+    }
+    if (_changes.backMode || restoreBackMode) {
+        glPolygonMode(GL_BACK, C3DPolygonModeToGL(self.backMode));
+    }
 #endif
 	
 	if(_colorChanges.background) {
