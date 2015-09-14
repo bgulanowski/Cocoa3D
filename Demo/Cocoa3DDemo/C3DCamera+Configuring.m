@@ -18,14 +18,14 @@
 }
 
 - (void)configureStyleA {
-    self.backgroundColor = (C3DColour_t){0, 1, 0, 1};
+    self.backgroundColor = (C3DColour_t){0, 0.5f, 0, 1};
     self.projectionStyle = C3DCameraProjectionOrthographic;
     // 1 unit in GL equals 32 points on-screen
     self.scale = 1.0/32.0;
 }
 
 - (void)configureStyleB {
-    self.backgroundColor = (C3DColour_t){1, 0, 0, 1};
+    self.backgroundColor = (C3DColour_t){0.5f, 0, 0, 1};
 }
 
 - (SEL)configurationSelectorForStyle:(CameraStyle)style {
@@ -35,6 +35,7 @@
 
 - (void)configureStyle:(CameraStyle)style {
     self.transform = [C3DTransform newDemoTransform];
+    [self configureDebugOptions];
     objc_msgSend(self, [self configurationSelectorForStyle:style]);
 }
 
