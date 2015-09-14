@@ -47,7 +47,7 @@ static C3DVertexBuffer *unitColours;
 
 + (instancetype)unitRegularTetrahedron {
     GLuint indices[] = {
-        0, 3, 1,
+        0, 3, 6,
         0, 5, 3,
         0, 6, 5,
         3, 5, 6
@@ -125,9 +125,9 @@ static C3DVertexBuffer *unitColours;
     };
     GLuint indices[] = {
         0, 2, 1,
-        0, 3, 1,
-        1, 3, 2,
-        2, 3, 0
+        0, 1, 3,
+        1, 2, 3,
+        2, 0, 3
     };
     
     C3DVertexBuffer *pBuffer = [C3DVertexBuffer positionsWithElements:&(points[0].x)  count:4];
