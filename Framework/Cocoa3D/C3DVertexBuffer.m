@@ -121,8 +121,14 @@ NSString *C3DAttributeNameForVertexBufferType(C3DVertexBufferType type) {
             dataType = GL_INT;
         }
         
+        // FIXME: this has to happen every time this buffer is used to draw a primitive with this program
+        // but we DON'T have to load the data every time, obviously!
+        // WAIT, WAIT, WAIT! Except that when we BIND the Vertex Array Object for the C3DObject,
+        // all of the associated vertex buffers should be assigned automatically, right?
         GLuint location = [program locationForAttribute:C3DAttributeNameForVertexBufferType(_type)];
         
+        // THIS is probably UNNECESSARY - we're not using GENERIC vertex attributes
+        // WAIT!! Is every vertex array accessed by shaders generic? Or are they specific position, color, normal, lighting, etc?
         glEnableVertexAttribArray(location);
         glVertexAttribPointer(location, C3DSizeForVertexBufferType(_type), dataType, normalize, 0, 0);
     }

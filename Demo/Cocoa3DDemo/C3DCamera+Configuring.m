@@ -11,8 +11,8 @@
 
 @implementation C3DCamera (Configuring)
 
-- (void)configureDebugOptions {
-    self.cullingOn = YES;
+- (void)configureOptions {
+    self.cullingOn = NO;
     self.depthOn = YES;
     self.lightsOn = NO;
 }
@@ -26,6 +26,7 @@
 
 - (void)configureStyleB {
     self.backgroundColor = (C3DColour_t){0.5f, 0, 0, 1};
+    self.showOriginOn = YES;
 }
 
 - (SEL)configurationSelectorForStyle:(CameraStyle)style {
@@ -35,7 +36,7 @@
 
 - (void)configureStyle:(CameraStyle)style {
     self.transform = [C3DTransform newDemoTransform];
-    [self configureDebugOptions];
+    [self configureOptions];
     objc_msgSend(self, [self configurationSelectorForStyle:style]);
 }
 

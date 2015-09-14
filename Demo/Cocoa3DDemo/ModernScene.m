@@ -33,7 +33,7 @@
 #pragma mark - C3DObjectContainer
 
 - (NSArray *)sortedObjectsForCamera:(C3DCamera *)camera {
-    return @[_rootNode];
+    return _rootNode ? @[_rootNode] : @[];
 }
 
 @end

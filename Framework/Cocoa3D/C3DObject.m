@@ -36,6 +36,9 @@
 
 - (void)setProgram:(C3DProgram *)program {
     // FIXME: Should this only release if removing program, and allocate if adding program? Or not at all?
+    if (_vertexBuffers.count == 0) {
+        NSLog(@"WARNING: No vertex buffers available when setting program; nothing to draw!");
+    }
 	if (_program != program) {
 		if (_program) {
 			[self releaseBuffers];
