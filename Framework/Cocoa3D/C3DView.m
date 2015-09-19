@@ -29,10 +29,11 @@ static CVReturn C3DViewDisplayLink(CVDisplayLinkRef displayLink,
 }
 
 @implementation C3DView {
+    LIVector_t _direction;
 	NSPoint mouseLocation;
-	GLfloat _diagRate;
 	CVDisplayLinkRef _displayLink;
 	dispatch_source_t _drawTimer;
+    BOOL _moveFast;
 }
 
 #pragma mark - Private
@@ -65,11 +66,6 @@ static CVReturn C3DViewDisplayLink(CVDisplayLinkRef displayLink,
 }
 
 #pragma mark - Accessors
-
-- (void)setMovementRate:(GLfloat)rate {
-	_movementRate = rate;
-	_diagRate = _movementRate*M_SQRT1_2;
-}
 
 - (id<C3DCameraDrawDelegate>)drawDelegate {
     return self.camera.drawDelegate;
@@ -114,17 +110,27 @@ static CVReturn C3DViewDisplayLink(CVDisplayLinkRef displayLink,
 - (void)keyDown:(NSEvent *)theEvent {
 	if ([theEvent isARepeat])
 		return;
-	[self processKeys:[theEvent characters] up:NO];
+	[self processKeys:[theEvent charactersIgnoringModifiers] up:NO];
+    [self updateVelocity];
 	if (!_displayLink && _camera.moving) {
 		[self startDrawTimer];
 	}
 }
 
 - (void)keyUp:(NSEvent *)theEvent {
-	[self processKeys:[theEvent characters] up:YES];
+	[self processKeys:[theEvent charactersIgnoringModifiers] up:YES];
+    [self updateVelocity];
 	if (!_displayLink && !self.camera.moving) {
 		[self cancelDrawTimer];
 	}
+}
+
+- (void)flagsChanged:(NSEvent *)theEvent {
+    BOOL moveFast = (theEvent.modifierFlags & NSShiftKeyMask) == NSShiftKeyMask;
+    if (moveFast != _moveFast) {
+        _moveFast = moveFast;
+        [self updateVelocity];
+    }
 }
 
 -(void)mouseDown:(NSEvent *)theEvent {
@@ -224,18 +230,22 @@ static CVReturn C3DViewDisplayLink(CVDisplayLinkRef displayLink,
 	for(NSUInteger i=0; i<len; ++i) {
 		switch ([characters characterAtIndex:i]) {
 			case 's':
+            case 'S':
 				back = YES;
 				forward = NO;
 				break;
 			case 'w':
+            case 'W':
 				forward = YES;
 				back = NO;
 				break;
 			case 'a':
+            case 'A':
 				left = YES;
 				right = NO;
 				break;
 			case 'd':
+            case 'D':
 				right = YES;
 				left = NO;
 				break;
@@ -244,52 +254,55 @@ static CVReturn C3DViewDisplayLink(CVDisplayLinkRef displayLink,
 		}
 	}
 	
-	LIVector_t vector = _camera.velocity.vector;
-	
 	if (up) {
 		if (forward || back) {
-			vector.z = 0;
+			_direction.z = 0;
 		}
 		if (left || right) {
-			vector.x = 0;
+			_direction.x = 0;
 		}
 	}
 	else {
 		if (forward) {
 			if (left) {
-				vector.z = _diagRate;
-				vector.x = _diagRate;
+				_direction.z = 1;
+				_direction.x = 1;
 			}
 			else if (right) {
-				vector.z = _diagRate;
-				vector.x = -_diagRate;
+				_direction.z = 1;
+				_direction.x = -1;
 			}
 			else {
-				vector.z = _movementRate;
+				_direction.z = 1;
 			}
 		}
 		else if (back) {
 			if (left) {
-				vector.z = -_diagRate;
-				vector.x = _diagRate;
+				_direction.z = -1;
+				_direction.x = 1;
 			}
 			else if (right) {
-				vector.z = -_diagRate;
-				vector.x = -_diagRate;
+				_direction.z = -1;
+				_direction.x = -1;
 			}
 			else {
-				vector.z = -_movementRate;
+				_direction.z = -1;
 			}
 		}
 		else if (left) {
-			vector.x = _movementRate;
+			_direction.x = 1;
 		}
 		else if (right) {
-			vector.x = -_movementRate;
+			_direction.x = -1;
 		}
 	}
-	
-	_camera.velocity = [LIVector vectorWithVector:vector];
+}
+
+- (void)updateVelocity {
+    LIVector_t vector = LIVectorNormalize(_direction);
+    float rate = _moveFast ? _movementRate * 8.0 : _movementRate;
+    vector = LIVectorScale(vector, rate);
+    _camera.velocity = [LIVector vectorWithVector:vector];
 }
 
 - (void)mouseLook {

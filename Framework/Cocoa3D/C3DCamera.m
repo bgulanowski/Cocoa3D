@@ -327,7 +327,7 @@ NSString *C3DCameraOptionsToString(C3DCameraOptions _options) {
 }
 
 - (void)translateX:(GLfloat)dx y:(GLfloat)dy z:(GLfloat)dz {
-	[self translateWithVector:LIVectorMake(dx, dy, dz)];
+	[self translateWithVector:LIVectorMake(-dx, -dy, dz)];
 }
 
 - (void)rotateBy:(GLfloat)degrees about:(LIVector *)axis {
