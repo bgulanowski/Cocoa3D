@@ -102,11 +102,11 @@ NSString *C3DCameraOptionsToString(C3DCameraOptions _options) {
 #pragma mark - Accessors
 
 - (void)setPosition:(LIPoint *)position {
-	_transform.location = position;
+    _transform.location = [LIPoint pointWithPoint:LIPointScale(position.point, -1.0f)];
 }
 
 - (LIPoint *)position {
-	return _transform.location;
+    return [LIPoint pointWithPoint:LIPointScale(_transform.location.point, -1.0f)];
 }
 
 - (BOOL)areLightsOn {
@@ -323,7 +323,7 @@ NSString *C3DCameraOptionsToString(C3DCameraOptions _options) {
 	LIPoint *l = _transform.location;
 	LIPoint_t p = l.point;
 	l.point = LIPointTranslate(p, vector);
-	self.position = l;
+    _transform.location = l;
 }
 
 - (void)translateX:(GLfloat)dx y:(GLfloat)dy z:(GLfloat)dz {
@@ -379,8 +379,7 @@ NSString *C3DCameraOptionsToString(C3DCameraOptions _options) {
 }
 
 - (void)updatePosition:(NSTimeInterval)interval {
-	LIVector_t v = _velocity.vector;
-	[self translateWithVector:LIVectorMake(v.x*interval, v.y*interval, v.z*interval)];
+	[self translateWithVector:LIVectorScale(_velocity.vector, interval)];
 }
 
 - (void)updateProjectionForViewportSize:(CGSize)size {
