@@ -67,7 +67,14 @@
 - (void)paintForCamera:(C3DCamera *)camera {
     
     [_program prepareToDraw];
-    [_program loadMVPMatrix:[camera currentTransform]];
+    C3DTransform *transform;
+    if (_ignoresTransform) {
+        transform = [camera currentRelativeTransform];
+    }
+    else {
+        transform = [camera currentTransform];
+    }
+    [_program loadMVPMatrix:transform];
     
     if (_vao) {
         // Binding the vertex array automatically binds all the individual arrays (VBOs)
