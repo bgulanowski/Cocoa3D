@@ -378,6 +378,14 @@ NSString *C3DCameraOptionsToString(C3DCameraOptions _options) {
 	return transform;
 }
 
+- (C3DTransform *)currentRelativeTransform {
+    C3DTransform *transform = [_projection copy];
+    if ([_transformStack count]) {
+        [transform concatenate:[_transformStack lastObject]];
+    }
+    return transform;
+}
+
 - (void)updatePosition:(NSTimeInterval)interval {
 	[self translateWithVector:LIVectorScale(_velocity.vector, interval)];
 }
