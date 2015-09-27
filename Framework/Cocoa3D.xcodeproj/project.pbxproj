@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		842015E3198D22F400853E68 /* C3DTransform.h in Headers */ = {isa = PBXBuildFile; fileRef = 842015E1198D22F400853E68 /* C3DTransform.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		842015E4198D22F400853E68 /* C3DTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = 842015E2198D22F400853E68 /* C3DTransform.m */; };
+		842DBA6F1BB87DAF00072D46 /* BAFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 842DBA6E1BB87DAF00072D46 /* BAFoundation.framework */; };
+		842DBA741BB87DB300072D46 /* liblimath.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B8F1471A178B48000C1AE5 /* liblimath.a */; };
 		844833B31BA44E4E00F657AE /* C3DObject+C3DPolyhedra.h in Headers */ = {isa = PBXBuildFile; fileRef = 844833B11BA44E4E00F657AE /* C3DObject+C3DPolyhedra.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		844833B41BA44E4E00F657AE /* C3DObject+C3DPolyhedra.m in Sources */ = {isa = PBXBuildFile; fileRef = 844833B21BA44E4E00F657AE /* C3DObject+C3DPolyhedra.m */; settings = {ASSET_TAGS = (); }; };
 		844833BA1BA450E200F657AE /* C3DConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 844833B91BA450E200F657AE /* C3DConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -112,6 +114,7 @@
 /* Begin PBXFileReference section */
 		842015E1198D22F400853E68 /* C3DTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C3DTransform.h; sourceTree = "<group>"; };
 		842015E2198D22F400853E68 /* C3DTransform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C3DTransform.m; sourceTree = "<group>"; };
+		842DBA6E1BB87DAF00072D46 /* BAFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BAFoundation.framework; path = ../../../../../Shared/Xcode/Products/Debug/BAFoundation.framework; sourceTree = "<group>"; };
 		844833B11BA44E4E00F657AE /* C3DObject+C3DPolyhedra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "C3DObject+C3DPolyhedra.h"; sourceTree = "<group>"; };
 		844833B21BA44E4E00F657AE /* C3DObject+C3DPolyhedra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "C3DObject+C3DPolyhedra.m"; sourceTree = "<group>"; };
 		844833B91BA450E200F657AE /* C3DConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C3DConstants.h; sourceTree = "<group>"; };
@@ -180,6 +183,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				842DBA741BB87DB300072D46 /* liblimath.a in Frameworks */,
+				842DBA6F1BB87DAF00072D46 /* BAFoundation.framework in Frameworks */,
 				849D2B27196FD4C70051F434 /* Cocoa.framework in Frameworks */,
 				849D2B26196FD4C70051F434 /* XCTest.framework in Frameworks */,
 				849D2B2A196FD4C70051F434 /* Cocoa3D.framework in Frameworks */,
@@ -212,6 +217,7 @@
 		849D2B0F196FD4C70051F434 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				842DBA6E1BB87DAF00072D46 /* BAFoundation.framework */,
 				84C1EAC419859256002760E4 /* LichenMath.framework */,
 				849D2B10196FD4C70051F434 /* Cocoa.framework */,
 				849D2B25196FD4C70051F434 /* XCTest.framework */,
