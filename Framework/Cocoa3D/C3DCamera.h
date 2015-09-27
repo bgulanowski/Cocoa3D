@@ -123,6 +123,9 @@ typedef NS_ENUM(NSUInteger, C3DCameraProjectionStyle) {
 - (void)revertViewTransform;
 - (C3DTransform *)currentTransform;
 - (C3DTransform *)currentRelativeTransform;
+- (C3DTransform *)rotation;
+
+- (LILine_t)lineOfView;
 
 - (void)updatePosition:(NSTimeInterval)interval;
 - (void)updateProjectionForViewportSize:(CGSize)size;

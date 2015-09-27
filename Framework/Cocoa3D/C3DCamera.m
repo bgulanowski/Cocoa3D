@@ -36,6 +36,8 @@ const GLenum primitiveTypes[] = {
 	GL_TRIANGLE_FAN,
 };
 
+const float DEG_2_RAD = (float)(M_PI/180.0);
+
 #if ! TARGET_OS_IPHONE
 NSString *C3DStringForPolygonMode(C3DPolygonMode mode) {
     switch (mode) {
@@ -332,7 +334,7 @@ NSString *C3DCameraOptionsToString(C3DCameraOptions _options) {
 
 - (void)rotateBy:(GLfloat)degrees about:(LIVector *)axis {
 	LIVector_t v = axis.vector;
-	[_transform rotate:LIRotationMake(v.x, v.y, v.z, degrees * M_PI/180.0f)];
+	[_transform rotate:LIRotationMake(v.x, v.y, v.z, degrees * DEG_2_RAD)];
 }
 
 -(void)rotateX:(GLfloat)xDeg y:(GLfloat)yDeg {
@@ -341,10 +343,10 @@ NSString *C3DCameraOptionsToString(C3DCameraOptions _options) {
     // unwide the pitch before applying yaw, to prevent unintentional roll (avoid left/right tilt)
     // not 100% sure why this (applying the new pitch amount first) works
     // I get a bit confused by the significance of the concatenation order
-    LIMatrix_t m = LIMatrixMakeWithXAxisRotation((_yRot+yDeg) * M_PI/180.0f);
-    LIMatrix_t t = LIMatrixMakeWithYAxisRotation(xDeg * M_PI/180.0f);
+    LIMatrix_t m = LIMatrixMakeWithXAxisRotation((_yRot+yDeg) * DEG_2_RAD);
+    LIMatrix_t t = LIMatrixMakeWithYAxisRotation(xDeg * DEG_2_RAD);
     m = LIMatrixConcatenate(&m, &t);
-    t = LIMatrixMakeWithXAxisRotation(-_yRot * M_PI/180.0f);
+    t = LIMatrixMakeWithXAxisRotation(-_yRot * DEG_2_RAD);
     m = LIMatrixConcatenate(&m, &t);
 	m = LIMatrixConcatenate(&m, _transform.r_matrix);
 	_transform = [C3DTransform matrixWithMatrix:m];
@@ -386,6 +388,28 @@ NSString *C3DCameraOptionsToString(C3DCameraOptions _options) {
     return transform;
 }
 
+- (C3DTransform *)rotation {
+    LIMatrix_t ry = LIMatrixMakeWithYAxisRotation(-_xRot * DEG_2_RAD);
+    LIMatrix_t rx = LIMatrixMakeWithXAxisRotation(-_yRot * DEG_2_RAD);
+    LIMatrix_t m = LIMatrixConcatenate(&ry, &rx);
+    return [[C3DTransform alloc] initWithMatrix:m];
+}
+
+
+- (LILine_t)lineOfView {
+    
+    C3DTransform *rotation = [self rotation];
+    LIMatrix_t *r_m = rotation.r_matrix;
+
+    LIPoint_t p = LIPointScale(_transform.matrix.v[3], -1.0f);
+    p = LIPointAlign(LIMatrixTransformPoint(&p, r_m));
+    
+    LIPoint_t d = LIPointMake(0, 0, -1.0f, 1.0f);
+    d = LIMatrixTransformPoint(&d, r_m);
+    LIVector_t v = LIVectorFromPoint(d);
+    
+    return LILineMake(p, v);
+}
 - (void)updatePosition:(NSTimeInterval)interval {
 	[self translateWithVector:LIVectorScale(_velocity.vector, interval)];
 }
