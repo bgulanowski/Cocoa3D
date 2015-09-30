@@ -14,6 +14,28 @@
 
 @implementation C3DNode
 
+- (void)setObject:(C3DObject *)object
+{
+    if (self.object) {
+        self.object.node = nil;
+    }
+    object.node = self;
+    _object = object;
+}
+
+- (void)setChildren:(NSArray *)children
+{
+    if (self.children.count) {
+        for (C3DNode *child in self.children) {
+            child.parent = nil;
+        }
+    }
+    for (C3DNode *newChild in children) {
+        newChild.parent = self;
+    }
+    _children = children;
+}
+
 - (void)paintForCamera:(C3DCamera *)camera
 {
 	if (_transform) {

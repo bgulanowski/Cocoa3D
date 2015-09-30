@@ -16,6 +16,7 @@
 
 @interface C3DNode : NSObject<C3DVisible>
 
+@property (nonatomic, weak) C3DNode *parent;
 @property (nonatomic, strong) NSArray *children;
 @property (nonatomic, strong) C3DMotion *motion;
 @property (nonatomic, strong) C3DObject *object;
