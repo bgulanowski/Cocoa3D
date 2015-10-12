@@ -13,36 +13,21 @@
 
 @implementation C3DNode (Demo)
 
-+ (instancetype)nodeWithObject:(C3DObject *)object position:(LIVector_t)position {
++ (instancetype)nodeWithObject:(C3DObject *)object position:(LIVector_t)position rotation:(LIRotation_t)rotation {
     
     C3DNode *node = [C3DNode new];
-    node.object = object;;
+    node.object = object;
     
     C3DTransform *transform = [C3DTransform identity];
+    [transform rotate:rotation];
     [transform translate:position];
     node.transform = transform;
     
     return node;
 }
 
-+ (instancetype)demoCubeNodeWithPosition:(LIVector_t)position {
-    return [self nodeWithObject:[C3DObject demoCubeWithProgram:[C3DProgram demoProgram]] position:position];
-}
-
-+ (instancetype)unitRegularTetrahedronWithPosition:(LIVector_t)position {
-    return [self nodeWithObject:[C3DObject unitRegularTetrahedron] position:position];
-}
-
-+ (instancetype)unitCornerTetrahedronWithPosition:(LIVector_t)position {
-    return [self nodeWithObject:[C3DObject unitCornerTetrahedron] position:position];
-}
-
-+ (instancetype)unitCubeNodeWithPosition:(LIVector_t)position {
-    return [self nodeWithObject:[C3DObject unitCube] position:position];
-}
-
-+ (instancetype)unitRectangularPrismWithPosition:(LIVector_t)position {
-    return [self nodeWithObject:[C3DObject unitRectangularPrism] position:position];
++ (instancetype)nodeWithObject:(C3DObject *)object position:(LIVector_t)position {
+    return [self nodeWithObject:object position:position rotation:LIRotationMake(1, 0, 0, 0)];
 }
 
 + (instancetype)cubeGridWithDimension:(NSUInteger)dim {
@@ -51,7 +36,7 @@
     for (float k=0; k<dim; ++k) {
         for (float j=0; j<dim; ++j) {
             for (float i=0; i<dim; ++i) {
-                [children addObject:[self unitCubeNodeWithPosition:LIVectorScale(LIVectorMake(i, j, k), 2.0f)]];
+                [children addObject:[self nodeWithObject:[C3DObject unitCube] position:LIVectorScale(LIVectorMake(i, j, k), 2.0f)]];
             }
         }
     }
@@ -61,14 +46,6 @@
     node.children = children;
     
     return node;
-}
-
-+ (instancetype)tetrahedronWithPosition:(LIVector_t)position {
-    return [self nodeWithObject:[C3DObject equilateralTetrahedron] position:position];
-}
-
-+ (instancetype)prismNodeWithPosition:(LIVector_t)position {
-    return [self nodeWithObject:[C3DObject equilateralRectangularPrism] position:position];
 }
 
 + (instancetype)demoScene {
@@ -86,7 +63,7 @@
     NSMutableArray *children = [NSMutableArray array];
     for (C3DObject *object in objects) {
         object.program = program;
-        [children addObject:[self nodeWithObject:object position:LIVectorMake(2.0f*i-5.0f, -2.0f, 0.0f)]];
+        [children addObject:[self nodeWithObject:object position:LIVectorMake(-2.0f * i, 0, 0)]];
         i++;
     }
     
