@@ -30,6 +30,10 @@
     return YES;
 }
 
+- (C3DNode *)rootNode {
+    return nil;
+}
+
 #pragma mark - C3DObjectContainer
 
 - (NSArray *)sortedObjectsForCamera:(C3DCamera *)camera {

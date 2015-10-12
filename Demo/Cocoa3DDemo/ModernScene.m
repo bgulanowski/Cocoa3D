@@ -14,6 +14,10 @@
     C3DNode *_rootNode;
 }
 
+- (C3DNode *)rootNode {
+    return _rootNode;
+}
+
 #pragma mark - Scene
 
 - (instancetype)initWithPresenter:(id<ScenePresenter>)presenter {

@@ -50,6 +50,13 @@
 	}
 }
 
+- (void)visit:(void (^)(C3DNode *))block {
+    block(self);
+    for (C3DNode *child in _children) {
+        [child visit:block];
+    }
+}
+
 /*
  This won't work as desired in most cases. For example, it would make the moon follow the Earth's axial rotation. This can
  be overcome by not attaching any objects to nodes that have children. Instead, each object should have its own node, and

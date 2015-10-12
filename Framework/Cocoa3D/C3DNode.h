@@ -22,6 +22,8 @@
 @property (nonatomic, strong) C3DObject *object;
 @property (nonatomic, strong) C3DTransform *transform;
 
+- (void)visit:(void(^)(C3DNode *node))block;
+
 - (void)update:(NSTimeInterval)interval;
 
 @end

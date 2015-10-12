@@ -17,6 +17,7 @@
 @end
 
 @protocol Scene <NSObject, C3DObjectContainer>
+@property (nonatomic, readonly) C3DNode *rootNode;
 @property (nonatomic, readonly, getter = isLegacy) BOOL legacy;
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithPresenter:(id<ScenePresenter>)presenter;
