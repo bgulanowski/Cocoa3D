@@ -54,12 +54,11 @@ static CVReturn C3DViewDisplayLink(CVDisplayLinkRef displayLink,
     
     CGLContextObj cglContext = [[self openGLContext] CGLContextObj];
     
-    CGLLockContext(cglContext);
     CGLSetCurrentContext(cglContext);
+    CGLLockContext(cglContext);
     
     [_camera capture];
     
-    CGLFlushDrawable(cglContext);
     CGLUnlockContext(cglContext);
 }
 
