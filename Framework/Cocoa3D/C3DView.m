@@ -15,14 +15,18 @@
 
 #import <LichenMath/LIVector.h>
 
+@interface C3DView ()
+- (void)captureScene;
+@end
+
 static CVReturn C3DViewDisplayLink(CVDisplayLinkRef displayLink,
 									   const CVTimeStamp *inNow,
 									   const CVTimeStamp *inOutputTime,
 									   CVOptionFlags flagsIn,
 									   CVOptionFlags *flagsOut,
-									   void *camera) {
+									   void *view) {
 	@autoreleasepool {
-		[(__bridge C3DCamera *)camera capture];
+		[(__bridge C3DView *)view captureScene];
 	}
 	
 	return kCVReturnSuccess;
@@ -44,6 +48,19 @@ static CVReturn C3DViewDisplayLink(CVDisplayLinkRef displayLink,
 	CGLPixelFormatObj cglPixelFormat = [[self pixelFormat] CGLPixelFormatObj];
 	
 	CVDisplayLinkSetCurrentCGDisplayFromOpenGLContext(_displayLink, cglContext, cglPixelFormat);
+}
+
+- (void)captureScene {
+    
+    CGLContextObj cglContext = [[self openGLContext] CGLContextObj];
+    
+    CGLLockContext(cglContext);
+    CGLSetCurrentContext(cglContext);
+    
+    [_camera capture];
+    
+    CGLFlushDrawable(cglContext);
+    CGLUnlockContext(cglContext);
 }
 
 - (void)startDrawTimer {
@@ -88,6 +105,16 @@ static CVReturn C3DViewDisplayLink(CVDisplayLinkRef displayLink,
 
 - (BOOL)usesModernContext {
     return self.openGLContext.usesCoreProfile;
+}
+
+- (void)setUsesDisplayLink:(BOOL)usesDisplayLink {
+    if (usesDisplayLink && !_usesDisplayLink) {
+        [self enableDisplayLink];
+    }
+    else if (!usesDisplayLink && _usesDisplayLink) {
+        [self disableDisplayLink];
+    }
+    _usesDisplayLink = usesDisplayLink;
 }
 
 #pragma mark - NSCoding
@@ -383,7 +410,7 @@ static CVReturn C3DViewDisplayLink(CVDisplayLinkRef displayLink,
 	if (_displayLink)
 		return;
 	CVDisplayLinkCreateWithActiveCGDisplays(&_displayLink);
-	CVDisplayLinkSetOutputCallback(_displayLink, C3DViewDisplayLink, (__bridge void *)(_camera));
+	CVDisplayLinkSetOutputCallback(_displayLink, C3DViewDisplayLink, (__bridge void *)(self));
 	[self updateDisplayLinkScreen];
 	CVDisplayLinkStart(_displayLink);
 }

@@ -19,7 +19,11 @@
 @property (nonatomic) BOOL drawsInBackground;
 @property (nonatomic) BOOL tracksMouse;
 @property (nonatomic) BOOL usesModernContext;
+@property (nonatomic) BOOL usesDisplayLink;
 
 @property (nonatomic) IBOutlet id<C3DCameraDrawDelegate>drawDelegate;
+
+- (void)enableDisplayLink;
+- (void)disableDisplayLink;
 
 @end
