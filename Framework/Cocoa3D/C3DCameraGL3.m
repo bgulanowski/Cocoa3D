@@ -21,12 +21,15 @@
 + (instancetype)test;
 @end
 
+@interface C3DIndexBuffer (C3DCameraDebugObjectCreating)
++ (instancetype)testIndices;
+@end
+
 @interface C3DVertexBuffer (C3DCameraDebugObjectCreating)
 + (instancetype)originColours;
 + (instancetype)originPositions;
 + (instancetype)testColours;
 + (instancetype)testPositions;
-+ (instancetype)testIndices;
 @end
 
 #pragma mark -
@@ -78,70 +81,14 @@
 + (instancetype)test {
     C3DObject *object = [[self alloc] initWithType:C3DObjectTypeTriangles];
     object.vertexBuffers = @[[C3DVertexBuffer testColours], [C3DVertexBuffer testPositions]];
-    object.indexElements = [C3DVertexBuffer testIndices];
+    object.indexElements = [C3DIndexBuffer testIndices];
     object.program = [[C3DProgram alloc] init];
     return object;
 }
 
 @end
 
-@implementation C3DVertexBuffer (C3DCameraDebugObjectCreating)
-
-+ (instancetype)originColours {
-    
-    GLfloat colours[] = {
-        1, 1, 1, 1,
-        1, 0, 0, 1,
-        1, 1, 1, 1,
-        0, 1, 0, 1,
-        1, 1, 1, 1,
-        0, 0, 1, 1,
-    };
-    
-    return [C3DVertexBuffer coloursWithElements:colours count:6];
-}
-
-+ (instancetype)originPositions {
-    
-    GLfloat points[] = {
-        0, 0, 0,
-        1, 0, 0,
-        0, 0, 0,
-        0, 1, 0,
-        0, 0, 0,
-        0, 0, 1
-    };
-    
-    return [C3DVertexBuffer positionsWithElements:points count:6];
-}
-
-+ (instancetype)testColours {
-    
-    GLfloat colours[] = {
-        1, 0, 0, 1,
-        1, 1, 0, 1,
-        0, 1, 0, 1,
-        0, 1, 1, 1,
-        0, 0, 1, 1,
-        1, 0, 1, 1
-    };
-    
-    return [C3DVertexBuffer coloursWithElements:colours count:6];
-}
-
-+ (instancetype)testPositions {
-    
-    GLfloat points[] = {
-        -1,  0,  0,
-         1,  0,  0,
-         0, -1,  0,
-         0,  1,  0,
-         0,  0, -1,
-         0,  0,  1
-    };
-    
-    return [C3DVertexBuffer positionsWithElements:points count:6];
-}
+@implementation C3DIndexBuffer (C3DCameraDebugObjectCreating)
 
 + (instancetype)testIndices {
     
@@ -160,7 +107,67 @@
         4, 3, 1
     };
     
-    return [C3DVertexBuffer indicesWithElements:indices count:3 * 8];
+    return [self indicesWithElements:indices count:3 * 8];
+}
+
+@end
+
+@implementation C3DVertexBuffer (C3DCameraDebugObjectCreating)
+
++ (instancetype)originColours {
+    
+    GLfloat colours[] = {
+        1, 1, 1, 1,
+        1, 0, 0, 1,
+        1, 1, 1, 1,
+        0, 1, 0, 1,
+        1, 1, 1, 1,
+        0, 0, 1, 1,
+    };
+    
+    return [self coloursWithElements:colours count:6];
+}
+
++ (instancetype)originPositions {
+    
+    GLfloat points[] = {
+        0, 0, 0,
+        1, 0, 0,
+        0, 0, 0,
+        0, 1, 0,
+        0, 0, 0,
+        0, 0, 1
+    };
+    
+    return [self positionsWithElements:points count:6];
+}
+
++ (instancetype)testColours {
+    
+    GLfloat colours[] = {
+        1, 0, 0, 1,
+        1, 1, 0, 1,
+        0, 1, 0, 1,
+        0, 1, 1, 1,
+        0, 0, 1, 1,
+        1, 0, 1, 1
+    };
+    
+    return [self coloursWithElements:colours count:6];
+}
+
++ (instancetype)testPositions {
+    
+    GLfloat points[] = {
+        -1,  0,  0,
+         1,  0,  0,
+         0, -1,  0,
+         0,  1,  0,
+         0,  0, -1,
+         0,  0,  1
+    };
+    
+    return [self positionsWithElements:points count:6];
 }
 
 @end

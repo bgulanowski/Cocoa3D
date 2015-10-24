@@ -22,13 +22,12 @@ static GLenum C3DArrayForBufferType (C3DVertexBufferType type) {
         case C3DVertexBufferSecondaryColour:
             return GL_COLOR_ARRAY;
         case C3DVertexBufferPosition:
+        case C3DVertexBufferPosition2D:
             return GL_VERTEX_ARRAY;
         case C3DVertexBufferNormal:
             return GL_NORMAL_ARRAY;
         case C3DVertexBufferTextureCoord:
             return GL_TEXTURE_COORD_ARRAY;
-        case C3DVertexBufferIndex:
-            return GL_INDEX_ARRAY;
         case C3DVertexBufferEdgeFlag:
             return GL_EDGE_FLAG_ARRAY;
             
@@ -221,17 +220,13 @@ static void C3DDrawOrigin( void ) {
 
 + (void)enableVertexBuffers:(NSArray *)vertexBuffers {
     for (C3DVertexBuffer *vertexBuffer in vertexBuffers) {
-        if (vertexBuffer.type != C3DVertexBufferIndex) {
-            [self enableVertexBuffer:vertexBuffer];
-        }
+        [self enableVertexBuffer:vertexBuffer];
     }
 }
 
 + (void)disableVertexBuffers:(NSArray *)vertexBuffers {
     for (C3DVertexBuffer *vertexBuffer in vertexBuffers) {
-        if (vertexBuffer.type != C3DVertexBufferIndex) {
-            [self disableVertexBuffer:vertexBuffer];
-        }
+        [self disableVertexBuffer:vertexBuffer];
     }
 }
 
@@ -250,7 +245,6 @@ static void C3DDrawOrigin( void ) {
         case C3DVertexBufferTextureCoord:
             glTexCoordPointer(3, GL_FLOAT, 0, NULL);
             break;
-        case C3DVertexBufferIndex:
         case C3DVertexBufferEdgeFlag:
         case C3DVertexBufferSecondaryColour:
         case C3DVertexBufferFogCoord:
@@ -263,6 +257,19 @@ static void C3DDrawOrigin( void ) {
     for (C3DVertexBuffer *vertexBuffer in vertexBuffers) {
         [self loadVertexBuffer:vertexBuffer];
     }
+}
+
++ (void)enableIndexBuffer {
+    glEnableClientState(GL_INDEX_ARRAY);
+}
+
++ (void)disableIndexBuffer {
+    glDisableClientState(GL_INDEX_ARRAY);
+}
+
++ (void)loadIndexBuffer:(C3DIndexBuffer *)indexBuffer {
+    [indexBuffer bind];
+    glIndexPointer(GL_INT, 0, NULL);
 }
 
 @end

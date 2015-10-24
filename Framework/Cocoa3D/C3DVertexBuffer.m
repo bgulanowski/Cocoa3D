@@ -23,11 +23,11 @@ GLsizei C3DSizeForVertexBufferType(C3DVertexBufferType type) {
 		case C3DVertexBufferNormal:
 			size = 3;
 			break;
+        case C3DVertexBufferPosition2D:
 		case C3DVertexBufferTextureCoord:
 		case C3DVertexBufferFogCoord:
 			size = 2;
 			break;
-		case C3DVertexBufferIndex:
 		case C3DVertexBufferEdgeFlag:
 			size = 1;
 			break;
@@ -36,12 +36,14 @@ GLsizei C3DSizeForVertexBufferType(C3DVertexBufferType type) {
 	return size;
 }
 
+NSUInteger const C3DVertexBufferTypeCount = C3DVertexBufferEdgeFlag + 1;
+
 static NSArray *attributeNames;
 
 NSArray *C3DAttributeNames( void ) {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        attributeNames = @[@"colour", @"colour2", @"position", @"normal", @"texCoord", @"fogCoord", @"index", @"edgeFlag"];
+        attributeNames = @[@"colour", @"colour2", @"position", @"normal", @"position2D", @"texCoord", @"fogCoord", @"edgeFlag"];
     });
     return attributeNames;
 }
@@ -50,32 +52,31 @@ NSString *C3DAttributeNameForVertexBufferType(C3DVertexBufferType type) {
 	return C3DAttributeNames()[(NSUInteger)type];
 }
 
+#pragma mark -
+
 @interface NSData (C3DVertexBufferData)
 - (NSUInteger)countForType:(C3DVertexBufferType)type;
 @end
 
-@implementation C3DVertexBuffer {
-	GLuint _bufferName;
+#pragma mark -
+
+@implementation C3DBuffer {
+@protected
+    NSData *_elements;
+    NSUInteger _count;
+    GLuint _bufferName;
     GLenum _bufferTarget;
     BOOL _ownsBuffer;
 }
 
-#pragma mark - NSObject
-
-- (NSString *)debugDescription {
-    return [NSString stringWithFormat:@"[%@ %p] %@ %tu", [self class], self, C3DAttributeNameForVertexBufferType(_type), _count];
-}
-
-- (void)dealloc {
-    if (_bufferName > 0) {
-        [self delete];
+- (instancetype)initWithData:(NSData *)data count:(NSUInteger)count target:(GLenum)target {
+    self = [super init];
+    if (self) {
+        _count = count;
+        _elements = data;
+        _bufferTarget = target;
     }
-}
-
-#pragma mark - C3DVertexBuffer
-
-- (NSString *)attributeName {
-	return C3DAttributeNameForVertexBufferType(_type);
+    return self;
 }
 
 - (void)genBuffer {
@@ -106,41 +107,61 @@ NSString *C3DAttributeNameForVertexBufferType(C3DVertexBufferType type) {
     _ownsBuffer = NO;
 }
 
-- (void)loadInBuffer:(GLuint)buffer forProgram:(C3DProgram *)program {
-    
-    [self loadDataForBuffer:buffer];
+@end
 
-    // FIXME: responsibility of the program, not the array?
-    if (program && _type != C3DVertexBufferIndex) {
+#pragma mark -
 
-        GLboolean normalize = GL_FALSE;
-        GLenum dataType = GL_FLOAT;
-        
-        if (_type == C3DVertexBufferNormal) {
-            normalize = GL_TRUE;
-            dataType = GL_INT;
-        }
-        
-        // FIXME: this has to happen every time this buffer is used to draw a primitive with this program
-        // but we DON'T have to load the data every time, obviously!
-        // WAIT, WAIT, WAIT! Except that when we BIND the Vertex Array Object for the C3DObject,
-        // all of the associated vertex buffers should be assigned automatically, right?
-        GLuint location = [program locationForAttribute:C3DAttributeNameForVertexBufferType(_type)];
-        
-        // THIS is probably UNNECESSARY - we're not using GENERIC vertex attributes
-        // WAIT!! Is every vertex array accessed by shaders generic? Or are they specific position, color, normal, lighting, etc?
-        glEnableVertexAttribArray(location);
-        glVertexAttribPointer(location, C3DSizeForVertexBufferType(_type), dataType, normalize, 0, 0);
+@implementation C3DIndexBuffer
+
+- (instancetype)init {
+    return [self initWithData:nil count:0];
+}
+
+- (instancetype)initWithData:(NSData *)data count:(NSUInteger)count {
+    return [super initWithData:data count:count target:GL_ELEMENT_ARRAY_BUFFER];
+}
+
+- (instancetype)initWithElements:(void *)elements count:(NSUInteger)count {
+    NSData *data = [NSData dataWithBytes:elements length:count * sizeof(GLfloat)];
+    return [self initWithData:data count:count];
+}
+
++ (instancetype)indicesWithElements:(GLuint *)elements count:(NSUInteger)count {
+    return [[self alloc] initWithElements:elements count:count];
+}
+
+@end
+
+#pragma mark -
+
+@implementation C3DVertexBuffer
+
+#pragma mark - NSObject
+
+- (NSString *)debugDescription {
+    return [NSString stringWithFormat:@"[%@ %p] %@ %tu", [self class], self, C3DAttributeNameForVertexBufferType(_type), _count];
+}
+
+- (void)dealloc {
+    if (_bufferName > 0) {
+        [self delete];
     }
 }
 
+#pragma mark - C3DVertexBuffer
+
+- (NSString *)attributeName {
+	return C3DAttributeNameForVertexBufferType(_type);
+}
+
+- (instancetype)init {
+    return [self initWithType:C3DVertexBufferPosition data:nil count:0];
+}
+
 - (instancetype)initWithType:(C3DVertexBufferType)type data:(NSData *)data count:(NSUInteger)count {
-    self = [super init];
+    self = [super initWithData:data count:count target:GL_ARRAY_BUFFER];
     if (self) {
         _type = type;
-        _count = count;
-        _elements = data;
-        _bufferTarget = _type == C3DVertexBufferIndex ? GL_ELEMENT_ARRAY_BUFFER : GL_ARRAY_BUFFER;
     }
     return self;
 }
@@ -150,12 +171,8 @@ NSString *C3DAttributeNameForVertexBufferType(C3DVertexBufferType type) {
 }
 
 - (instancetype)initWithType:(C3DVertexBufferType)type elements:(void *)elements count:(NSUInteger)count {
-    NSData *data = [NSData dataWithBytes:elements length:count * C3DSizeForVertexBufferType(type) * C3DPrimitiveSizeForVertexBufferType(type)];
+    NSData *data = [NSData dataWithBytes:elements length:count * C3DSizeForVertexBufferType(type) * sizeof(GLfloat)];
     return [self initWithType:type data:data count:count];
-}
-
-- (instancetype)init {
-    return [self initWithType:C3DVertexBufferPosition elements:NULL count:0];
 }
 
 + (instancetype)coloursWithElements:(GLfloat *)elements count:(NSUInteger)count {
@@ -182,10 +199,6 @@ NSString *C3DAttributeNameForVertexBufferType(C3DVertexBufferType type) {
 	return [[self alloc] initWithType:C3DVertexBufferFogCoord elements:elements count:count];
 }
 
-+ (instancetype)indicesWithElements:(GLuint *)elements count:(NSUInteger)count {
-	return [[self alloc] initWithType:C3DVertexBufferIndex elements:elements count:count];
-}
-
 + (instancetype)edgeFlagsWithElements:(GLuint *)elements count:(NSUInteger)count {
 	return [[self alloc] initWithType:C3DVertexBufferEdgeFlag elements:elements count:count];
 }
@@ -195,7 +208,7 @@ NSString *C3DAttributeNameForVertexBufferType(C3DVertexBufferType type) {
 @implementation NSData (C3DVertexBufferData)
 
 - (NSUInteger)countForType:(C3DVertexBufferType)type {
-	return [self length] / (C3DSizeForVertexBufferType(type) * C3DPrimitiveSizeForVertexBufferType(type));
+	return [self length] / (C3DSizeForVertexBufferType(type) * sizeof(GLfloat));
 }
 
 @end

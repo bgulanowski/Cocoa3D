@@ -103,6 +103,26 @@ void *   uniformKVOContext = &uniformKVOContext;
     return locations;
 }
 
+- (void)enableVertexBuffer:(C3DVertexBuffer *)vertexBuffer {
+    
+    C3DVertexBufferType type = vertexBuffer.type;
+    
+    GLuint location = [self locationForAttribute:C3DAttributeNameForVertexBufferType(type)];
+    if (location == -1) {
+        return;
+    }
+    
+    GLboolean normalize = GL_FALSE;
+    GLenum dataType = GL_FLOAT;
+    if (type == C3DVertexBufferNormal) {
+        normalize = GL_TRUE;
+        dataType = GL_INT;
+    }
+    
+    glEnableVertexAttribArray(location);
+    glVertexAttribPointer(location, C3DSizeForVertexBufferType(type), dataType, normalize, 0, 0);
+}
+
 - (instancetype)initWithName:(NSString *)name attributes:(NSArray *)attributes uniforms:(NSArray *)uniforms {
     NSParameterAssert(name);
 	C3DShader *vs = [C3DShader vertexShaderWithName:name];

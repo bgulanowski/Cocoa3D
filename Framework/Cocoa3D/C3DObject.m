@@ -51,7 +51,7 @@
 	}
 }
 
-- (void)setIndexElements:(C3DVertexBuffer *)indexElements
+- (void)setIndexElements:(C3DIndexBuffer *)indexElements
 {
     _indexElements = indexElements;
 }
@@ -85,8 +85,8 @@
         // FIXME: update for iOS!
         [C3DCameraGL1 enableVertexBuffers:_vertexBuffers];
         [C3DCameraGL1 loadVertexBuffers:_vertexBuffers];
-        [C3DCameraGL1 enableVertexBuffer:_indexElements];
-        [C3DCameraGL1 loadVertexBuffer:_indexElements];
+        [C3DCameraGL1 enableIndexBuffer];
+        [C3DCameraGL1 loadIndexBuffer:_indexElements];
     }
 #endif
     if (_indexElements) {
@@ -150,10 +150,11 @@
 	
 	NSUInteger i = 0;
 	for (C3DVertexBuffer *vertexBuffer in _vertexBuffers) {
-		[vertexBuffer loadInBuffer:_buffers[i++] forProgram:_program];
+		[vertexBuffer loadDataForBuffer:_buffers[i++]];
+        [_program enableVertexBuffer:vertexBuffer];
 	}
     
-    [_indexElements loadInBuffer:_buffers[i] forProgram:_program];
+    [_indexElements loadDataForBuffer:_buffers[i]];
     
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);

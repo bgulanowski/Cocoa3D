@@ -24,37 +24,40 @@ typedef NS_ENUM(NSUInteger, C3DVertexBufferType) {
 	C3DVertexBufferPosition,
 	C3DVertexBufferNormal,
 	// pairs
+    C3DVertexBufferPosition2D,
 	C3DVertexBufferTextureCoord,
 	C3DVertexBufferFogCoord,
 	// scalars
-    // FIXME: this is colour index array, not vertex indices
-	C3DVertexBufferIndex,
-	C3DVertexBufferEdgeFlag
+	C3DVertexBufferEdgeFlag,
 };
+
+extern NSUInteger const C3DVertexBufferTypeCount;
 
 extern GLsizei C3DSizeForVertexBufferType(C3DVertexBufferType type);
 extern NSArray *C3DAttributeNames( void );
-
-NS_INLINE GLenum C3DPrimitiveTypeForVertexBufferType(C3DVertexBufferType type) {
-	return type == C3DVertexBufferIndex ? GL_UNSIGNED_INT : GL_FLOAT;
-}
-
-NS_INLINE GLsizei C3DPrimitiveSizeForVertexBufferType(C3DVertexBufferType type) {
-	return type == C3DVertexBufferIndex ? sizeof(GLuint) : sizeof(GLfloat);
-}
+extern NSString *C3DAttributeNameForVertexBufferType(C3DVertexBufferType type);
 
 @class C3DProgram;
 
-@interface C3DVertexBuffer : NSObject
+@interface C3DBuffer : NSObject
 
-@property (nonatomic) C3DVertexBufferType type;
 @property (nonatomic) NSData *elements;
 @property (nonatomic, readonly) NSUInteger count;
-@property (nonatomic, readonly) NSString *attributeName;
 
 - (void)bind;
 - (void)delete;
-- (void)loadInBuffer:(GLuint)buffer forProgram:(C3DProgram *)program;
+- (void)loadDataForBuffer:(GLuint)buffer;
+
+@end
+
+@interface C3DIndexBuffer : C3DBuffer
++ (instancetype)indicesWithElements:(GLuint *)elements count:(NSUInteger)count;
+@end
+
+@interface C3DVertexBuffer : C3DBuffer
+
+@property (nonatomic) C3DVertexBufferType type;
+@property (nonatomic, readonly) NSString *attributeName;
 
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithType:(C3DVertexBufferType)type data:(NSData *)data count:(NSUInteger)count NS_DESIGNATED_INITIALIZER;
@@ -67,7 +70,6 @@ NS_INLINE GLsizei C3DPrimitiveSizeForVertexBufferType(C3DVertexBufferType type) 
 + (instancetype)normalsWithElements:(GLfloat *)elements count:(NSUInteger)count;
 + (instancetype)texCoordsWithElements:(GLfloat *)elements count:(NSUInteger)count;
 + (instancetype)fogCoordsWithElements:(GLfloat *)elements count:(NSUInteger)count;
-+ (instancetype)indicesWithElements:(GLuint *)elements count:(NSUInteger)count;
 + (instancetype)edgeFlagsWithElements:(GLuint *)elements count:(NSUInteger)count;
 
 @end

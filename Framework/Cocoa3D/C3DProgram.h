@@ -15,6 +15,7 @@
 @class C3DCamera;
 @class C3DShader;
 @class C3DTransform;
+@class C3DVertexBuffer;
 
 @interface C3DProgram : NSObject
 #if ! C3D_GL_COMPATIBILITY
@@ -31,6 +32,7 @@
 - (void)bindUniform:(NSString *)binding toObject:(id)observable withKeyPath:(NSString *)keyPath;
 - (void)bindAttribute:(NSString *)binding toObject:(id)observable withKeyPath:(NSString *)keyPath;
 
+- (void)enableVertexBuffer:(C3DVertexBuffer *)vertexBuffer;
 - (void)loadMVPMatrix:(C3DTransform *)matrix;
 
 @end

@@ -28,7 +28,7 @@ static C3DVertexBuffer *unitColours;
     
 }
 
-+ (instancetype)unitPolyhedronWithIndices:(C3DVertexBuffer *)indices {
++ (instancetype)unitPolyhedronWithIndices:(C3DIndexBuffer *)indices {
     C3DObject *object = [[C3DObject alloc] initWithType:C3DObjectTypeTriangles];
     object.vertexBuffers = @[[C3DVertexBuffer unitPositions], [C3DVertexBuffer unitColours]];
     object.indexElements = indices;
@@ -42,7 +42,7 @@ static C3DVertexBuffer *unitColours;
         0, 4, 1,
         1, 4, 2
     };
-    return [self unitPolyhedronWithIndices:[C3DVertexBuffer indicesWithElements:&(indices[0]) count:3 * 4]];
+    return [self unitPolyhedronWithIndices:[C3DIndexBuffer indicesWithElements:&(indices[0]) count:3 * 4]];
 }
 
 + (instancetype)unitRegularTetrahedron {
@@ -52,7 +52,7 @@ static C3DVertexBuffer *unitColours;
         0, 6, 5,
         3, 5, 6
     };
-    return [self unitPolyhedronWithIndices:[C3DVertexBuffer indicesWithElements:&(indices[0]) count:3 * 4]];
+    return [self unitPolyhedronWithIndices:[C3DIndexBuffer indicesWithElements:&(indices[0]) count:3 * 4]];
 }
 
 + (instancetype)unitRectangularPrism {
@@ -72,7 +72,7 @@ static C3DVertexBuffer *unitColours;
         // top
         4, 6, 5
     };
-    return [self unitPolyhedronWithIndices:[C3DVertexBuffer indicesWithElements:&(indices[0]) count:3 * 8]];
+    return [self unitPolyhedronWithIndices:[C3DIndexBuffer indicesWithElements:&(indices[0]) count:3 * 8]];
 }
 
 + (instancetype)unitCube {
@@ -96,7 +96,7 @@ static C3DVertexBuffer *unitColours;
         2, 6, 7,
         2, 7, 3,
     };
-    return [self unitPolyhedronWithIndices:[C3DVertexBuffer indicesWithElements:&(indices[0]) count:3 * 12]];
+    return [self unitPolyhedronWithIndices:[C3DIndexBuffer indicesWithElements:&(indices[0]) count:3 * 12]];
 }
 
 + (instancetype)equilateralTetrahedron {
@@ -132,11 +132,10 @@ static C3DVertexBuffer *unitColours;
     
     C3DVertexBuffer *pBuffer = [C3DVertexBuffer positionsWithElements:&(points[0].x)  count:4];
     C3DVertexBuffer *cBuffer = [C3DVertexBuffer   coloursWithElements:&(colours[0].a) count:4];
-    C3DVertexBuffer *iBuffer = [C3DVertexBuffer   indicesWithElements:&(indices[0])   count:3 * 4];
     
     C3DObject *object = [[C3DObject alloc] initWithType:C3DObjectTypeTriangles];
     object.vertexBuffers = @[pBuffer, cBuffer];
-    object.indexElements = iBuffer;
+    object.indexElements = [C3DIndexBuffer indicesWithElements:&(indices[0]) count:3 * 4];
     
     return object;
 }

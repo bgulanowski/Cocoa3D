@@ -76,7 +76,7 @@ static GLuint triangleIndices[] = { 0, 1, 2 };
 	
 	C3DObject *object = [[[self class] alloc] initWithType:C3DObjectTypeTriangles];
     object.vertexBuffers = @[[C3DVertexBuffer positionsWithElements:trianglePoints[0] count:3]];
-    object.indexElements = [C3DVertexBuffer indicesWithElements:&triangleIndices[0] count:3];
+    object.indexElements = [C3DIndexBuffer indicesWithElements:&triangleIndices[0] count:3];
     object.program = program;
     return object;
 }
@@ -91,7 +91,7 @@ static GLuint triangleIndices[] = { 0, 1, 2 };
 	C3DVertexBuffer *positionBuffer = [C3DVertexBuffer positionsWithElements:&points[0].x count:8];
 	C3DVertexBuffer *coloursBuffer = [C3DVertexBuffer coloursWithElements:&colours[0].x count:8];
 	C3DObject *object = [[[self class] alloc] initWithType:C3DObjectTypeTriangles];
-    object.indexElements = [C3DVertexBuffer indicesWithElements:&indices[0] count:36];
+    object.indexElements = [C3DIndexBuffer indicesWithElements:&indices[0] count:36];
     object.vertexBuffers = @[positionBuffer, coloursBuffer];
     object.program = program;
     return object;

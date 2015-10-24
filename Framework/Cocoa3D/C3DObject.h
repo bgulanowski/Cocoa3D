@@ -10,13 +10,13 @@
 
 #import <Cocoa3D/C3DCamera.h>
 
-@class C3DNode, C3DProgram, C3DVertexBuffer;
+@class C3DIndexBuffer, C3DNode, C3DProgram, C3DVertexBuffer;
 
 @interface C3DObject : NSObject<C3DVisible>
 
 @property (nonatomic, weak) C3DNode *node;
 @property (nonatomic, strong) C3DProgram *program;
-@property (nonatomic, strong) C3DVertexBuffer *indexElements;
+@property (nonatomic, strong) C3DIndexBuffer *indexElements;
 @property (nonatomic, strong) NSArray *vertexBuffers;
 @property (nonatomic) BOOL ignoresTransform;
 
