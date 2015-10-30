@@ -357,11 +357,14 @@ NSString *C3DCameraOptionsToString(C3DCameraOptions _options) {
 
 - (C3DTransform *)applyViewTransform:(C3DTransform *)transform {
 	NSParameterAssert(transform != nil);
-	transform = [transform copy];
-	if ([_transformStack count]) {
-		[transform concatenate:[_transformStack lastObject]];
-	}
-	[_transformStack addObject:transform];
+    C3DTransform *current = [[_transformStack lastObject] copy];
+    if (current) {
+        [current concatenate:transform];
+        [_transformStack addObject:current];
+    }
+    else {
+        [_transformStack addObject:[transform copy]];
+    }
 	return transform;
 }
 
