@@ -14,7 +14,7 @@
 
 @class C3DCamera;
 @class C3DShader;
-@class C3DTransform;
+@class LIMatrix;
 @class C3DVertexBuffer;
 
 @interface C3DProgram : NSObject
@@ -33,6 +33,8 @@
 - (void)bindAttribute:(NSString *)binding toObject:(id)observable withKeyPath:(NSString *)keyPath;
 
 - (void)enableVertexBuffer:(C3DVertexBuffer *)vertexBuffer;
-- (void)loadMVPMatrix:(C3DTransform *)matrix;
+
+- (void)loadMatrix:(LIMatrix *)matrix forUniform:(NSString *)uniform;
+- (void)loadMVPMatrix:(LIMatrix *)matrix;
 
 @end

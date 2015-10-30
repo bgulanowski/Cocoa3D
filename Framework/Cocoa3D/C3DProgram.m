@@ -184,11 +184,19 @@ void *   uniformKVOContext = &uniformKVOContext;
 	
 }
 
-- (void)loadMVPMatrix:(C3DTransform *)matrix {
-    GLint location = [self locationForUniform:@"MVP"];
+- (void)loadMatrix:(LIMatrix *)matrix forUniform:(NSString *)uniform {
+    GLint location = [self locationForUniform:uniform];
     if (location != -1) {
         glUniformMatrix4fv(location, 1, GL_FALSE, matrix.r_matrix->i);
     }
+}
+
+- (void)loadMVPMatrix:(LIMatrix *)matrix {
+    [self loadMatrix:matrix forUniform:@"MVP"];
+}
+
+- (void)loadProjectionMatrix:(LIMatrix *)matrix {
+    [self loadMatrix:matrix forUniform:@"projection"];
 }
 
 @end

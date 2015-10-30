@@ -75,6 +75,7 @@
         transform = [camera currentTransform];
     }
     [_program loadMVPMatrix:transform];
+    [_program loadMatrix:camera.projection forUniform:@"projectionMatrix"];
     
     if (_vao) {
         // Binding the vertex array automatically binds all the individual arrays (VBOs)
