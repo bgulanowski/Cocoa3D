@@ -8,13 +8,15 @@
 
 #import "C3DProgram.h"
 
+#import "C3DCamera.h"
+#import "C3DObject.h"
 #import "C3DShader.h"
 #import "C3DTransform.h"
 #import "C3DVertexBuffer.h"
 
 #import "NSOpenGLContext+Cocoa3D.h"
 
-static GLint const C3DLocationUnknown = -1;
+GLint const C3DLocationUnknown = -1;
 
 #if TARGET_OS_IPHONE
 #import <OpenGLES/ES3/gl.h>
@@ -25,12 +27,19 @@ static GLint const C3DLocationUnknown = -1;
 void * attributeKVOContext = &attributeKVOContext;
 void *   uniformKVOContext = &uniformKVOContext;
 
+NSString * const C3DUniformModelMatrix = @"modelMatrix";
+NSString * const C3DUniformViewMatrix = @"viewMatrix";
+NSString * const C3DUniformProjectionMatrix = @"projectionMatrix";
+NSString * const C3DUniformNormalMatrix = @"normalMatrix";
+NSString * const C3DUniformModelViewMatrix = @"modelViewMatrix";
+NSString * const C3DUniformMVPMatrix = @"MVP"; // modelViewProjectionMatrix
+
 #pragma mark -
 
 @implementation C3DProgram {
 	GLuint _name;
 	NSDictionary *_attributeLocations;
-	NSDictionary *_uniformLocations;
+	NSDictionary *_uniforms;
 	NSMutableDictionary *_attributeBindings;
 	NSMutableDictionary *_uniformBindings;
 }
@@ -55,7 +64,7 @@ void *   uniformKVOContext = &uniformKVOContext;
         }
         if(success) {
             _attributeLocations = [self locationsForAttributes:attributes];
-            _uniformLocations = [self locationsForUniforms:uniforms];
+            _uniforms = [self locationsForUniforms:uniforms];
             _attributeBindings = [NSMutableDictionary dictionary];
             _uniformBindings = [NSMutableDictionary dictionary];
         }
@@ -99,7 +108,7 @@ void *   uniformKVOContext = &uniformKVOContext;
     for (NSString *uniformName in uniforms) {
         GLint const location = glGetUniformLocation(_name, [uniformName UTF8String]);
         if (location != C3DLocationUnknown) {
-            locations[uniformName] = @(location);
+            locations[uniformName] = [C3DUniform uniformWithName:uniformName location:location];
         }
     }
     return locations;
@@ -143,7 +152,7 @@ void *   uniformKVOContext = &uniformKVOContext;
         vertShader = [C3DShader basicLegacyVertexShader];
         fragShader = [C3DShader basicLegacyFragmentShader];
     }
-    return [self initWithVertexShader:vertShader fragmentShader:fragShader attributes:C3DAttributeNames() uniforms:@[@"MVP"]];
+    return [self initWithVertexShader:vertShader fragmentShader:fragShader attributes:C3DAttributeNames() uniforms:@[C3DUniformMVPMatrix]];
 }
 
 - (void)prepareToDraw {
@@ -169,9 +178,25 @@ void *   uniformKVOContext = &uniformKVOContext;
     return location != nil ? [location intValue] : C3DLocationUnknown;
 }
 
-- (GLint)locationForUniform:(NSString *)uniform {
-    NSNumber *location = _uniformLocations[uniform];
-    return location != nil ? [location intValue] : C3DLocationUnknown;
+- (C3DUniform *)uniformWithName:(NSString *)name {
+    return _uniforms[name];
+}
+
+- (GLint)locationForUniform:(NSString *)uniformName {
+    C3DUniform *uniform = [self uniformWithName:uniformName];
+    return uniform ? uniform.location : C3DLocationUnknown;
+}
+
+- (NSArray *)activeUniforms {
+    return [_uniforms allKeys];
+}
+
+- (void)loadUniformValues:(NSDictionary *)values {
+    glUseProgram(_name);
+    for (NSString *name in values) {
+        C3DUniform *uniform = [self uniformWithName:name];
+        [uniform loadValue:values[name]];
+    }
 }
 
 - (void)bindAttribute:(NSString *)binding toObject:(id)observable withKeyPath:(NSString *)keyPath {
@@ -183,22 +208,67 @@ void *   uniformKVOContext = &uniformKVOContext;
 }
 
 - (void)removeAllBindings {
-	
+
 }
 
-- (void)loadMatrix:(LIMatrix *)matrix forUniform:(NSString *)uniform {
-    GLint location = [self locationForUniform:uniform];
-    if (location != C3DLocationUnknown) {
-        glUniformMatrix4fv(location, 1, GL_FALSE, matrix.r_matrix->i);
+@end
+
+#pragma mark -
+
+@interface C3DUniformMatrix4 : C3DUniform
+@end
+
+#pragma mark -
+
+static NSDictionary *uniformIndex;
+
+@implementation C3DUniform
+
+- (instancetype)initWithName:(NSString *)name location:(GLint)location {
+    self = [super init];
+    if (self) {
+        _name = name;
+        _location = location;
     }
+    return self;
 }
 
-- (void)loadMVPMatrix:(LIMatrix *)matrix {
-    [self loadMatrix:matrix forUniform:@"MVP"];
+/*
+ * Every uniform has a name, type, and location, defined in the program.
+ * The value is acquired from a source that recognizes the name and type.
+ */
+
+- (void)loadValue:(id)value {}
+
++ (instancetype)uniformWithName:(NSString *)name location:(GLint)location {
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        uniformIndex = @{
+                         C3DUniformModelMatrix : [C3DUniformMatrix4 class],
+                         C3DUniformViewMatrix : [C3DUniformMatrix4 class],
+                         C3DUniformProjectionMatrix : [C3DUniformMatrix4 class],
+                         C3DUniformNormalMatrix : [C3DUniformMatrix4 class],
+                         C3DUniformModelViewMatrix : [C3DUniformMatrix4 class],
+                         C3DUniformMVPMatrix : [C3DUniformMatrix4 class],
+                         };
+    });
+    
+    Class class = uniformIndex[name];
+    return [[class alloc] initWithName:name location:location];
 }
 
-- (void)loadProjectionMatrix:(LIMatrix *)matrix {
-    [self loadMatrix:matrix forUniform:@"projection"];
+@end
+
+#pragma mark -
+
+#define C3DAssertValue(_obj, _class) NSAssert([_obj isKindOfClass:[_class class]], @"Unsupported value type %@ for %@", [_obj class], self)
+
+@implementation C3DUniformMatrix4
+
+- (void)loadValue:(LIMatrix *)matrix {
+    C3DAssertValue(matrix, LIMatrix);
+    glUniformMatrix4fv(self.location, 1, GL_FALSE, matrix.r_matrix->i);
 }
 
 @end

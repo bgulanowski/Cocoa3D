@@ -64,19 +64,22 @@
 
 #pragma mark - C3DVisible
 
+- (NSDictionary *)uniformValuesWithCamera:(C3DCamera *)camera {
+    NSMutableDictionary *values = [NSMutableDictionary dictionary];
+    NSArray *uniforms = [_program activeUniforms];
+    if ([uniforms containsObject:C3DUniformMVPMatrix]) {
+        values[C3DUniformMVPMatrix] = _ignoresTransform ? [camera currentRelativeTransform] : [camera currentTransform];
+    }
+    if ([uniforms containsObject:C3DUniformProjectionMatrix]) {
+        values[C3DUniformProjectionMatrix] = camera.projection;
+    }
+    return values;
+}
+
 - (void)paintForCamera:(C3DCamera *)camera {
     
-    [_program prepareToDraw];
-    C3DTransform *transform;
-    if (_ignoresTransform) {
-        transform = [camera currentRelativeTransform];
-    }
-    else {
-        transform = [camera currentTransform];
-    }
-    [_program loadMVPMatrix:transform];
-    [_program loadMatrix:camera.projection forUniform:@"projectionMatrix"];
-    
+    [_program loadUniformValues:[self uniformValuesWithCamera:camera]];
+
     if (_vao) {
         // Binding the vertex array automatically binds all the individual arrays (VBOs)
         glBindVertexArray(_vao);
