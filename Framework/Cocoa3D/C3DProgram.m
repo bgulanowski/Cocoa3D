@@ -14,6 +14,8 @@
 
 #import "NSOpenGLContext+Cocoa3D.h"
 
+static GLint const C3DLocationUnknown = -1;
+
 #if TARGET_OS_IPHONE
 #import <OpenGLES/ES3/gl.h>
 #else
@@ -85,7 +87,7 @@ void *   uniformKVOContext = &uniformKVOContext;
     NSMutableDictionary *locations = [NSMutableDictionary dictionary];
     for (NSString *attributeName in attributes) {
         GLint const location = glGetAttribLocation(_name, [attributeName UTF8String]);
-        if (location > -1) {
+        if (location != C3DLocationUnknown) {
             locations[attributeName] = @(location);
         }
     }
@@ -96,7 +98,7 @@ void *   uniformKVOContext = &uniformKVOContext;
     NSMutableDictionary *locations = [NSMutableDictionary dictionary];
     for (NSString *uniformName in uniforms) {
         GLint const location = glGetUniformLocation(_name, [uniformName UTF8String]);
-        if (location > -1) {
+        if (location != C3DLocationUnknown) {
             locations[uniformName] = @(location);
         }
     }
@@ -108,7 +110,7 @@ void *   uniformKVOContext = &uniformKVOContext;
     C3DVertexBufferType type = vertexBuffer.type;
     
     GLuint location = [self locationForAttribute:C3DAttributeNameForVertexBufferType(type)];
-    if (location == -1) {
+    if (location == C3DLocationUnknown) {
         return;
     }
     
@@ -164,12 +166,12 @@ void *   uniformKVOContext = &uniformKVOContext;
 
 - (GLint)locationForAttribute:(NSString *)attribute {
     NSNumber *location = _attributeLocations[attribute];
-    return location != nil ? [location intValue] : -1;
+    return location != nil ? [location intValue] : C3DLocationUnknown;
 }
 
 - (GLint)locationForUniform:(NSString *)uniform {
     NSNumber *location = _uniformLocations[uniform];
-    return location != nil ? [location intValue] : -1;
+    return location != nil ? [location intValue] : C3DLocationUnknown;
 }
 
 - (void)bindAttribute:(NSString *)binding toObject:(id)observable withKeyPath:(NSString *)keyPath {
@@ -186,7 +188,7 @@ void *   uniformKVOContext = &uniformKVOContext;
 
 - (void)loadMatrix:(LIMatrix *)matrix forUniform:(NSString *)uniform {
     GLint location = [self locationForUniform:uniform];
-    if (location != -1) {
+    if (location != C3DLocationUnknown) {
         glUniformMatrix4fv(location, 1, GL_FALSE, matrix.r_matrix->i);
     }
 }
