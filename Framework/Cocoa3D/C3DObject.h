@@ -18,6 +18,7 @@
 @property (nonatomic, strong) C3DProgram *program;
 @property (nonatomic, strong) C3DIndexBuffer *indexElements;
 @property (nonatomic, strong) NSArray *vertexBuffers;
+@property (nonatomic, strong) NSString *name;
 @property (nonatomic) BOOL ignoresTransform;
 
 - (instancetype)initWithType:(C3DObjectType)type;
