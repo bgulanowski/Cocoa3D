@@ -8,6 +8,37 @@
 
 #import <Cocoa/Cocoa.h>
 
+typedef enum : unsigned char {
+    kMoveNone = UCHAR_MAX,
+    kMoveLeft = 0x0,
+    kMoveRight,
+    kMoveForward,
+    kMoveBack,
+    kMoveUp,
+    kMoveDown,
+    kYawLeft,
+    kYawRight,
+    kPitchForward,
+    kPitchBack,
+    kRollLeft,
+    kRollRight
+} BAMotion;
+
+typedef enum : NSUInteger {
+    kMoveLeftFlag = 1 << kMoveLeft,
+    kMoveRightFlag = 1 << kMoveRight,
+    kMoveForwardFlag = 1 << kMoveForward,
+    kMoveBackFlag = 1 << kMoveBack,
+    kMoveUpFlag = 1 << kMoveUp,
+    kMoveDownFlag = 1 << kMoveDown,
+    kYawLeftFlag = 1 << kYawLeft,
+    kYawRightFlag = 1 << kYawRight,
+    kPitchForwardFlag = 1 << kPitchForward,
+    kPitchBackFlag = 1 << kPitchBack,
+    kRollLeftFlag = 1 << kRollLeft,
+    kRollRightFlag = 1 << kRollRight
+} BAMotionFlag;
+
 @class C3DCamera;
 @protocol C3DCameraDrawDelegate;
 @protocol C3DObjectContainer;

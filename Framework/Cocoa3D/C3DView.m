@@ -15,6 +15,18 @@
 
 #import <LichenMath/LIVector.h>
 
+#import <Carbon/Carbon.h>
+// the above is used to get to the below
+//#import <HIToolbox/Events.h>
+
+NS_INLINE BAMotion BAOppositeMotion(BAMotion motion) {
+    return motion + ((motion & 1) ?  +1 : -1);
+}
+
+NS_INLINE BAMotionFlag BAMotionFlagForMotion(BAMotion motion) {
+    return (BAMotionFlag)(1 << motion);
+}
+
 @interface C3DView ()
 - (void)captureScene;
 @end
@@ -34,9 +46,11 @@ static CVReturn C3DViewDisplayLink(CVDisplayLinkRef displayLink,
 
 @implementation C3DView {
     LIVector_t _direction;
-	NSPoint mouseLocation;
+	NSPoint _mouseLocation;
 	CVDisplayLinkRef _displayLink;
 	dispatch_source_t _drawTimer;
+    BAMotion _motionKeyMap[0x80];
+    UInt16 _motionFlags;
     BOOL _moveFast;
 }
 
@@ -121,6 +135,24 @@ static CVReturn C3DViewDisplayLink(CVDisplayLinkRef displayLink,
 - (id)initWithCoder:(NSCoder *)aDecoder {
 	self = [super initWithCoder:aDecoder];
 	if (self) {
+        for (int i = 0; i < 0x80; ++i) {
+            _motionKeyMap[i] = kMoveNone;
+        }
+        
+        _motionKeyMap[kVK_ANSI_W] = kMoveForward;
+        _motionKeyMap[kVK_ANSI_A] = kMoveLeft;
+        _motionKeyMap[kVK_ANSI_S] = kMoveBack;
+        _motionKeyMap[kVK_ANSI_D] = kMoveRight;
+        _motionKeyMap[kVK_ANSI_R] = kMoveUp;
+        _motionKeyMap[kVK_ANSI_F] = kMoveDown;
+        
+        _motionKeyMap[kVK_LeftArrow] = kMoveLeft;
+        _motionKeyMap[kVK_RightArrow] = kMoveRight;
+        _motionKeyMap[kVK_UpArrow] = kMoveForward;
+        _motionKeyMap[kVK_DownArrow] = kMoveBack;
+        _motionKeyMap[kVK_PageUp] = kMoveUp;
+        _motionKeyMap[kVK_PageDown] = kMoveDown;
+        
 		self.camera = [C3DCamera cameraForGLContext:self.openGLContext];
 		self.movementRate = 1.0f;
 	}
@@ -136,7 +168,7 @@ static CVReturn C3DViewDisplayLink(CVDisplayLinkRef displayLink,
 - (void)keyDown:(NSEvent *)theEvent {
 	if ([theEvent isARepeat])
 		return;
-	[self processKeys:[theEvent charactersIgnoringModifiers] up:NO];
+    [self processKey:theEvent.keyCode up:NO];
     [self updateVelocity];
 	if (!_displayLink && _camera.moving) {
 		[self startDrawTimer];
@@ -144,7 +176,7 @@ static CVReturn C3DViewDisplayLink(CVDisplayLinkRef displayLink,
 }
 
 - (void)keyUp:(NSEvent *)theEvent {
-	[self processKeys:[theEvent charactersIgnoringModifiers] up:YES];
+	[self processKey:theEvent.keyCode up:YES];
     [self updateVelocity];
 	if (!_displayLink && !self.camera.moving) {
 		[self cancelDrawTimer];
@@ -210,7 +242,7 @@ static CVReturn C3DViewDisplayLink(CVDisplayLinkRef displayLink,
 //        if (fabs(mouseLocation.x - loc.x)>2 && fabs(mouseLocation.y-loc.y)>2) {
 //            NSLog(@"Mouse at %@", NSStringFromPoint(loc));
 //        }
-		mouseLocation = loc;
+		_mouseLocation = loc;
 		if (!_displayLink) {
 			[self setNeedsDisplay:YES];
 		}
@@ -245,83 +277,29 @@ static CVReturn C3DViewDisplayLink(CVDisplayLinkRef displayLink,
 
 #pragma mark - Input Handlers
 
-- (void)processKeys:(NSString *)characters up:(BOOL)up {
+- (void)processKey:(unsigned short)keyCode up:(BOOL)up {
 	
-	NSUInteger len = [characters length];
-	BOOL forward = NO;
-	BOOL back = NO;
-	BOOL left = NO;
-	BOOL right = NO;
-	
-	for(NSUInteger i=0; i<len; ++i) {
-		switch ([characters characterAtIndex:i]) {
-			case 's':
-            case 'S':
-				back = YES;
-				forward = NO;
-				break;
-			case 'w':
-            case 'W':
-				forward = YES;
-				back = NO;
-				break;
-			case 'a':
-            case 'A':
-				left = YES;
-				right = NO;
-				break;
-			case 'd':
-            case 'D':
-				right = YES;
-				left = NO;
-				break;
-			default:
-				break;
-		}
-	}
-	
-	if (up) {
-		if (forward || back) {
-			_direction.z = 0;
-		}
-		if (left || right) {
-			_direction.x = 0;
-		}
-	}
-	else {
-		if (forward) {
-			if (left) {
-				_direction.z = 1;
-				_direction.x = 1;
-			}
-			else if (right) {
-				_direction.z = 1;
-				_direction.x = -1;
-			}
-			else {
-				_direction.z = 1;
-			}
-		}
-		else if (back) {
-			if (left) {
-				_direction.z = -1;
-				_direction.x = 1;
-			}
-			else if (right) {
-				_direction.z = -1;
-				_direction.x = -1;
-			}
-			else {
-				_direction.z = -1;
-			}
-		}
-		else if (left) {
-			_direction.x = 1;
-		}
-		else if (right) {
-			_direction.x = -1;
-		}
-	}
+    BAMotion motion = _motionKeyMap[keyCode];
+
+    if (motion == kMoveNone) {
+        return;
+    }
+    
+    BAMotionFlag flag = BAMotionFlagForMotion(motion);
+    if (up) {
+        // Disable motion
+        _motionFlags &= ~flag;
+    }
+    else {
+        // Enable motion
+        _motionFlags |= flag;
+        // Disable opposite motion
+        _motionFlags &= ~BAMotionFlagForMotion(BAOppositeMotion(motion));
+    }
+    
+    _direction.x = _motionFlags & kMoveLeftFlag    ? 1 : (_motionFlags & kMoveRightFlag ? -1 : 0);
+    _direction.y = _motionFlags & kMoveUpFlag      ? 1 : (_motionFlags & kMoveDownFlag  ? -1 : 0);
+    _direction.z = _motionFlags & kMoveForwardFlag ? 1 : (_motionFlags & kMoveBackFlag  ? -1 : 0);
 }
 
 - (void)updateVelocity {
