@@ -10,6 +10,7 @@
 
 #import <Cocoa3D/C3DCamera.h>
 
+@class C3DColour;
 @class C3DMotion;
 @class C3DObject;
 @class C3DTransform;
@@ -17,6 +18,7 @@
 @interface C3DNode : NSObject<C3DVisible>
 
 @property (nonatomic, weak) C3DNode *parent;
+@property (nonatomic, strong) C3DColour *colour;
 @property (nonatomic, strong) NSArray *children;
 @property (nonatomic, strong) C3DMotion *motion;
 @property (nonatomic, strong) C3DObject *object;

@@ -8,9 +8,16 @@
 
 #import "C3DNode.h"
 
+#import "C3DColour.h"
 #import "C3DMotion.h"
 #import "C3DObject.h"
 #import "C3DTransform.h"
+
+#if TARGET_OS_IPHONE
+    #import <OpenGLES/ES3/gl.h>
+#elif C3D_GL_COMPATIBILITY
+    #import <OpenGL/gl.h>
+#endif
 
 @implementation C3DNode
 
@@ -56,6 +63,12 @@
 
 - (void)paintForCamera:(C3DCamera *)camera
 {
+#if TARGET_OS_IPHONE || C3D_GL_COMPATIBILITY
+    if (_colour) {
+        C3DColour_t colour = _colour.colour_t;
+        glColor4f(colour.r, colour.g, colour.b, colour.a);
+    }
+#endif
 	if (_transform) {
 		[camera applyViewTransform:self.transform];
 	}

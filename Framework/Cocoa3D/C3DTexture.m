@@ -9,9 +9,11 @@
 #import "C3DTexture.h"
 
 #if TARGET_OS_IPHONE
-#import <OpenGLES/ES3/gl.h>
+    #import <OpenGLES/ES3/gl.h>
+#elif C3D_GL_COMPATIBILITY
+    #import <OpenGL/gl.h>
 #else
-#import <OpenGL/gl3.h>
+    #import <OpenGL/gl3.h>
 #endif
 
 BOOL CGSizeIsPowerOf2(CGSize size) {
@@ -54,7 +56,7 @@ BOOL CGSizeIsPowerOf2(CGSize size) {
 		_type = type;
 		_size = size;
 
-#if TARGET_OS_IPHONE
+#if TARGET_OS_IPHONE || C3D_GL_COMPATIBILITY
         _target = GL_TEXTURE_2D;
         _magFilter = _minFilter = GL_LINEAR_MIPMAP_LINEAR;
 		

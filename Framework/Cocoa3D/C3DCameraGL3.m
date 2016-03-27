@@ -14,7 +14,7 @@
 #import "C3DShader.h"
 #import "C3DVertexBuffer.h"
 
-#import <OpenGL/gl3.h>
+//#import <OpenGL/gl3.h>
 
 @interface C3DObject (C3DCameraDebugObjectCreating)
 + (instancetype)origin;

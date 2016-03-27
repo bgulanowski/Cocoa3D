@@ -6,22 +6,16 @@
 //  Copyright (c) 2014 Lichen Labs. All rights reserved.
 //
 
+#import <CoreGraphics/CoreGraphics.h>
 #import <Foundation/Foundation.h>
-
-#import <Cocoa3D/C3DColour.h>
+#import <OpenGL/gltypes.h>
 
 #import <LichenMath/LIPoint_t.h>
 #import <LichenMath/LIMatrix_t.h>
 
-#if  TARGET_OS_IPHONE
-#import <OpenGLES/ES3/gl.h>
-#else
-#import <Cocoa/Cocoa.h>
-#endif
+#import <Cocoa3D/C3DColour.h>
 
-#import <CoreGraphics/CoreGraphics.h>
-
-@class C3DTransform, C3DCamera, LIPoint, LIVector, LIMatrix;
+@class NSOpenGLContext, C3DTransform, C3DCamera, LIPoint, LIVector, LIMatrix;
 
 typedef NS_ENUM(NSUInteger, C3DObjectType) {
 	C3DObjectTypePoints,

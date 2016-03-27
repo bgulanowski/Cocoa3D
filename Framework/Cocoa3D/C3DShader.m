@@ -9,9 +9,11 @@
 #import "C3DShader.h"
 
 #if TARGET_OS_IPHONE
-#import <OpenGLES/ES3/gl.h>
+    #import <OpenGLES/ES3/gl.h>
+#elif C3D_GL_COMPATIBILITY
+    #import <OpenGL/gl.h>
 #else
-#import <OpenGL/gl3.h>
+    #import <OpenGL/gl3.h>
 #endif
 
 static NSArray *typeNames;
@@ -43,7 +45,7 @@ static NSString * const legacyFragFunc = @"void main() {\n"
                                           "    gl_FragColor = vec4(0.5, 0.5, 0.5, 1.0);\n"
                                           "}";
 
-#if TARGET_OS_IPHONE
+#if TARGET_OS_IPHONE || C3D_GL_COMPATIBILITY
 static GLenum glTypes[] = { GL_VERTEX_SHADER, GL_FRAGMENT_SHADER };
 #else
 static GLenum glTypes[] = { GL_VERTEX_SHADER, GL_FRAGMENT_SHADER, GL_GEOMETRY_SHADER };

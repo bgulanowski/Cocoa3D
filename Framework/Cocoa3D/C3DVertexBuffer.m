@@ -10,6 +10,18 @@
 
 #import "C3DProgram.h"
 
+
+#if TARGET_OS_IPHONE
+#import <OpenGLES/ES3/gl.h>
+#else
+    #import "C3DCameraGL1.h"
+    #if C3D_GL_COMPATIBILITY
+        #import <OpenGL/gl.h>
+    #else
+        #import <OpenGL/gl3.h>
+    #endif
+#endif
+
 // ???: separate vertex array classes for each type?
 
 GLsizei C3DSizeForVertexBufferType(C3DVertexBufferType type) {
@@ -81,6 +93,7 @@ NSString *C3DAttributeNameForVertexBufferType(C3DVertexBufferType type) {
 
 - (void)genBuffer {
     NSAssert(_bufferName == 0, @"Attempt to regenerate vertex buffer");
+    
     glGenBuffers(1, &_bufferName);
     _ownsBuffer = YES;
 }

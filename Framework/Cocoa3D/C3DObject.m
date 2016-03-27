@@ -82,7 +82,11 @@
 
     if (_vao) {
         // Binding the vertex array automatically binds all the individual arrays (VBOs)
+#if C3D_GL_COMPATIBILITY
+        glBindVertexArrayAPPLE(_vao);
+#else
         glBindVertexArray(_vao);
+#endif
     }
 #if ! TARGET_OS_IPHONE
     else {
@@ -135,7 +139,11 @@
 		_buffers = NULL;
 	}
     if (_vao) {
+#if C3D_GL_COMPATIBILITY
+        glDeleteVertexArraysAPPLE(1, &_vao);
+#else
         glDeleteVertexArrays(1, &_vao);
+#endif
         _vao = 0;
     }
 }
@@ -146,13 +154,22 @@
         ++_bufferCount;
     }
 	_buffers = malloc(sizeof(GLuint) * _bufferCount);
-	glGenBuffers(_bufferCount, _buffers);
-	glGenVertexArrays(1, &_vao);
+#if C3D_GL_COMPATIBILITY
+    glGenBuffersARB(_bufferCount, _buffers);
+    glGenVertexArraysAPPLE(1, &_vao);
+#else
+    glGenBuffers(_bufferCount, _buffers);
+    glGenVertexArrays(1, &_vao);
+#endif
 }
 
 - (void)refreshBuffers {
 	
+#if C3D_GL_COMPATIBILITY
+    glBindVertexArrayAPPLE(_vao);
+#else
 	glBindVertexArray(_vao);
+#endif
 	
 	NSUInteger i = 0;
 	for (C3DVertexBuffer *vertexBuffer in _vertexBuffers) {
@@ -163,7 +180,11 @@
     [_indexElements loadDataForBuffer:_buffers[i]];
     
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindVertexArray(0);
+#if C3D_GL_COMPATIBILITY
+    glBindVertexArrayAPPLE(0);
+#else
+    glBindVertexArray(0);
+#endif
 }
 
 @end
