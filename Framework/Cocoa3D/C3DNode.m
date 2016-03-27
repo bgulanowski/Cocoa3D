@@ -14,6 +14,8 @@
 
 @implementation C3DNode
 
+#pragma mark - Accessors
+
 - (void)setObject:(C3DObject *)object
 {
     if (self.object) {
@@ -36,6 +38,22 @@
     _children = children;
 }
 
+#pragma mark - NSObject
+
+- (id)copy
+{
+    C3DNode *copy = [super copy];
+    
+    copy.parent = self.parent;
+    copy.object = self.object;
+    copy.transform = [self.transform copy];
+    copy.children = [self.children valueForKey:@"copy"];
+    
+    return copy;
+}
+
+#pragma mark - C3DVisible
+
 - (void)paintForCamera:(C3DCamera *)camera
 {
 	if (_transform) {
@@ -49,6 +67,8 @@
 		[camera revertViewTransform];
 	}
 }
+
+#pragma mark - C3DNode
 
 - (void)visit:(void (^)(C3DNode *))block {
     block(self);
