@@ -82,8 +82,7 @@ BOOL CGSizeIsPowerOf2(CGSize size) {
 	return [self initWithSize:size format:GL_RGBA type:GL_UNSIGNED_BYTE data:data];
 }
 
-#if ! TARGET_OS_IPHONE
-- (id)initWithSize:(CGSize)size color:(NSColor *)color {
+- (id)initWithSize:(CGSize)size color:(NSUIColor *)color {
     
     NSData *data = nil;
     size_t bufferSize = size.width * size.height * sizeof(GLfloat);
@@ -109,7 +108,6 @@ BOOL CGSizeIsPowerOf2(CGSize size) {
 	
     return [self initWithSize:size data:data];
 }
-#endif
 
 - (void)configureParameters {
 	glBindTexture(_target, _name);

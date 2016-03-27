@@ -12,7 +12,7 @@
 		842DBA6F1BB87DAF00072D46 /* BAFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 842DBA6E1BB87DAF00072D46 /* BAFoundation.framework */; };
 		842DBA741BB87DB300072D46 /* liblimath.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B8F1471A178B48000C1AE5 /* liblimath.a */; };
 		844833B31BA44E4E00F657AE /* C3DObject+C3DPolyhedra.h in Headers */ = {isa = PBXBuildFile; fileRef = 844833B11BA44E4E00F657AE /* C3DObject+C3DPolyhedra.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		844833B41BA44E4E00F657AE /* C3DObject+C3DPolyhedra.m in Sources */ = {isa = PBXBuildFile; fileRef = 844833B21BA44E4E00F657AE /* C3DObject+C3DPolyhedra.m */; settings = {ASSET_TAGS = (); }; };
+		844833B41BA44E4E00F657AE /* C3DObject+C3DPolyhedra.m in Sources */ = {isa = PBXBuildFile; fileRef = 844833B21BA44E4E00F657AE /* C3DObject+C3DPolyhedra.m */; };
 		844833BA1BA450E200F657AE /* C3DConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 844833B91BA450E200F657AE /* C3DConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		84552029198EE10D00571109 /* C3DLight.h in Headers */ = {isa = PBXBuildFile; fileRef = 84552027198EE10D00571109 /* C3DLight.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8455202A198EE10D00571109 /* C3DLight.m in Sources */ = {isa = PBXBuildFile; fileRef = 84552028198EE10D00571109 /* C3DLight.m */; };
@@ -217,10 +217,10 @@
 		849D2B0F196FD4C70051F434 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				842DBA6E1BB87DAF00072D46 /* BAFoundation.framework */,
-				84C1EAC419859256002760E4 /* LichenMath.framework */,
 				849D2B10196FD4C70051F434 /* Cocoa.framework */,
 				849D2B25196FD4C70051F434 /* XCTest.framework */,
+				842DBA6E1BB87DAF00072D46 /* BAFoundation.framework */,
+				84C1EAC419859256002760E4 /* LichenMath.framework */,
 				849D2B12196FD4C70051F434 /* Other Frameworks */,
 			);
 			name = Frameworks;

@@ -398,6 +398,10 @@ NSString *C3DCameraOptionsToString(C3DCameraOptions _options) {
     return [[C3DTransform alloc] initWithMatrix:m];
 }
 
+- (LIVector *)viewDirection {
+    // TODO: implement or remove
+    return nil;
+}
 
 - (LILine_t)lineOfView {
     
@@ -413,8 +417,15 @@ NSString *C3DCameraOptionsToString(C3DCameraOptions _options) {
     
     return LILineMake(p, v);
 }
+
+//- (C3DTransform *)inverseTransform {
+//    LIMatrix_t t = LIMatrixMakeWithTranslation()
+//    return nil;
+//}
+
 - (void)updatePosition:(NSTimeInterval)interval {
-	[self translateWithVector:LIVectorScale(_velocity.vector, interval)];
+    LIVector_t v = _velocity.vector;
+	[self translateWithVector:LIVectorScale(LIVectorMake(v.x, -v.y, v.z), interval)];
 }
 
 - (void)updateProjectionForViewportSize:(CGSize)size {

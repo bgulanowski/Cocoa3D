@@ -89,8 +89,10 @@
         // FIXME: update for iOS!
         [C3DCameraGL1 enableVertexBuffers:_vertexBuffers];
         [C3DCameraGL1 loadVertexBuffers:_vertexBuffers];
-        [C3DCameraGL1 enableIndexBuffer];
-        [C3DCameraGL1 loadIndexBuffer:_indexElements];
+        if (_indexElements) {
+            [C3DCameraGL1 enableIndexBuffer];
+            [C3DCameraGL1 loadIndexBuffer:_indexElements];
+        }
     }
 #endif
     if (_indexElements) {

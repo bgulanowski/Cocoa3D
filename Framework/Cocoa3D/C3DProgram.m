@@ -127,7 +127,9 @@ NSString * const C3DUniformMVPMatrix = @"MVP"; // modelViewProjectionMatrix
     GLenum dataType = GL_FLOAT;
     if (type == C3DVertexBufferNormal) {
         normalize = GL_TRUE;
-        dataType = GL_INT;
+        // ???: normals are floats; (indices are ints, but they aren't vertex buffers)
+        // Where is the function to enable index buffers?
+//        dataType = GL_INT;
     }
     
     glEnableVertexAttribArray(location);
@@ -169,7 +171,7 @@ NSString * const C3DUniformMVPMatrix = @"MVP"; // modelViewProjectionMatrix
     const int bufferLength = 1000;
     GLchar logs[bufferLength];
     logs[0] = '\0';
-    glGetShaderInfoLog(_name, bufferLength, NULL, logs);
+    glGetProgramInfoLog(_name, bufferLength, NULL, logs);
     return [NSString stringWithUTF8String:logs];
 }
 

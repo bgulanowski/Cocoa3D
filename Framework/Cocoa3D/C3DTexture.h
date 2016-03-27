@@ -8,6 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+#ifndef NSUIColor
+#if TARGET_OS_IPHONE
+#define NSUIColor UIColor
+#else
+#define NSUIColor NSColor
+#endif
+#endif
+
 @interface C3DTexture : NSObject
 
 @property (readonly) CGSize size;
@@ -21,8 +29,9 @@
 
 - (void)updateWithData:(NSData *)data region:(CGRect)region;
 
+- (void)updateTexelAtX:(GLuint)x y:(GLuint)y color:(NSUIColor *)color;
+
 #if ! TARGET_OS_IPHONE
-- (void)updateTexelAtX:(GLuint)x y:(GLuint)y color:(NSColor *)color;
 
 + (instancetype)textureWithSize:(CGSize)size format:(GLenum)format type:(GLenum)type data:(NSData *)data;
 + (instancetype)textureWithSize:(CGSize)size data:(NSData *)data;

@@ -8,6 +8,8 @@
 
 #import <XCTest/XCTest.h>
 
+#import "C3DCamera.h"
+
 @interface Cocoa3DTests : XCTestCase
 
 @end
@@ -28,7 +30,13 @@
 
 - (void)testExample
 {
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    C3DCamera *camera = [[C3DCamera alloc] init];
+    
+    [camera translateX:10.0f y:0.0f z:-10.0f];
+    [camera rotateX:-45.0f y:0];
+    LILine_t l = [camera lineOfView];
+    
+    XCTAssert(LILineIsZero(l));
 }
 
 @end

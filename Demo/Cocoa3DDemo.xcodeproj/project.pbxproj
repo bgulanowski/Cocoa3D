@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		844833C81BA5AD4000F657AE /* C3DView+ScenePresenting.m in Sources */ = {isa = PBXBuildFile; fileRef = 844833C71BA5AD4000F657AE /* C3DView+ScenePresenting.m */; settings = {ASSET_TAGS = (); }; };
-		844833CB1BA5ADB100F657AE /* LegacyScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 844833CA1BA5ADB100F657AE /* LegacyScene.m */; settings = {ASSET_TAGS = (); }; };
-		844833CE1BA5ADBD00F657AE /* ModernScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 844833CD1BA5ADBD00F657AE /* ModernScene.m */; settings = {ASSET_TAGS = (); }; };
-		844833D61BA5AE7E00F657AE /* C3DCamera+Configuring.m in Sources */ = {isa = PBXBuildFile; fileRef = 844833D51BA5AE7E00F657AE /* C3DCamera+Configuring.m */; settings = {ASSET_TAGS = (); }; };
+		844833C81BA5AD4000F657AE /* C3DView+ScenePresenting.m in Sources */ = {isa = PBXBuildFile; fileRef = 844833C71BA5AD4000F657AE /* C3DView+ScenePresenting.m */; };
+		844833CB1BA5ADB100F657AE /* LegacyScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 844833CA1BA5ADB100F657AE /* LegacyScene.m */; };
+		844833CE1BA5ADBD00F657AE /* ModernScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 844833CD1BA5ADBD00F657AE /* ModernScene.m */; };
+		844833D61BA5AE7E00F657AE /* C3DCamera+Configuring.m in Sources */ = {isa = PBXBuildFile; fileRef = 844833D51BA5AE7E00F657AE /* C3DCamera+Configuring.m */; };
+		84971DC51BE66A05003A6814 /* FlatShader.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84971DC41BE66A05003A6814 /* FlatShader.plist */; };
 		849D2B48196FD54E0051F434 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 849D2B47196FD54E0051F434 /* Cocoa.framework */; };
 		849D2B52196FD54E0051F434 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 849D2B50196FD54E0051F434 /* InfoPlist.strings */; };
 		849D2B54196FD54E0051F434 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 849D2B53196FD54E0051F434 /* main.m */; };
@@ -86,6 +87,7 @@
 		844833CD1BA5ADBD00F657AE /* ModernScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModernScene.m; sourceTree = "<group>"; };
 		844833D41BA5AE7E00F657AE /* C3DCamera+Configuring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "C3DCamera+Configuring.h"; sourceTree = "<group>"; };
 		844833D51BA5AE7E00F657AE /* C3DCamera+Configuring.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "C3DCamera+Configuring.m"; sourceTree = "<group>"; };
+		84971DC41BE66A05003A6814 /* FlatShader.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FlatShader.plist; sourceTree = "<group>"; };
 		849D2B44196FD54E0051F434 /* Cocoa3DDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cocoa3DDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		849D2B47196FD54E0051F434 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		849D2B4A196FD54E0051F434 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -147,6 +149,7 @@
 			children = (
 				84CED7681974270100FFF722 /* FlatShader.fp */,
 				84CED7691974270100FFF722 /* FlatShader.vp */,
+				84971DC41BE66A05003A6814 /* FlatShader.plist */,
 				849D2B5F196FD54E0051F434 /* Images.xcassets */,
 				849D2B5C196FD54E0051F434 /* MainMenu.xib */,
 			);
@@ -393,6 +396,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84971DC51BE66A05003A6814 /* FlatShader.plist in Resources */,
 				849D2B52196FD54E0051F434 /* InfoPlist.strings in Resources */,
 				84CED76B1974270100FFF722 /* FlatShader.vp in Resources */,
 				849D2B60196FD54E0051F434 /* Images.xcassets in Resources */,

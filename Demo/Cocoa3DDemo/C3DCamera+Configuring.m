@@ -46,7 +46,7 @@
 
 + (instancetype)newDemoTransform {
     C3DTransform *transform = [self identity];
-    [transform rotate:LIRotationMake(0.5, 1, 0, M_PI_4)];
+//    [transform rotate:LIRotationMake(0.5, 1, 0, M_PI_4)];
     [transform translate:LIVectorMake(0.0, 0.0, -10.0f)];
     return transform;
 }
