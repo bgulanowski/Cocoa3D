@@ -101,6 +101,12 @@ static CVReturn C3DViewDisplayLink(CVDisplayLinkRef displayLink,
     return self.camera.drawDelegate;
 }
 
+- (void)setCamera:(C3DCamera *)camera
+{
+    camera.drawDelegate = _camera.drawDelegate;
+    _camera = camera;
+}
+
 - (void)setDrawDelegate:(id<C3DCameraDrawDelegate>)drawDelegate {
     self.camera.drawDelegate = drawDelegate;
 }
