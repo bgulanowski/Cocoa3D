@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Lichen Labs. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <Cocoa/Cocoa.h>
 
 #ifndef NSUIColor
 #if TARGET_OS_IPHONE
