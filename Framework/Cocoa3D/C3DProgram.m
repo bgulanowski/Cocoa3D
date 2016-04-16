@@ -14,7 +14,9 @@
 #import "C3DTransform.h"
 #import "C3DVertexBuffer.h"
 
+#if ! TARGET_OS_IPHONE
 #import "NSOpenGLContext+Cocoa3D.h"
+#endif
 
 GLint const C3DLocationUnknown = -1;
 
@@ -148,6 +150,10 @@ NSString * const C3DUniformMVPMatrix = @"MVP"; // modelViewProjectionMatrix
 - (instancetype)init {
     C3DShader *vertShader = nil;
     C3DShader *fragShader = nil;
+#if TARGET_OS_IPHONE
+    vertShader = [C3DShader basic33VertexShader];
+    fragShader = [C3DShader basic33FragmentShader];
+#else
     if ([NSOpenGLContext currentContext].usesCoreProfile) {
         vertShader = [C3DShader basic33VertexShader];
         fragShader = [C3DShader basic33FragmentShader];
@@ -156,6 +162,7 @@ NSString * const C3DUniformMVPMatrix = @"MVP"; // modelViewProjectionMatrix
         vertShader = [C3DShader basicLegacyVertexShader];
         fragShader = [C3DShader basicLegacyFragmentShader];
     }
+#endif
     return [self initWithVertexShader:vertShader fragmentShader:fragShader attributes:C3DAttributeNames() uniforms:@[C3DUniformMVPMatrix]];
 }
 

@@ -63,7 +63,7 @@
 
 - (void)paintForCamera:(C3DCamera *)camera
 {
-#if TARGET_OS_IPHONE || C3D_GL_COMPATIBILITY
+#if C3D_GL_COMPATIBILITY
     if (_colour) {
         C3DColour_t colour = _colour.colour_t;
         glColor4f(colour.r, colour.g, colour.b, colour.a);

@@ -7,7 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#if TARGET_OS_IPHONE
+#import <OpenGLES/gltypes.h>
+#else
 #import <OpenGL/gltypes.h>
+#endif
 
 typedef struct {
 	GLfloat r;

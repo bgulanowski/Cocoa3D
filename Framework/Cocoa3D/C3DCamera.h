@@ -8,7 +8,11 @@
 
 #import <CoreGraphics/CoreGraphics.h>
 #import <Foundation/Foundation.h>
+#if TARGET_OS_IPHONE
+#import <OpenGLES/gltypes.h>
+#else
 #import <OpenGL/gltypes.h>
+#endif
 
 #import <LichenMath/LIPoint_t.h>
 #import <LichenMath/LIMatrix_t.h>

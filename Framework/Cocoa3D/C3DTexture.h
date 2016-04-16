@@ -6,7 +6,11 @@
 //  Copyright (c) 2014 Lichen Labs. All rights reserved.
 //
 
+#if TARGET_OS_IPHONE
+#import <UIKit/UIKit.h>
+#else
 #import <Cocoa/Cocoa.h>
+#endif
 
 #ifndef NSUIColor
 #if TARGET_OS_IPHONE
@@ -29,9 +33,9 @@
 
 - (void)updateWithData:(NSData *)data region:(CGRect)region;
 
-- (void)updateTexelAtX:(GLuint)x y:(GLuint)y color:(NSUIColor *)color;
-
 #if ! TARGET_OS_IPHONE
+
+- (void)updateTexelAtX:(GLuint)x y:(GLuint)y color:(NSUIColor *)color;
 
 + (instancetype)textureWithSize:(CGSize)size format:(GLenum)format type:(GLenum)type data:(NSData *)data;
 + (instancetype)textureWithSize:(CGSize)size data:(NSData *)data;

@@ -6,7 +6,8 @@
 //  Copyright © 2015 Lichen Labs. All rights reserved.
 //
 
-#import <Cocoa3D/Cocoa3D.h>
+#import <Cocoa3D/C3DObject.h>
+#import <Cocoa3D/C3DVertexBuffer.h>
 
 // These are created without a program set
 

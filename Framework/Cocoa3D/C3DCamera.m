@@ -15,10 +15,10 @@
 #else
 #import "C3DCameraGL1.h"
 #import "C3DCameraGL3.h"
+#import "NSOpenGLContext+Cocoa3D.h"
 #endif
 
 #import "C3DTransform.h"
-#import "NSOpenGLContext+Cocoa3D.h"
 
 #import <LichenMath/LichenMath.h>
 

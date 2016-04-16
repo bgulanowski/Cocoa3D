@@ -14,6 +14,8 @@
 #else
 #import <Cocoa3D/C3DCameraGL1.h>
 #import <Cocoa3D/C3DCameraGL3.h>
+#import <Cocoa3D/NSOpenGLContext+Cocoa3D.h>
+#import <Cocoa3D/NSOpenGLPixelFormat+Cocoa3D.h>
 #endif
 
 #import <Cocoa3D/C3DColour.h>
@@ -29,9 +31,6 @@
 #import <Cocoa3D/C3DVertex.h>
 #import <Cocoa3D/C3DVertexBuffer.h>
 #import <Cocoa3D/C3DView.h>
-
-#import <Cocoa3D/NSOpenGLContext+Cocoa3D.h>
-#import <Cocoa3D/NSOpenGLPixelFormat+Cocoa3D.h>
 
 @interface Cocoa3D : NSObject
 
