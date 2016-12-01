@@ -36,7 +36,6 @@
 		84B8F2931A183BC8000C1AE5 /* C3DVertexBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 84B8F26A1A183BC8000C1AE5 /* C3DVertexBuffer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		84B8F2941A183BC8000C1AE5 /* C3DVertexBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B8F26B1A183BC8000C1AE5 /* C3DVertexBuffer.m */; };
 		84B8F2981A183BC8000C1AE5 /* Cocoa3D.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B8F26F1A183BC8000C1AE5 /* Cocoa3D.m */; };
-		84B8F2B31A18400E000C1AE5 /* LichenMath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B8F24E1A183B97000C1AE5 /* LichenMath.framework */; };
 		84B8F2B51A18425F000C1AE5 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B8F2B41A18425F000C1AE5 /* OpenGLES.framework */; };
 		84B8F2BB1A190D49000C1AE5 /* C3DCameraEAGL3.h in Headers */ = {isa = PBXBuildFile; fileRef = 84B8F2B91A190D49000C1AE5 /* C3DCameraEAGL3.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		84B8F2BC1A190D49000C1AE5 /* C3DCameraEAGL3.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B8F2BA1A190D49000C1AE5 /* C3DCameraEAGL3.m */; };
@@ -48,47 +47,40 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		84B8F2451A183B97000C1AE5 /* PBXContainerItemProxy */ = {
+		84A2B1E51D54B6A900148585 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 84B8F23D1A183B97000C1AE5 /* LichenMath.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 84780D67197F353C000C3B9B;
 			remoteInfo = LichenMath;
 		};
-		84B8F2471A183B97000C1AE5 /* PBXContainerItemProxy */ = {
+		84A2B1E71D54B6A900148585 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 84B8F23D1A183B97000C1AE5 /* LichenMath.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 84780D7E197F353C000C3B9B;
 			remoteInfo = LichenMathTests;
 		};
-		84B8F2491A183B97000C1AE5 /* PBXContainerItemProxy */ = {
+		84A2B1E91D54B6A900148585 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 84B8F23D1A183B97000C1AE5 /* LichenMath.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 8455200B198D445000571109;
 			remoteInfo = limath;
 		};
-		84B8F24B1A183B97000C1AE5 /* PBXContainerItemProxy */ = {
+		84A2B1EB1D54B6A900148585 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 84B8F23D1A183B97000C1AE5 /* LichenMath.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 84B8F1C11A183A17000C1AE5;
 			remoteInfo = "limath-ios";
 		};
-		84B8F24D1A183B97000C1AE5 /* PBXContainerItemProxy */ = {
+		84A2B1ED1D54B6A900148585 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 84B8F23D1A183B97000C1AE5 /* LichenMath.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 84B8F2061A183AD2000C1AE5;
-			remoteInfo = "LichenMath-iOS";
-		};
-		84B8F24F1A183B9D000C1AE5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 84B8F23D1A183B97000C1AE5 /* LichenMath.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 84B8F2051A183AD2000C1AE5;
-			remoteInfo = "LichenMath-iOS";
+			remoteInfo = LichenMath_iOS;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -101,7 +93,7 @@
 		84B8F18F1A178E3C000C1AE5 /* Cocoa3D.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Cocoa3D.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84B8F1931A178E3C000C1AE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84B8F1941A178E3C000C1AE5 /* Cocoa3D-iOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cocoa3D-iOS.h"; sourceTree = "<group>"; };
-		84B8F23D1A183B97000C1AE5 /* LichenMath.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LichenMath.xcodeproj; path = /Users/brent/Dev/github/Cocoa3D/Framework/../LichenMath/LichenMath.xcodeproj; sourceTree = "<absolute>"; };
+		84B8F23D1A183B97000C1AE5 /* LichenMath.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LichenMath.xcodeproj; path = ../LichenMath/LichenMath.xcodeproj; sourceTree = "<group>"; };
 		84B8F2511A183BC8000C1AE5 /* C3DCamera_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C3DCamera_Private.h; sourceTree = "<group>"; };
 		84B8F2521A183BC8000C1AE5 /* C3DCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C3DCamera.h; sourceTree = "<group>"; };
 		84B8F2531A183BC8000C1AE5 /* C3DCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C3DCamera.m; sourceTree = "<group>"; };
@@ -146,13 +138,24 @@
 				84B8F2D91A192890000C1AE5 /* UIKit.framework in Frameworks */,
 				84B8F2D71A192793000C1AE5 /* CoreGraphics.framework in Frameworks */,
 				84B8F2B51A18425F000C1AE5 /* OpenGLES.framework in Frameworks */,
-				84B8F2B31A18400E000C1AE5 /* LichenMath.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		84A2B1DE1D54B6A900148585 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				84A2B1E61D54B6A900148585 /* LichenMath.framework */,
+				84A2B1E81D54B6A900148585 /* LichenMathTests.xctest */,
+				84A2B1EA1D54B6A900148585 /* liblimath.a */,
+				84A2B1EC1D54B6A900148585 /* liblimath-ios.a */,
+				84A2B1EE1D54B6A900148585 /* LichenMath.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		84B8F1851A178E3C000C1AE5 = {
 			isa = PBXGroup;
 			children = (
@@ -192,18 +195,6 @@
 				84B8F2B71A184379000C1AE5 /* Cocoa3D-iOS.pch */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		84B8F23E1A183B97000C1AE5 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				84B8F2461A183B97000C1AE5 /* LichenMath.framework */,
-				84B8F2481A183B97000C1AE5 /* LichenMathTests.xctest */,
-				84B8F24A1A183B97000C1AE5 /* liblimath.a */,
-				84B8F24C1A183B97000C1AE5 /* liblimath-ios.a */,
-				84B8F24E1A183B97000C1AE5 /* LichenMath.framework */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		84B8F2791A183BC8000C1AE5 /* Cocoa3D */ = {
@@ -298,7 +289,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				84B8F2501A183B9D000C1AE5 /* PBXTargetDependency */,
 			);
 			name = Cocoa3D_iOS;
 			productName = "Cocoa3D-iOS";
@@ -331,7 +321,7 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 84B8F23E1A183B97000C1AE5 /* Products */;
+					ProductGroup = 84A2B1DE1D54B6A900148585 /* Products */;
 					ProjectRef = 84B8F23D1A183B97000C1AE5 /* LichenMath.xcodeproj */;
 				},
 			);
@@ -343,39 +333,39 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		84B8F2461A183B97000C1AE5 /* LichenMath.framework */ = {
+		84A2B1E61D54B6A900148585 /* LichenMath.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = LichenMath.framework;
-			remoteRef = 84B8F2451A183B97000C1AE5 /* PBXContainerItemProxy */;
+			remoteRef = 84A2B1E51D54B6A900148585 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		84B8F2481A183B97000C1AE5 /* LichenMathTests.xctest */ = {
+		84A2B1E81D54B6A900148585 /* LichenMathTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = LichenMathTests.xctest;
-			remoteRef = 84B8F2471A183B97000C1AE5 /* PBXContainerItemProxy */;
+			remoteRef = 84A2B1E71D54B6A900148585 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		84B8F24A1A183B97000C1AE5 /* liblimath.a */ = {
+		84A2B1EA1D54B6A900148585 /* liblimath.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = liblimath.a;
-			remoteRef = 84B8F2491A183B97000C1AE5 /* PBXContainerItemProxy */;
+			remoteRef = 84A2B1E91D54B6A900148585 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		84B8F24C1A183B97000C1AE5 /* liblimath-ios.a */ = {
+		84A2B1EC1D54B6A900148585 /* liblimath-ios.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = "liblimath-ios.a";
-			remoteRef = 84B8F24B1A183B97000C1AE5 /* PBXContainerItemProxy */;
+			remoteRef = 84A2B1EB1D54B6A900148585 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		84B8F24E1A183B97000C1AE5 /* LichenMath.framework */ = {
+		84A2B1EE1D54B6A900148585 /* LichenMath.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = LichenMath.framework;
-			remoteRef = 84B8F24D1A183B97000C1AE5 /* PBXContainerItemProxy */;
+			remoteRef = 84A2B1ED1D54B6A900148585 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -415,14 +405,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		84B8F2501A183B9D000C1AE5 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "LichenMath-iOS";
-			targetProxy = 84B8F24F1A183B9D000C1AE5 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		84B8F1A31A178E3C000C1AE5 /* Debug */ = {
