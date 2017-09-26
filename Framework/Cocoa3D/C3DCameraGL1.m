@@ -218,7 +218,7 @@ static void C3DDrawOrigin( void ) {
     glDisableClientState(C3DArrayForBufferType(vertexBuffer.type));
 }
 
-+ (void)enableVertexBuffers:(NSArray *)vertexBuffers {
++ (void)enableVertexBuffers:(NSArray<C3DVertexBuffer *> *)vertexBuffers {
     for (C3DVertexBuffer *vertexBuffer in vertexBuffers) {
         [self enableVertexBuffer:vertexBuffer];
     }

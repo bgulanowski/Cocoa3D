@@ -15,9 +15,9 @@
 + (void)disableVertexBuffer:(C3DVertexBuffer *)vertexBuffer;
 + (void)loadVertexBuffer:(C3DVertexBuffer *)vertexBuffer;
 
-+ (void)enableVertexBuffers:(NSArray *)vertexBuffers;
-+ (void)disableVertexBuffers:(NSArray *)vertexBuffers;
-+ (void)loadVertexBuffers:(NSArray *)vertexBuffers;
++ (void)enableVertexBuffers:(NSArray<C3DVertexBuffer *> *)vertexBuffers;
++ (void)disableVertexBuffers:(NSArray<C3DVertexBuffer *> *)vertexBuffers;
++ (void)loadVertexBuffers:(NSArray<C3DVertexBuffer *> *)vertexBuffers;
 
 + (void)enableIndexBuffer;
 + (void)disableIndexBuffer;

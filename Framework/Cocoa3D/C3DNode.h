@@ -19,7 +19,7 @@
 
 @property (nonatomic, weak) C3DNode *parent;
 @property (nonatomic, strong) C3DColour *colour;
-@property (nonatomic, strong) NSArray *children;
+@property (nonatomic, strong) NSArray<C3DNode *> *children;
 @property (nonatomic, strong) C3DMotion *motion;
 @property (nonatomic, strong) C3DObject *object;
 @property (nonatomic, strong) C3DTransform *transform;

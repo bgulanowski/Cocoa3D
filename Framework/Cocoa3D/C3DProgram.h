@@ -23,13 +23,11 @@
 <GLKNamedEffect>
 #endif
 
-@property (nonatomic, weak) C3DCamera *camera;
-
-- (instancetype)initWithVertexShader:(C3DShader *)vertexShader fragmentShader:(C3DShader *)fragmentShader attributes:(NSArray *)attributes uniforms:(NSArray *)uniforms;
-- (instancetype)initWithName:(NSString *)name attributes:(NSArray *)attributes uniforms:(NSArray *)uniforms;
+- (instancetype)initWithVertexShader:(C3DShader *)vertexShader fragmentShader:(C3DShader *)fragmentShader attributes:(NSArray<NSString *> *)attributes uniforms:(NSArray<NSString *> *)uniforms;
+- (instancetype)initWithName:(NSString *)name attributes:(NSArray<NSString *> *)attributes uniforms:(NSArray<NSString *> *)uniforms;
 - (GLint)locationForAttribute:(NSString *)attribute;
 - (GLint)locationForUniform:(NSString *)uniform;
-- (NSArray *)activeUniforms;
+- (NSArray<NSString *> *)activeUniforms;
 
 - (void)bindUniform:(NSString *)binding toObject:(id)observable withKeyPath:(NSString *)keyPath;
 - (void)bindAttribute:(NSString *)binding toObject:(id)observable withKeyPath:(NSString *)keyPath;

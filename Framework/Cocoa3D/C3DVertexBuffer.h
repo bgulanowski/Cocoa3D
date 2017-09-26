@@ -14,6 +14,8 @@
 #import <OpenGL/gltypes.h>
 #endif
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef NS_ENUM(NSUInteger, C3DVertexBufferType) {
 	// quadruples
 	C3DVertexBufferColour,
@@ -32,7 +34,7 @@ typedef NS_ENUM(NSUInteger, C3DVertexBufferType) {
 extern NSUInteger const C3DVertexBufferTypeCount;
 
 extern GLsizei C3DSizeForVertexBufferType(C3DVertexBufferType type);
-extern NSArray *C3DAttributeNames( void );
+extern NSArray<NSString *> *C3DAttributeNames( void );
 extern NSString *C3DAttributeNameForVertexBufferType(C3DVertexBufferType type);
 
 @class C3DProgram;
@@ -71,3 +73,5 @@ extern NSString *C3DAttributeNameForVertexBufferType(C3DVertexBufferType type);
 + (instancetype)edgeFlagsWithElements:(GLuint *)elements count:(NSUInteger)count;
 
 @end
+
+NS_ASSUME_NONNULL_END

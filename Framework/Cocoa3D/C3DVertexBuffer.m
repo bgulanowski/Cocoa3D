@@ -167,10 +167,6 @@ NSString *C3DAttributeNameForVertexBufferType(C3DVertexBufferType type) {
 	return C3DAttributeNameForVertexBufferType(_type);
 }
 
-- (instancetype)init {
-    return [self initWithType:C3DVertexBufferPosition data:nil count:0];
-}
-
 - (instancetype)initWithType:(C3DVertexBufferType)type data:(NSData *)data count:(NSUInteger)count {
     self = [super initWithData:data count:count target:GL_ARRAY_BUFFER];
     if (self) {

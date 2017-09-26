@@ -401,7 +401,7 @@ static CVReturn C3DViewDisplayLink(CVDisplayLinkRef displayLink,
 - (void)disableDisplayLink {
 	if (!_displayLink)
 		return;
-	CVDisplayLinkRelease(_displayLink), _displayLink = NULL;
+    (void)(CVDisplayLinkRelease(_displayLink)), _displayLink = NULL;
 }
 
 - (void)useModernContext {
