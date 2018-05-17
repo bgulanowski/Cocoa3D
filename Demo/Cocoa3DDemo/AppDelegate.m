@@ -34,10 +34,10 @@
 
 #pragma mark - NSNibAwaking
 
-- (void)awakeFromNib {
-	[self.window makeFirstResponder:_gl3View];
-	[self.window setNextResponder:self];
-}
+//- (void)awakeFromNib {
+//    [self.window makeFirstResponder:_gl3View];
+//    [self.window setNextResponder:self];
+//}
 
 #pragma mark - NSApplicationDelegate
 
@@ -55,6 +55,7 @@
 
     _glLegacyView.camera.drawDelegate = self;
     _glCoreView.camera.drawDelegate = self;
+    [_glCoreView.camera updateProjectionForViewportSize:_glCoreView.bounds.size];
     
     _glCoreView.usesDisplayLink = YES;
 }
