@@ -171,7 +171,7 @@ NSString *C3DCameraOptionsToString(C3DCameraOptions _options) {
         if(_options.rateOn && !_renderTimes)
             _renderTimes = malloc(sizeof(NSTimeInterval)*30);
         else if(!_options.rateOn && _renderTimes)
-            free(_renderTimes), _renderTimes = NULL;
+            (void)(free(_renderTimes)), _renderTimes = NULL;
     }
 }
 

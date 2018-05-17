@@ -29,15 +29,19 @@
     self.showOriginOn = YES;
 }
 
-- (SEL)configurationSelectorForStyle:(CameraStyle)style {
-    SEL selectors[] = { @selector(configureStyleA), @selector(configureStyleB) };
-    return selectors[style];
-}
-
 - (void)configureStyle:(CameraStyle)style {
     self.transform = [C3DTransform newDemoTransform];
     [self configureOptions];
-    objc_msgSend(self, [self configurationSelectorForStyle:style]);
+    switch (style) {
+        case CameraStyleA:
+            [self configureStyleA];
+            break;
+            
+        case CameraStyleB:
+            [self configureStyleB];
+        default:
+            break;
+    }
 }
 
 @end

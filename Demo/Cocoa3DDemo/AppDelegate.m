@@ -71,7 +71,7 @@
 //                [xform concatenate:rot];
 //                node.transform = xform;
 //                [node.transform rotate:LIRotationMake(0, 1, 0, M_PI / 100.0f)];
-                [node.transform concatenate:_rotation];
+                [node.transform concatenate:self->_rotation];
             }
         }];
     }
