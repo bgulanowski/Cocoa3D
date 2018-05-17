@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14109"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -14,8 +15,8 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
             <connections>
-                <outlet property="gl2View" destination="q2C-LX-brO" id="9ga-UY-l0w"/>
-                <outlet property="gl3View" destination="DEk-3f-g1N" id="Tmf-u4-BID"/>
+                <outlet property="glCoreView" destination="DEk-3f-g1N" id="Tmf-u4-BID"/>
+                <outlet property="glLegacyView" destination="q2C-LX-brO" id="9ga-UY-l0w"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -673,21 +674,21 @@
             <windowStyleMask key="styleMask" titled="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="335" y="390" width="538" height="435"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1418"/>
             <view key="contentView" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="538" height="435"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <tabView translatesAutoresizingMaskIntoConstraints="NO" id="GFe-wd-dAv">
+                    <tabView initialItem="KAY-OV-D3c" translatesAutoresizingMaskIntoConstraints="NO" id="GFe-wd-dAv" userLabel="(Legacy GL, Core GL)">
                         <rect key="frame" x="13" y="3" width="512" height="426"/>
                         <font key="font" metaFont="system"/>
                         <tabViewItems>
-                            <tabViewItem label="GL2" identifier="2" id="cZg-Kj-fSH">
+                            <tabViewItem label="Legacy" identifier="2" id="cZg-Kj-fSH">
                                 <view key="view" id="RTP-Xc-MmN">
                                     <rect key="frame" x="10" y="33" width="492" height="380"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <openGLView useAuxiliaryDepthBufferStencil="NO" useDoubleBufferingEnabled="YES" allowOffline="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q2C-LX-brO" customClass="C3DView">
+                                        <openGLView useAuxiliaryDepthBufferStencil="NO" useDoubleBufferingEnabled="YES" allowOffline="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q2C-LX-brO" userLabel="GL Legacy View" customClass="C3DView">
                                             <rect key="frame" x="0.0" y="0.0" width="492" height="377"/>
                                         </openGLView>
                                     </subviews>
@@ -699,12 +700,12 @@
                                     </constraints>
                                 </view>
                             </tabViewItem>
-                            <tabViewItem label="GL3" identifier="1" id="KAY-OV-D3c">
+                            <tabViewItem label="Core" identifier="1" id="KAY-OV-D3c">
                                 <view key="view" id="BpU-vn-Oup">
                                     <rect key="frame" x="10" y="33" width="492" height="380"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <openGLView useAuxiliaryDepthBufferStencil="NO" useDoubleBufferingEnabled="YES" allowOffline="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DEk-3f-g1N" customClass="C3DView">
+                                        <openGLView useAuxiliaryDepthBufferStencil="NO" useDoubleBufferingEnabled="YES" allowOffline="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DEk-3f-g1N" userLabel="GL Core View" customClass="C3DView">
                                             <rect key="frame" x="0.0" y="0.0" width="492" height="377"/>
                                         </openGLView>
                                     </subviews>

@@ -21,15 +21,15 @@
 
 @implementation AppDelegate {
     id<Scene> _legacyScene;
-    id<Scene> _modernScene;
+    id<Scene> _coreScene;
     C3DTransform *_rotation;
 }
 
 #pragma mark - NSResponder
 
 - (void)keyDown:(NSEvent *)theEvent {
-	[_gl3View keyDown:theEvent];
-	[_window makeFirstResponder:_gl3View];
+    [_glCoreView keyDown:theEvent];
+    [_window makeFirstResponder:_glCoreView];
 }
 
 #pragma mark - NSNibAwaking
@@ -42,28 +42,28 @@
 #pragma mark - NSApplicationDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    _legacyScene = [[LegacyScene alloc] initWithPresenter:_gl2View];
-    _modernScene = [[ModernScene alloc] initWithPresenter:_gl3View];
+    _legacyScene = [[LegacyScene alloc] initWithPresenter:_glLegacyView];
+    _coreScene = [[ModernScene alloc] initWithPresenter:_glCoreView];
     
     LIPoint_t p = LIPointMake(0.5, 0.0, 0.5, 1.0);
     LILine_t l = LILineMake(p, LIVectorUnitY);
     LIMatrix_t m = LIMatrixMakeWithArbitraryRotation(l, M_PI/180.0f);
     _rotation = [[C3DTransform alloc] initWithMatrix:m];
     
-    [_gl2View.camera configureStyle:CameraStyleA];
-    [_gl3View.camera configureStyle:CameraStyleB];
+    [_glLegacyView.camera configureStyle:CameraStyleA];
+    [_glCoreView.camera configureStyle:CameraStyleB];
 
-    _gl2View.camera.drawDelegate = self;
-    _gl3View.camera.drawDelegate = self;
+    _glLegacyView.camera.drawDelegate = self;
+    _glCoreView.camera.drawDelegate = self;
     
-    _gl3View.usesDisplayLink = YES;
+    _glCoreView.usesDisplayLink = YES;
 }
 
 #pragma mark - C3DCameraDrawDelegate
 
 - (void)paintForCamera:(C3DCamera *)camera {
-    if (camera == _gl3View.camera) {
-        [[_modernScene rootNode] visit:^(C3DNode *node) {
+    if (camera == _glCoreView.camera) {
+        [[_coreScene rootNode] visit:^(C3DNode *node) {
             if (node.object != nil && node.transform != nil) {
 //                C3DTransform *xform = [rot copy];
 //                [xform concatenate:node.transform];
@@ -77,11 +77,11 @@
 }
 
 - (id<C3DObjectContainer>)objectContainerForCamera:(C3DCamera *)camera {
-    if (camera == _gl2View.camera) {
+    if (camera == _glLegacyView.camera) {
         return _legacyScene;
     }
     else {
-        return _modernScene;
+        return _coreScene;
     }
 }
 
