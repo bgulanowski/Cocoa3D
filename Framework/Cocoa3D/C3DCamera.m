@@ -340,7 +340,7 @@ NSString *C3DCameraOptionsToString(C3DCameraOptions _options) {
 -(void)rotateX:(GLfloat)xDeg y:(GLfloat)yDeg {
 
 	// X rotation goes about Y axis, and vice versa
-    // unwide the pitch before applying yaw, to prevent unintentional roll (avoid left/right tilt)
+    // unwind the pitch before applying yaw, to prevent unintentional roll (avoid left/right tilt)
     // not 100% sure why this (applying the new pitch amount first) works
     // I get a bit confused by the significance of the concatenation order
     LIMatrix_t m = LIMatrixMakeWithXAxisRotation((_yRot+yDeg) * DEG_2_RAD);
