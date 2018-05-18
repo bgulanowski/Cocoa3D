@@ -28,7 +28,7 @@ NS_INLINE BAMotionFlag BAMotionFlagForMotion(BAMotion motion) {
 }
 
 @interface C3DView ()
-- (void)captureScene;
+- (void)captureSceneWithDelta:(NSTimeInterval)delta;
 @end
 
 static CVReturn C3DViewDisplayLink(CVDisplayLinkRef displayLink,
@@ -38,7 +38,8 @@ static CVReturn C3DViewDisplayLink(CVDisplayLinkRef displayLink,
 									   CVOptionFlags *flagsOut,
 									   void *view) {
 	@autoreleasepool {
-		[(__bridge C3DView *)view captureScene];
+        NSTimeInterval deltaTime = 1.0 / (inOutputTime->rateScalar * (double)inOutputTime->videoTimeScale / (double)inOutputTime->videoRefreshPeriod);
+		[(__bridge C3DView *)view captureSceneWithDelta:deltaTime];
 	}
 	
 	return kCVReturnSuccess;
@@ -64,13 +65,14 @@ static CVReturn C3DViewDisplayLink(CVDisplayLinkRef displayLink,
 	CVDisplayLinkSetCurrentCGDisplayFromOpenGLContext(_displayLink, cglContext, cglPixelFormat);
 }
 
-- (void)captureScene {
+- (void)captureSceneWithDelta:(NSTimeInterval)delta {
     
     CGLContextObj cglContext = [[self openGLContext] CGLContextObj];
     
     CGLSetCurrentContext(cglContext);
     CGLLockContext(cglContext);
     
+    [_camera updatePosition:delta];
     [_camera capture];
     
     CGLUnlockContext(cglContext);
