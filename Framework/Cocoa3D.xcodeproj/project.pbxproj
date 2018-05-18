@@ -402,11 +402,6 @@
 			attributes = {
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Lichen Labs";
-				TargetAttributes = {
-					849D2B23196FD4C70051F434 = {
-						TestTargetID = 849D2B0C196FD4C70051F434;
-					};
-				};
 			};
 			buildConfigurationList = 849D2B07196FD4C70051F434 /* Build configuration list for PBXProject "Cocoa3D" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -693,7 +688,6 @@
 		849D2B39196FD4C70051F434 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Cocoa3D.framework/Versions/A/Cocoa3D";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -708,7 +702,6 @@
 				INFOPLIST_FILE = "Cocoa3DTests/Cocoa3DTests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lichenlabs.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -716,7 +709,6 @@
 		849D2B3A196FD4C70051F434 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Cocoa3D.framework/Versions/A/Cocoa3D";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -727,7 +719,6 @@
 				INFOPLIST_FILE = "Cocoa3DTests/Cocoa3DTests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lichenlabs.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
