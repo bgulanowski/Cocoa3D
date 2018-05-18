@@ -37,6 +37,7 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     _legacyScene = [[LegacyScene alloc] initWithPresenter:_glLegacyView];
     _coreScene = [[ModernScene alloc] initWithPresenter:_glCoreView];
+    _coreScene.rootNode.transform = [C3DTransform identity];
     
     LIPoint_t p = LIPointMake(0.5, 0.0, 0.5, 1.0);
     LILine_t l = LILineMake(p, LIVectorUnitY);
@@ -55,18 +56,23 @@
 
 #pragma mark - C3DCameraDrawDelegate
 
+BOOL rotateScene = YES;
+BOOL rotateObjects = YES;
+
 - (void)paintForCamera:(C3DCamera *)camera {
     if (camera == _glCoreView.camera) {
-        [[_coreScene rootNode] visit:^(C3DNode *node) {
-            if (node.object != nil && node.transform != nil) {
-//                C3DTransform *xform = [rot copy];
-//                [xform concatenate:node.transform];
-//                [xform concatenate:rot];
-//                node.transform = xform;
-//                [node.transform rotate:LIRotationMake(0, 1, 0, M_PI / 100.0f)];
-                [node.transform concatenate:self->_rotation];
-            }
-        }];
+        if (rotateScene) {
+            C3DTransform *xform = [self->_rotation copy];
+            [xform concatenate:_coreScene.rootNode.transform];
+            _coreScene.rootNode.transform = xform;
+        }
+        if (rotateObjects) {
+            [_coreScene.rootNode visit:^(C3DNode *node) {
+                if (node.object != nil && node.transform != nil) {
+                    [node.transform concatenate:self->_rotation];
+                }
+            }];
+        }
     }
 }
 
