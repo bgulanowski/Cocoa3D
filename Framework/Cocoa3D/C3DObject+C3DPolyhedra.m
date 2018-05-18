@@ -42,7 +42,9 @@ static C3DVertexBuffer *unitColours;
         0, 4, 1,
         1, 4, 2
     };
-    return [self unitPolyhedronWithIndices:[C3DIndexBuffer indicesWithElements:&(indices[0]) count:3 * 4]];
+    C3DObject *object = [self unitPolyhedronWithIndices:[C3DIndexBuffer indicesWithElements:&(indices[0]) count:3 * 4]];
+    object.name = @"Corner Tetrahedron";
+    return object;
 }
 
 + (instancetype)unitRegularTetrahedron {
@@ -52,7 +54,9 @@ static C3DVertexBuffer *unitColours;
         0, 6, 5,
         3, 5, 6
     };
-    return [self unitPolyhedronWithIndices:[C3DIndexBuffer indicesWithElements:&(indices[0]) count:3 * 4]];
+    C3DObject *object = [self unitPolyhedronWithIndices:[C3DIndexBuffer indicesWithElements:&(indices[0]) count:3 * 4]];
+    object.name = @"Regular Tetrahedron";
+    return object;
 }
 
 + (instancetype)unitRectangularPrism {
@@ -72,7 +76,9 @@ static C3DVertexBuffer *unitColours;
         // top
         4, 6, 5
     };
-    return [self unitPolyhedronWithIndices:[C3DIndexBuffer indicesWithElements:&(indices[0]) count:3 * 8]];
+    C3DObject *object = [self unitPolyhedronWithIndices:[C3DIndexBuffer indicesWithElements:&(indices[0]) count:3 * 8]];
+    object.name = @"Rectangular Prism";
+    return object;
 }
 
 + (instancetype)unitCube {
@@ -96,7 +102,9 @@ static C3DVertexBuffer *unitColours;
         2, 6, 7,
         2, 7, 3,
     };
-    return [self unitPolyhedronWithIndices:[C3DIndexBuffer indicesWithElements:&(indices[0]) count:3 * 12]];
+    C3DObject *object = [self unitPolyhedronWithIndices:[C3DIndexBuffer indicesWithElements:&(indices[0]) count:3 * 12]];
+    object.name = @"Cube";
+    return object;
 }
 
 + (instancetype)equilateralTetrahedron {
@@ -136,6 +144,7 @@ static C3DVertexBuffer *unitColours;
     C3DObject *object = [[C3DObject alloc] initWithType:C3DObjectTypeTriangles];
     object.vertexBuffers = @[pBuffer, cBuffer];
     object.indexElements = [C3DIndexBuffer indicesWithElements:&(indices[0]) count:3 * 4];
+    object.name = @"Equilateral Tetrahedron";
     
     return object;
 }

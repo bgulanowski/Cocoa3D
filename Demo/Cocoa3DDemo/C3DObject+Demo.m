@@ -69,6 +69,7 @@ static GLuint triangleIndices[] = { 0, 1, 2 };
 	C3DObject *object = [[[self class] alloc] initWithType:C3DObjectTypeTriangles];
     object.vertexBuffers = @[positionBuffer, colourBuffer];
     object.program = program;
+    object.name = @"Demo Triangle";
     return object;
 }
 
@@ -78,6 +79,7 @@ static GLuint triangleIndices[] = { 0, 1, 2 };
     object.vertexBuffers = @[[C3DVertexBuffer positionsWithElements:trianglePoints[0] count:3]];
     object.indexElements = [C3DIndexBuffer indicesWithElements:&triangleIndices[0] count:3];
     object.program = program;
+    object.name = @"Demo Indexed Triangle";
     return object;
 }
 
@@ -94,6 +96,7 @@ static GLuint triangleIndices[] = { 0, 1, 2 };
     object.indexElements = [C3DIndexBuffer indicesWithElements:&indices[0] count:36];
     object.vertexBuffers = @[positionBuffer, coloursBuffer];
     object.program = program;
+    object.name = @"Demo Cube";
     return object;
 }
 
