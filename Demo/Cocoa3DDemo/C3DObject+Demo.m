@@ -13,7 +13,11 @@
 
 #import <LichenMath/LichenMath.h>
 
+#if TARGET_OS_IPHONE
+#import <OpenGLES/EAGL.h>
+#else
 #import <OpenGL/gl.h>
+#endif
 
 #define p000 {-1.0f,-1.0f,-1.0f}
 #define p00h {-1.0f,-1.0f,0.0f}

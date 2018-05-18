@@ -20,6 +20,7 @@
 		84B8F2D51A1926A1000C1AE5 /* Cocoa3D.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B8F1BA1A178ECF000C1AE5 /* Cocoa3D.framework */; };
 		84B8F2E01A1997A9000C1AE5 /* FlatShader.fp in Resources */ = {isa = PBXBuildFile; fileRef = 84B8F2DE1A1997A9000C1AE5 /* FlatShader.fp */; };
 		84B8F2E11A1997A9000C1AE5 /* FlatShader.vp in Resources */ = {isa = PBXBuildFile; fileRef = 84B8F2DF1A1997A9000C1AE5 /* FlatShader.vp */; };
+		84C0274120AE15A50032B5DB /* LichenMath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C0274020AE15A50032B5DB /* LichenMath.framework */; };
 		84F7E2431A1C4AC6008AD005 /* C3DObject+Demo.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F7E2421A1C4AC6008AD005 /* C3DObject+Demo.m */; };
 		84F7E24A1A1C4FBF008AD005 /* C3DNode+Demo.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F7E2491A1C4FBF008AD005 /* C3DNode+Demo.m */; };
 /* End PBXBuildFile section */
@@ -69,6 +70,8 @@
 		84B8F2CE1A1920CF000C1AE5 /* Cocoa3D-iOS Demo.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cocoa3D-iOS Demo.pch"; sourceTree = "<group>"; };
 		84B8F2DE1A1997A9000C1AE5 /* FlatShader.fp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FlatShader.fp; sourceTree = "<group>"; };
 		84B8F2DF1A1997A9000C1AE5 /* FlatShader.vp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FlatShader.vp; sourceTree = "<group>"; };
+		84C0273E20AE153C0032B5DB /* LichenMath.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LichenMath.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		84C0274020AE15A50032B5DB /* LichenMath.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LichenMath.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84F7E2411A1C4AC6008AD005 /* C3DObject+Demo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "C3DObject+Demo.h"; path = "../../Demo/Cocoa3DDemo/C3DObject+Demo.h"; sourceTree = "<group>"; };
 		84F7E2421A1C4AC6008AD005 /* C3DObject+Demo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = "C3DObject+Demo.m"; path = "../../Demo/Cocoa3DDemo/C3DObject+Demo.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		84F7E2481A1C4FBF008AD005 /* C3DNode+Demo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "C3DNode+Demo.h"; path = "../../Demo/Cocoa3DDemo/C3DNode+Demo.h"; sourceTree = "<group>"; };
@@ -80,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84C0274120AE15A50032B5DB /* LichenMath.framework in Frameworks */,
 				84B8F2D51A1926A1000C1AE5 /* Cocoa3D.framework in Frameworks */,
 				84B8F2CB1A191B8C000C1AE5 /* GLKit.framework in Frameworks */,
 				84B8F2CC1A191B8C000C1AE5 /* OpenGLES.framework in Frameworks */,
@@ -104,6 +108,7 @@
 				84B8F1551A178BEB000C1AE5 /* C3D-iOS Demo */,
 				84B8F16F1A178BEB000C1AE5 /* C3D-iOS DemoTests */,
 				84B8F1541A178BEB000C1AE5 /* Products */,
+				84C0273D20AE153C0032B5DB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -179,6 +184,15 @@
 			);
 			name = Frameworks;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		84C0273D20AE153C0032B5DB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				84C0274020AE15A50032B5DB /* LichenMath.framework */,
+				84C0273E20AE153C0032B5DB /* LichenMath.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		84F7E2401A1C4AAD008AD005 /* Cocoa3D Demo */ = {

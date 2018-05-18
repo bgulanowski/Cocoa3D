@@ -71,9 +71,13 @@
 	return self;
 }
 
+- (id<C3DObjectContainer>)objectContainerForCamera:(C3DCamera *)camera {
+    return self;
+}
+
 #pragma mark - C3DObjectContainer
 
-- (NSArray *)sortedPropsForCamera:(C3DCamera *)camera {
+- (NSArray *)sortedObjectsForCamera:(C3DCamera *)camera {
 	return @[_rootNode];
 }
 

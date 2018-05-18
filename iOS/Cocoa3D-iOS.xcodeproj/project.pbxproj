@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		8465CF401CC10BEE0010B2E6 /* C3DConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 8465CF3D1CC10BEE0010B2E6 /* C3DConstants.h */; };
-		8465CF411CC10BEE0010B2E6 /* C3DObject+C3DPolyhedra.h in Headers */ = {isa = PBXBuildFile; fileRef = 8465CF3E1CC10BEE0010B2E6 /* C3DObject+C3DPolyhedra.h */; };
+		8465CF411CC10BEE0010B2E6 /* C3DObject+C3DPolyhedra.h in Headers */ = {isa = PBXBuildFile; fileRef = 8465CF3E1CC10BEE0010B2E6 /* C3DObject+C3DPolyhedra.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8465CF421CC10BEE0010B2E6 /* C3DObject+C3DPolyhedra.m in Sources */ = {isa = PBXBuildFile; fileRef = 8465CF3F1CC10BEE0010B2E6 /* C3DObject+C3DPolyhedra.m */; };
-		8467A6C01A74964800F89F66 /* C3DColour.h in Headers */ = {isa = PBXBuildFile; fileRef = 8467A6BE1A74964800F89F66 /* C3DColour.h */; };
+		8467A6C01A74964800F89F66 /* C3DColour.h in Headers */ = {isa = PBXBuildFile; fileRef = 8467A6BE1A74964800F89F66 /* C3DColour.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8467A6C11A74964800F89F66 /* C3DColour.m in Sources */ = {isa = PBXBuildFile; fileRef = 8467A6BF1A74964800F89F66 /* C3DColour.m */; };
 		84B8F27A1A183BC8000C1AE5 /* C3DCamera_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 84B8F2511A183BC8000C1AE5 /* C3DCamera_Private.h */; };
 		84B8F27B1A183BC8000C1AE5 /* C3DCamera.h in Headers */ = {isa = PBXBuildFile; fileRef = 84B8F2521A183BC8000C1AE5 /* C3DCamera.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -40,10 +40,11 @@
 		84B8F2BB1A190D49000C1AE5 /* C3DCameraEAGL3.h in Headers */ = {isa = PBXBuildFile; fileRef = 84B8F2B91A190D49000C1AE5 /* C3DCameraEAGL3.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		84B8F2BC1A190D49000C1AE5 /* C3DCameraEAGL3.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B8F2BA1A190D49000C1AE5 /* C3DCameraEAGL3.m */; };
 		84B8F2BD1A190D86000C1AE5 /* Cocoa3D.h in Headers */ = {isa = PBXBuildFile; fileRef = 84B8F26E1A183BC8000C1AE5 /* Cocoa3D.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		84B8F2C51A1919FB000C1AE5 /* C3DView.h in Headers */ = {isa = PBXBuildFile; fileRef = 84B8F2C31A1919FB000C1AE5 /* C3DView.h */; };
+		84B8F2C51A1919FB000C1AE5 /* C3DView.h in Headers */ = {isa = PBXBuildFile; fileRef = 84B8F2C31A1919FB000C1AE5 /* C3DView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		84B8F2C61A1919FB000C1AE5 /* C3DView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B8F2C41A1919FB000C1AE5 /* C3DView.m */; };
 		84B8F2D71A192793000C1AE5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B8F2D61A192793000C1AE5 /* CoreGraphics.framework */; };
 		84B8F2D91A192890000C1AE5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B8F2D81A192890000C1AE5 /* UIKit.framework */; };
+		84C0273B20AE14F50032B5DB /* LichenMath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A2B1EE1D54B6A900148585 /* LichenMath.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,6 +136,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84C0273B20AE14F50032B5DB /* LichenMath.framework in Frameworks */,
 				84B8F2D91A192890000C1AE5 /* UIKit.framework in Frameworks */,
 				84B8F2D71A192793000C1AE5 /* CoreGraphics.framework in Frameworks */,
 				84B8F2B51A18425F000C1AE5 /* OpenGLES.framework in Frameworks */,

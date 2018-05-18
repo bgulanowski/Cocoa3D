@@ -10,6 +10,8 @@
 
 #import <Cocoa3D/C3DCamera.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class C3DIndexBuffer, C3DNode, C3DProgram, C3DVertexBuffer;
 
 @interface C3DObject : NSObject<C3DVisible>
@@ -24,3 +26,5 @@
 - (instancetype)initWithType:(C3DObjectType)type;
 
 @end
+
+NS_ASSUME_NONNULL_END
