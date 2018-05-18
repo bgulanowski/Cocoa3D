@@ -20,6 +20,9 @@ NS_INLINE LIRotation_t LIRotationMake(float x, float y, float z, float a) {
 	return r;
 }
 
+extern void C3DMatrixMakePerspective(LIMatrix_t *m, float fFov, float fAspect, float zMin, float zMax);
+extern void C3DMatrixMakeOrthographic(LIMatrix_t *m, float xMin, float xMax, float yMin, float yMax, float zMin, float zMax);
+
 @interface C3DTransform : LIMatrix
 
 // position
