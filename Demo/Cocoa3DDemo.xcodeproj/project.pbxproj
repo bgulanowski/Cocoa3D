@@ -26,6 +26,7 @@
 		849D2B84196FD59E0051F434 /* Cocoa3D.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 849D2B81196FD58B0051F434 /* Cocoa3D.framework */; };
 		849D2B86196FD5A70051F434 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 849D2B85196FD5A70051F434 /* OpenGL.framework */; };
 		84BB79B21ABDC63A00115276 /* C3DProgram+Demo.m in Sources */ = {isa = PBXBuildFile; fileRef = 84BB79B11ABDC63A00115276 /* C3DProgram+Demo.m */; };
+		84C0274D20AF0DFC0032B5DB /* TestScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C0274C20AF0DFC0032B5DB /* TestScene.m */; };
 		84C1EAC11985920A002760E4 /* LichenMath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C1EAC01985920A002760E4 /* LichenMath.framework */; };
 		84CED76A1974270100FFF722 /* FlatShader.fp in Resources */ = {isa = PBXBuildFile; fileRef = 84CED7681974270100FFF722 /* FlatShader.fp */; };
 		84CED76B1974270100FFF722 /* FlatShader.vp in Resources */ = {isa = PBXBuildFile; fileRef = 84CED7691974270100FFF722 /* FlatShader.vp */; };
@@ -111,6 +112,8 @@
 		849D2B85196FD5A70051F434 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		84BB79B01ABDC63A00115276 /* C3DProgram+Demo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "C3DProgram+Demo.h"; sourceTree = "<group>"; };
 		84BB79B11ABDC63A00115276 /* C3DProgram+Demo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "C3DProgram+Demo.m"; sourceTree = "<group>"; };
+		84C0274B20AF0DFC0032B5DB /* TestScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestScene.h; sourceTree = "<group>"; };
+		84C0274C20AF0DFC0032B5DB /* TestScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestScene.m; sourceTree = "<group>"; };
 		84C1EAC01985920A002760E4 /* LichenMath.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LichenMath.framework; path = ../../../../../../../Shared/Xcode/Products/Debug/LichenMath.framework; sourceTree = "<group>"; };
 		84CED7681974270100FFF722 /* FlatShader.fp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FlatShader.fp; sourceTree = "<group>"; };
 		84CED7691974270100FFF722 /* FlatShader.vp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FlatShader.vp; sourceTree = "<group>"; };
@@ -181,6 +184,8 @@
 				844833CC1BA5ADBD00F657AE /* ModernScene.h */,
 				844833CD1BA5ADBD00F657AE /* ModernScene.m */,
 				844833C51BA5ABDB00F657AE /* Scene.h */,
+				84C0274B20AF0DFC0032B5DB /* TestScene.h */,
+				84C0274C20AF0DFC0032B5DB /* TestScene.m */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -421,6 +426,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84C0274D20AF0DFC0032B5DB /* TestScene.m in Sources */,
 				849D2B5B196FD54E0051F434 /* AppDelegate.m in Sources */,
 				844833C81BA5AD4000F657AE /* C3DView+ScenePresenting.m in Sources */,
 				84F7E2461A1C4F4E008AD005 /* C3DNode+Demo.m in Sources */,
