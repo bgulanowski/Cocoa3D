@@ -32,13 +32,6 @@
     [_window makeFirstResponder:_glCoreView];
 }
 
-#pragma mark - NSNibAwaking
-
-//- (void)awakeFromNib {
-//    [self.window makeFirstResponder:_gl3View];
-//    [self.window setNextResponder:self];
-//}
-
 #pragma mark - NSApplicationDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
