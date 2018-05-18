@@ -71,4 +71,11 @@
 	return rootNode;
 }
 
++ (instancetype)testScene {
+    
+    C3DNode *rootNode = [C3DNode new];
+    rootNode.object = [C3DObject demoTriangleWithProgram:[C3DProgram demoProgram]];
+    return rootNode;
+}
+
 @end

@@ -11,5 +11,6 @@
 @interface C3DNode (Demo)
 
 + (instancetype)demoScene;
++ (instancetype)testScene;
 
 @end
