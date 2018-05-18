@@ -10,7 +10,6 @@
 		842015E3198D22F400853E68 /* C3DTransform.h in Headers */ = {isa = PBXBuildFile; fileRef = 842015E1198D22F400853E68 /* C3DTransform.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		842015E4198D22F400853E68 /* C3DTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = 842015E2198D22F400853E68 /* C3DTransform.m */; };
 		842DBA6F1BB87DAF00072D46 /* BAFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 842DBA6E1BB87DAF00072D46 /* BAFoundation.framework */; };
-		842DBA741BB87DB300072D46 /* liblimath.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B8F1471A178B48000C1AE5 /* liblimath.a */; };
 		844833B31BA44E4E00F657AE /* C3DObject+C3DPolyhedra.h in Headers */ = {isa = PBXBuildFile; fileRef = 844833B11BA44E4E00F657AE /* C3DObject+C3DPolyhedra.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		844833B41BA44E4E00F657AE /* C3DObject+C3DPolyhedra.m in Sources */ = {isa = PBXBuildFile; fileRef = 844833B21BA44E4E00F657AE /* C3DObject+C3DPolyhedra.m */; };
 		844833BA1BA450E200F657AE /* C3DConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 844833B91BA450E200F657AE /* C3DConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -43,6 +42,7 @@
 		84AFA92E19A97C8500296196 /* C3DCameraGL3.h in Headers */ = {isa = PBXBuildFile; fileRef = 84AFA92C19A97C8500296196 /* C3DCameraGL3.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		84AFA92F19A97C8500296196 /* C3DCameraGL3.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AFA92D19A97C8500296196 /* C3DCameraGL3.m */; };
 		84B8F2C21A190FA5000C1AE5 /* LichenMath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B8F1431A178B48000C1AE5 /* LichenMath.framework */; };
+		84C0274A20AE20820032B5DB /* LichenMath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B8F1431A178B48000C1AE5 /* LichenMath.framework */; };
 		84C1EAB31985919A002760E4 /* C3DView.h in Headers */ = {isa = PBXBuildFile; fileRef = 84C1EAB11985919A002760E4 /* C3DView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		84C1EAB41985919A002760E4 /* C3DView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C1EAB21985919A002760E4 /* C3DView.m */; };
 		84C1EAC819860B8C002760E4 /* C3DCameraGL1.h in Headers */ = {isa = PBXBuildFile; fileRef = 84C1EAC619860B8C002760E4 /* C3DCameraGL1.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -183,7 +183,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				842DBA741BB87DB300072D46 /* liblimath.a in Frameworks */,
+				84C0274A20AE20820032B5DB /* LichenMath.framework in Frameworks */,
 				842DBA6F1BB87DAF00072D46 /* BAFoundation.framework in Frameworks */,
 				849D2B27196FD4C70051F434 /* Cocoa.framework in Frameworks */,
 				849D2B26196FD4C70051F434 /* XCTest.framework in Frameworks */,
