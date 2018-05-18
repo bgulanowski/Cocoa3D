@@ -661,7 +661,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cocoa3D/Cocoa3D-Prefix.pch";
 				INFOPLIST_FILE = "Cocoa3D/Cocoa3D-Info.plist";
-				OTHER_CFLAGS = "-DC3D_GL_COMPATIBILITY";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lichenlabs.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
@@ -678,7 +677,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Cocoa3D/Cocoa3D-Prefix.pch";
 				INFOPLIST_FILE = "Cocoa3D/Cocoa3D-Info.plist";
-				OTHER_CFLAGS = "-DC3D_GL_COMPATIBILITY";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.lichenlabs.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
