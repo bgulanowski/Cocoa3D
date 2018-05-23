@@ -31,6 +31,10 @@ NS_INLINE BAMotionFlag BAMotionFlagForMotion(BAMotion motion) {
 - (void)captureSceneWithDelta:(NSTimeInterval)delta;
 @end
 
+static NSTimeInterval C3DTimeIntervalFromTimeStamp(const CVTimeStamp *timeStamp) {
+    return 1.0 / (timeStamp->rateScalar * (double)timeStamp->videoTimeScale / (double)timeStamp->videoRefreshPeriod);
+}
+
 static CVReturn C3DViewDisplayLink(CVDisplayLinkRef displayLink,
 									   const CVTimeStamp *inNow,
 									   const CVTimeStamp *inOutputTime,
@@ -38,8 +42,7 @@ static CVReturn C3DViewDisplayLink(CVDisplayLinkRef displayLink,
 									   CVOptionFlags *flagsOut,
 									   void *view) {
 	@autoreleasepool {
-        NSTimeInterval deltaTime = 1.0 / (inOutputTime->rateScalar * (double)inOutputTime->videoTimeScale / (double)inOutputTime->videoRefreshPeriod);
-		[(__bridge C3DView *)view captureSceneWithDelta:deltaTime];
+		[(__bridge C3DView *)view captureSceneWithDelta:C3DTimeIntervalFromTimeStamp(inOutputTime)];
 	}
 	
 	return kCVReturnSuccess;
