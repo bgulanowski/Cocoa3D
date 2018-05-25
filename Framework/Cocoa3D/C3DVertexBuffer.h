@@ -37,6 +37,8 @@ extern NSString *C3DAttributeNameForVertexBufferType(C3DVertexBufferType type);
 
 @class C3DProgram;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface C3DBuffer : NSObject
 
 @property (nonatomic) NSData *elements;
@@ -58,8 +60,8 @@ extern NSString *C3DAttributeNameForVertexBufferType(C3DVertexBufferType type);
 @property (nonatomic, readonly) NSString *attributeName;
 
 - (instancetype)init NS_UNAVAILABLE;
-- (instancetype)initWithType:(C3DVertexBufferType)type data:(NSData *)data count:(NSUInteger)count NS_DESIGNATED_INITIALIZER;
-- (instancetype)initWithType:(C3DVertexBufferType)type data:(NSData *)data;
+- (instancetype)initWithType:(C3DVertexBufferType)type data:(nullable NSData *)data count:(NSUInteger)count NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithType:(C3DVertexBufferType)type data:(nullable NSData *)data;
 - (instancetype)initWithType:(C3DVertexBufferType)type elements:(void *)elements count:(NSUInteger)count;
 
 + (instancetype)coloursWithElements:(GLfloat *)elements count:(NSUInteger)count;
@@ -71,3 +73,6 @@ extern NSString *C3DAttributeNameForVertexBufferType(C3DVertexBufferType type);
 + (instancetype)edgeFlagsWithElements:(GLuint *)elements count:(NSUInteger)count;
 
 @end
+
+NS_ASSUME_NONNULL_END
+

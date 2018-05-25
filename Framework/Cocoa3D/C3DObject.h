@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) C3DNode *node;
 @property (nonatomic, strong) C3DProgram *program;
 @property (nonatomic, strong) C3DIndexBuffer *indexElements;
-@property (nonatomic, strong) NSArray *vertexBuffers;
+@property (nonatomic, strong) NSArray<C3DVertexBuffer *> *vertexBuffers;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic) BOOL ignoresTransform;
 
