@@ -29,6 +29,8 @@ typedef NS_ENUM(NSUInteger, C3DVertexBufferType) {
 	C3DVertexBufferEdgeFlag,
 };
 
+NS_ASSUME_NONNULL_BEGIN
+
 extern NSUInteger const C3DVertexBufferTypeCount;
 
 extern GLsizei C3DSizeForVertexBufferType(C3DVertexBufferType type);
@@ -36,8 +38,6 @@ extern NSArray *C3DAttributeNames( void );
 extern NSString *C3DAttributeNameForVertexBufferType(C3DVertexBufferType type);
 
 @class C3DProgram;
-
-NS_ASSUME_NONNULL_BEGIN
 
 @interface C3DBuffer : NSObject
 
