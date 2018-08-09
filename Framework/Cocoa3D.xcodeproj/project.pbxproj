@@ -114,7 +114,7 @@
 /* Begin PBXFileReference section */
 		842015E1198D22F400853E68 /* C3DTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C3DTransform.h; sourceTree = "<group>"; };
 		842015E2198D22F400853E68 /* C3DTransform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = C3DTransform.m; sourceTree = "<group>"; };
-		842DBA6E1BB87DAF00072D46 /* BAFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BAFoundation.framework; path = ../../../../../Shared/Xcode/Products/Debug/BAFoundation.framework; sourceTree = "<group>"; };
+		842DBA6E1BB87DAF00072D46 /* BAFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BAFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		844833B11BA44E4E00F657AE /* C3DObject+C3DPolyhedra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "C3DObject+C3DPolyhedra.h"; sourceTree = "<group>"; };
 		844833B21BA44E4E00F657AE /* C3DObject+C3DPolyhedra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "C3DObject+C3DPolyhedra.m"; sourceTree = "<group>"; };
 		844833B91BA450E200F657AE /* C3DConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = C3DConstants.h; sourceTree = "<group>"; };
